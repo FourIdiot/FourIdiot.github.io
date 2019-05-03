@@ -1,0 +1,50 @@
+.wrapper{
+	display: grid;
+	grid-template-columns: repeat(10,1fr);
+	grid-template-rows: auto;
+	grid-gap: 10px;
+}
+
+.header{
+	display: grid;
+	grid-template-columns: repeat(20,1fr);
+	grid-template-rows: auto;
+	grid-gap: 5px;
+	grid-column: 1/11;
+	grid-row: 1/10;
+}
+
+.logo{
+	grid-column:1/7; 
+	margin: 4px;
+}
+.main{
+	grid-column:7/15; 
+	margin: 4px;
+}
+.more{
+	grid-column:15/20;
+	margin: 4px; 
+}
+
+
+.time{
+	grid-column: 1/11;
+	grid-row: 10/20;
+}
+
+.detail{
+	grid-column: 1/3;
+	grid-row: 20/75;
+}
+
+.map{
+	grid-column: 3/9;
+	grid-row: 20/75;
+}
+
+
+
+div{
+	border: 1px solid;
+}
