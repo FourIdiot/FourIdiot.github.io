@@ -16,13 +16,14 @@
     <div class = "time">time</div>
     <div class = "detail">
       <div class = "content">
-        <p>subjectName</p>
+        <p id = "subjectName">Subject</p>
         <br>
-        <p>When<br>M/D startTime ~ endTime</p>
+        <p>When?</p>
+        <br><p id = "detailTime">M/D startTime ~ endTime</p>
         <br>
-        <p>Where<br>(locationNumber) locationName</p>
+        Where<br><p id = "locNum">(locationNumber) locationName</p>
         <br>
-        <p>whatWeGain<br><a href="https://portalsso.kaist.ac.kr/login.ps">Link</a></p>
+        <p id = "reward">whatWeGain</p><br><a id = "detailLInk" href="https://portalsso.kaist.ac.kr/login.ps">Link</a>
       </div>
     </div>
     <div class = "map">map</div>
@@ -65,6 +66,10 @@
     <div class = "detail">detail</div>
     <div class = "map"><img src="/example_img.PNG"></div>
   </div>
+  <script src="jquery/js/jquery-1.9.0.min.js"></script>
+  <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script src="./container2.js"></script>
 </body>
 
 </html>
