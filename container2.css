@@ -43,7 +43,9 @@
 	grid-row: 20/75;
 }
 
-
+.content{
+	margin: 10px;
+}
 
 div{
 	border: 1px solid;
