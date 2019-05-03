@@ -1,8 +1,9 @@
 .wrapper{
 	display: grid;
-	grid-template-columns: repeat(10,1fr);
+	grid-template-columns: repeat(10,140px);
 	grid-template-rows: auto;
 	grid-gap: 10px;
+	width:1490px;
 }
 
 .header{
