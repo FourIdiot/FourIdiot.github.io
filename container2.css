@@ -72,3 +72,57 @@
 div{
 	border: 1px solid;
 }
+
+
+.time_2 {
+    background: #000000;
+    padding: 25px 0 15px 0;
+}
+
+.inner-wrap {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.clock a {
+    display: block;
+    float: left;
+    width: 48px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 13px;
+    position: relative;
+    line-height: 23px;
+    text-align: center;
+    z-index: 20;
+}
+
+.clock .scroll {
+    position: absolute;
+    width: 144px;
+    height: 23px;
+    background: #ea003d;
+    border-radius: 12px;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 13px;
+}
+
+.clock > div > a > span {
+    position: absolute;
+    top: -20px;
+    left: 35%;
+    font-size: 12px;
+    font-weight: 300;
+    color: #999999;
+}
