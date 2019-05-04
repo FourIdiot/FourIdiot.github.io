@@ -60,7 +60,7 @@ var coordinateDict = {
 
 
 
-//pin on the map start
+/*//pin on the map start
 function addpin(list){
 a="'http://naver.com'";
   for (var i=0; i<list.length ; i++){
@@ -98,18 +98,16 @@ function removeoverlap(list){
 
 addpin(collectlocation(eventList));
 //pin on the map end
-
+*/
 
 
 //timetable event 점찍기
 function timeevent(){
 	var eventtimeSet = new Set();
-	console.log(eventtimeSet);
 	for (var i =0;i < eventList.length;i++){
 		currentEvent = eventList[i];
 		var b = currentEvent[2][0].slice(0,2)*1-8;
 		eventtimeSet.add(b);
-		console.log(eventtimeSet);
 	}
 	eventtimeSet.forEach(function(a){
 		var dist=33+a*50;
@@ -151,7 +149,7 @@ function showDetail(event){
 $( document ).ready(function(){
 	readData();
 	setTimeout(function(){
-		timeSelectedList = eventList.slice()
-	},500)
+		timeevent();
+	},1000)
 })
 
