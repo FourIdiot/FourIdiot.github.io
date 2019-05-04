@@ -9,12 +9,29 @@ var config = {
 firebase.initializeApp(config);
 
 //timetable
+//timetable hover
 $('.timet').hover(function() {
     	$(this).addClass('hover');
     }, function() {
 		$(this).removeClass('hover');
     }
 );
+
+//timetable click
+$('.timet').on('click', function(){
+	var timeid = $(this).attr('id');
+	var dis = 20+timeid*50;
+	if($(this).data('clicked')){
+		$(this).data('clicked', false);
+		$('#scrollBar'+dis).remove();
+	
+	} else {
+		$(this).data('clicked', true);
+		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+	};
+});
+
+
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
