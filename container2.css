@@ -104,7 +104,8 @@
     position: relative;
 }
 
-.clock div {
+
+.timet {
 	display: block;
 	float:left;
     margin-left: 20px;
