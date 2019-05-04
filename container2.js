@@ -52,22 +52,23 @@ var locationDict = {
 	"W8" : "Educational Support Building"
 };
 var coordinateDict = {
-	"N13-1" : ["290","220","20"],
-	"E11" : ["323","320","20"],
-	"E9" : ["310","345","20"],
-	"W8" : ["190","320","20"]
+	"N13-1" : ["225","150","20"],
+	"E11" : ["258","240","20"],
+	"E9" : ["237","275","20"],
+	"W8" : ["145","250","20"]
 };
 
-<<<<<<< HEAD
 
 //pin on the map start
 function addpin(list){
 a="'http://naver.com'";
+b="'./image/redpin2.png'";
+c="'./image/redpin1.png'";
   for (var i=0; i<list.length ; i++){
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<div><img id="' + list[i] +'" src="./image/redpin2.png"' +
+    $('<div><img id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; LEFT:' + coordinateDict[list[i]][0] + 'px; TOP:' + coordinateDict[list[i]][1] +'px;  WIDTH:30px; HEIGHT:50px"' +
-    'onclick="window.location.href=' + a +'"/></div>').appendTo(".map");
+    'onclick="window.location.href=' + a +'"/></div>').appendTo(".map1");
   }
 }
 // var $map = $('<map name="mapmap">').appendTo('.campusmap');
@@ -95,12 +96,10 @@ function removeoverlap(list){
     }
   return a;
 }
-
-addpin(collectlocation(eventList));
+// addpin(collectlocation(eventList));
 //pin on the map end
 
 
-=======
 //timetable event 점찍기
 function timeevent(){
 	for (var i;i<eventList.length;i++) {
@@ -114,7 +113,6 @@ function timeevent(){
 	}
 }
 
->>>>>>> f021bd1b43896895dbb41c7500fa376e9ff4aa12
 function writeData(l){
 	//Just For Adding Events
 	var newdata = firebase.database().ref('/4idiots/').push();
@@ -147,6 +145,7 @@ function showDetail(event){
 $( document ).ready(function(){
 	readData();
 	setTimeout(function(){
-		timeSelectedList = eventList.slice()
-	},500)
+  addpin(collectlocation(eventList));
+	},1000)
+
 })
