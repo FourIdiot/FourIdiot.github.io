@@ -52,7 +52,7 @@
 	grid-row: 20/75;
 }
 
-.map{
+.map1{
 	grid-column: 3/9;
 	grid-row: 20/75;
 }
@@ -60,7 +60,7 @@
 /* .map img {
     max-width: 100%;
 } */
-.map mapmap{
+.map1 mapmap{
 	width: auto;
 	height: 100%;
 	display: block;
