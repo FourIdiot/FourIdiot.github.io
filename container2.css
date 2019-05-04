@@ -73,9 +73,7 @@
 	grid-row: 2;
 	text-align: right;
 }
-div{
-	border: 1px solid;
-}
+
 
 
 .time_2 {
@@ -89,17 +87,32 @@ div{
     position: relative;
 }
 
-.clock a {
-    display: block;
-    float: left;
-    width: 52px;
+.clock div {
+	display: block;
+	float:left;
+    margin-left: 20px;
+
     color: #fff;
     font-weight: 600;
     font-size: 16px;
     position: relative;
-    line-height: 35px;
+	line-height: 35px;
+	width: 30px;
     text-align: center;
     z-index: 20;
+}
+
+.hover:before {
+    content: "";
+    position: absolute;
+    z-index: 12;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+	border: solid 2px #8f8f8f;
+	border-radius: 30px;
+    box-sizing: border-box;
 }
 
 .clock .scroll {
@@ -122,7 +135,7 @@ body {
     font-size: 13px;
 }
 
-.clock > div > a > span {
+.timet > span {
     position: absolute;
     top: -25px;
     left: 30%;
