@@ -49,20 +49,17 @@ function readData(){
 		}
 	});
 }
-
 function showDetail(event){
-	var subject = document.getElementById("subjectName");
-	var location = document.getElementById("locNum");
-	var reward = document.getElementById("reward");
-	var time = document.getElementById("detailTime");
-	subject.innerHTML = event[0];
-	time.innerHTML = event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1];
-	location.innerHTML = "( " + event[3] + " )  " + locationDict[event[3]];
-	reward.innerHTML = event[4];
-	$("detailLink").attr("herf",event[5]);
+	$("#detail content")
+		.append($('<p id = "subjectName">' + event[0]) + '<br>')
+		.append($('<p>When?'))
+		.append($('<p id = "detailTime">' + event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]) + '<br>Where?<br>')
+		.append($('<p id = "locNum">' + '( ' + event[3] + ' )  ' + locationDict[event[3]] + '<br>'))
+		.append($('<p id = "reward"' + event[4] + '<br>'))
+		.append($('<a id = "detailLink" herf="' + event[5] + '">Link'));
 }
 
 
 $( document ).ready(function(){
-
-}
+	readData();
+})
