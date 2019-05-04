@@ -8,6 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var eventList = [];
+var timeSelectedList = [];
 //timetable
 //timetable hover
 $('.timet').hover(function() {
@@ -25,9 +27,9 @@ $('.timet').on('click', function(){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
 		timeSelectedList = []
-		for (var i =0;i < eventList.length,i++){
+		for (var i =0;i < eventList.length;i++){
 			currentEvent = eventlist[i];
-			if (currentEvnet[2][0] + 0 == timeid + 0){
+			if (currentEvent[2][0].slice(0,2) + 0 == timeid + 0){
 				timeSelectedList.push(currentEvent);
 			}
 		};
@@ -37,11 +39,8 @@ $('.timet').on('click', function(){
 	};
 });
 
-
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
-var eventList = [];
-var timeSelectedList = [];
 
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
