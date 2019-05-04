@@ -32,7 +32,7 @@
 
 .time{
 	display: grid;
-	grid-template-columns: 2fr 7fr 1fr;
+	grid-template-columns: 2fr 7fr;
 	grid-template-rows: auto;
 	grid-column: 1/11;
 	grid-row: 10/20;
@@ -89,12 +89,12 @@ div{
 .clock a {
     display: block;
     float: left;
-    width: 48px;
+    width: 52px;
     color: #fff;
-    font-weight: 500;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 16px;
     position: relative;
-    line-height: 23px;
+    line-height: 35px;
     text-align: center;
     z-index: 20;
 }
@@ -121,9 +121,9 @@ body {
 
 .clock > div > a > span {
     position: absolute;
-    top: -20px;
-    left: 35%;
-    font-size: 12px;
-    font-weight: 300;
+    top: -25px;
+    left: 30%;
+    font-size: 14px;
+    font-weight: 600;
     color: #999999;
 }
