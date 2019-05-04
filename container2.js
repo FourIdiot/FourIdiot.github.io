@@ -59,16 +59,21 @@ var coordinateDict = {
 
 //timetable event 점찍기
 function timeevent(){
-	for (var i;i<eventList.length;i++) {
-		var eventtimeSet = Set();
-		for (var i =0;i<eventList.length;i++){
-			currentEvent = eventlist[i];
-			if (currentEvnet[2][0] + 0 == timeid + 0){
-				timeSelectedList.push(currentEvent);
-			}
-		};
+	var eventtimeSet = new Set();
+	console.log(eventtimeSet);
+	for (var i =0;i < eventList.length;i++){
+		currentEvent = eventList[i];
+		var b = currentEvent[2][0].slice(0,2)*1-8;
+		eventtimeSet.add(b);
+		console.log(eventtimeSet);
 	}
+	eventtimeSet.forEach(function(a){
+		var dist=33+a*50;
+		$('.inner-wrap').append("<span id='event_time"+a+"' class='event_time' style='left:"+dist+"px;'></span>");
+	});
+	
 }
+
 
 function writeData(l){
 	//Just For Adding Events
@@ -101,4 +106,5 @@ function showDetail(event){
 
 $( document ).ready(function(){
 	readData();
+	timeevent();
 })
