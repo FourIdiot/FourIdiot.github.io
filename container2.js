@@ -16,12 +16,21 @@ $('.timet').hover(function() {
     }
 );
 
+
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
 var eventList = [];
 var locationDict = {
-	"N13" : "Tae-ul Gwan",
-	"E11" : "Chang-ui Gwan"
+	"N13-1" : "Shin-hak Gwan",
+	"E11" : "Chang-ui Gwan",
+	"E9" : "Academic Cultural Complex",
+	"W8" : "Educational Support Building"
+};
+var coordinateDict = {
+	"N13-1" : "290,220,20",
+	"E11" : "323,320,20",
+	"E9" : "310,345,20",
+	"W8" : "190,320,20"
 };
 function writeData(l){
 	//Just For Adding Events
@@ -51,4 +60,9 @@ function showDetail(event){
 	location.innerHTML = "( " + event[3] + " )  " + locationDict[event[3]];
 	reward.innerHTML = event[4];
 	$("detailLink").attr("herf",event[5]);
+}
+
+
+$( document ).ready(function(){
+
 }
