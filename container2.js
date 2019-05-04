@@ -8,7 +8,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var eventList = [];
+var timeSelectedList = [];
 //timetable
+//timetable hover
 $('.timet').hover(function() {
     	$(this).addClass('hover');
     }, function() {
@@ -16,10 +19,32 @@ $('.timet').hover(function() {
     }
 );
 
+//timetable click
+$('.timet').on('click', function(){
+	var timeid = $(this).attr('id');
+	var dis = 20+timeid*50;
+	if($(this).data('clicked')){
+		$(this).data('clicked', false);
+		$('#scrollBar'+dis).remove();
+		timeSelectedList = eventList.slice();
+	} else {
+		$(this).data('clicked', true);
+		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+		timeSelectedList = []
+		for (var i =0;i < eventList.length;i++){
+			currentEvent = eventList[i];
+			if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+				timeSelectedList.push(currentEvent);
+			}
+		};
+	};
+});
+
+
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
-var eventList = [];
+
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
 	"E11" : "Chang-ui Gwan",
@@ -33,6 +58,7 @@ var coordinateDict = {
 	"W8" : ["190","320","20"]
 };
 
+<<<<<<< HEAD
 
 //pin on the map start
 function addpin(list){
@@ -74,6 +100,21 @@ addpin(collectlocation(eventList));
 //pin on the map end
 
 
+=======
+//timetable event 점찍기
+function timeevent(){
+	for (var i;i<eventList.length;i++) {
+		var eventtimeSet = Set();
+		for (var i =0;i<eventList.length;i++){
+			currentEvent = eventlist[i];
+			if (currentEvnet[2][0] + 0 == timeid + 0){
+				timeSelectedList.push(currentEvent);
+			}
+		};
+	}
+}
+
+>>>>>>> f021bd1b43896895dbb41c7500fa376e9ff4aa12
 function writeData(l){
 	//Just For Adding Events
 	var newdata = firebase.database().ref('/4idiots/').push();
@@ -91,20 +132,21 @@ function readData(){
 		}
 	});
 }
-
 function showDetail(event){
-	var subject = document.getElementById("subjectName");
-	var location = document.getElementById("locNum");
-	var reward = document.getElementById("reward");
-	var time = document.getElementById("detailTime");
-	subject.innerHTML = event[0];
-	time.innerHTML = event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1];
-	location.innerHTML = "( " + event[3] + " )  " + locationDict[event[3]];
-	reward.innerHTML = event[4];
-	$("detailLink").attr("herf",event[5]);
+	$("#content")
+		.append($('<br><p id = "subjectName">' + event[0] + '<br>'))
+		.append($('<p>').html("When?"))
+		.append($('<p id = "detailTime">').html(event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]))
+		.append($('<br>').html("Where?"))
+		.append($('<p id = "locNum">').html('( ' + event[3] + ' )  ' + locationDict[event[3]]))
+		.append($('<br><p id = "reward">').html(event[4]))
+		.append($('<a id = "detailLink" herf="' + event[5] + '">').html("Link"));
 }
 
 
 $( document ).ready(function(){
-
-});
+	readData();
+	setTimeout(function(){
+		timeSelectedList = eventList.slice()
+	},500)
+})
