@@ -8,6 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var eventList = [];
+var timeSelectedList = [];
 //timetable
 //timetable hover
 $('.timet').hover(function() {
@@ -24,16 +26,16 @@ $('.timet').on('click', function(){
 	if($(this).data('clicked')){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
-		timeSelectedList = []
-		for (var i =0;i<eventList.length;i++){
-			currentEvent = eventlist[i];
-			if (currentEvnet[2][0] + 0 == timeid + 0){
-				timeSelectedList.push(currentEvent);
-			}
-		};
 	} else {
 		$(this).data('clicked', true);
 		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+		timeSelectedList = []
+		for (var i =0;i < eventList.length;i++){
+			currentEvent = eventList[i];
+			if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+				timeSelectedList.push(currentEvent);
+			}
+		};
 	};
 });
 
@@ -41,8 +43,6 @@ $('.timet').on('click', function(){
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
-var eventList = [];
-var timeSelectedList = [];
 
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
