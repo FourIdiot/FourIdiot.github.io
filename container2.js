@@ -8,6 +8,14 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//timetable
+$('.timet').hover(function() {
+    	$(this).addClass('hover');
+    }, function() {
+		$(this).removeClass('hover');
+    }
+);
+
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
 var eventList = [];
