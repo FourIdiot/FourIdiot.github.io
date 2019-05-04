@@ -58,9 +58,15 @@ var coordinateDict = {
 };
 
 //timetable event 점찍기
-function writeevent(){
+function timeevent(){
 	for (var i;i<eventList.length;i++) {
-		
+		var eventtimeSet = Set();
+		for (var i =0;i<eventList.length;i++){
+			currentEvent = eventlist[i];
+			if (currentEvnet[2][0] + 0 == timeid + 0){
+				timeSelectedList.push(currentEvent);
+			}
+		};
 	}
 }
 
