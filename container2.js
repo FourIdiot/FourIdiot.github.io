@@ -39,6 +39,11 @@ $('.timet').on('click', function(){
 	};
 });
 
+//timetable event 점찍기
+for (var i;i<eventList.length;i++) {
+	
+}
+
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
 
