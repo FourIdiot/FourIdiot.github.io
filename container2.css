@@ -16,23 +16,25 @@
 }
 
 .logo{
-	grid-column:1/7; 
+	grid-column:1/7;
 	margin: 4px;
 }
+
 .main{
-	grid-column:7/15; 
+	grid-column:7/15;
 	margin: 4px;
 }
 .more{
 	grid-column:15/20;
-	margin: 4px; 
+	margin: 4px;
+	text-align: right;
 }
 
 
 .time{
 	display: grid;
 	grid-template-columns: 2fr 7fr;
-	grid-template-rows: auto;	
+	grid-template-rows: auto;
 	grid-column: 1/11;
 	grid-row: 10/20;
 }
@@ -64,10 +66,12 @@
 .today{
 	grid-column: 1;
 	grid-row: 1;
+	text-align: right;
 }
-.tommo{
+.tomor{
 	grid-column: 1;
 	grid-row: 2;
+	text-align: right;
 }
 div{
 	border: 1px solid;
@@ -125,4 +129,15 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: #999999;
+}
+
+#today_btn, #tomor_btn{
+	margin: 3px;
+	width: 100px;
+}
+
+#example{
+	width: 110px;
+	height:50px;
+	margin-top: 20px
 }
