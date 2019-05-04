@@ -103,6 +103,6 @@ function showDetail(event){
 $( document ).ready(function(){
 	readData();
 	setTimeout(function(){
-		timeSelectedList = EventList.slice()
+		timeSelectedList = eventList.slice()
 	},500)
 })
