@@ -24,7 +24,13 @@ $('.timet').on('click', function(){
 	if($(this).data('clicked')){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
-	
+		timeSelectedList = []
+		for (var i =0;i < eventList.length,i++){
+			currentEvent = eventlist[i];
+			if (currentEvnet[2][0] + 0 == timeid + 0){
+				timeSelectedList.push(currentEvent);
+			}
+		};
 	} else {
 		$(this).data('clicked', true);
 		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
@@ -39,6 +45,8 @@ for (var i;i<eventList.length;i++) {
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
 var eventList = [];
+var timeSelectedList = [];
+
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
 	"E11" : "Chang-ui Gwan",
