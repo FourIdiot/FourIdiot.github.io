@@ -27,6 +27,7 @@
 .more{
 	grid-column:15/20;
 	margin: 4px;
+	text-align: right;
 }
 
 
@@ -65,10 +66,12 @@
 .today{
 	grid-column: 1;
 	grid-row: 1;
+	text-align: right;
 }
 .tomor{
 	grid-column: 1;
 	grid-row: 2;
+	text-align: right;
 }
 div{
 	border: 1px solid;
@@ -126,4 +129,13 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: #999999;
+}
+
+#today_btn, #tomor_btn{
+	margin: 3px;
+	width: 100px;
+}
+
+#example{
+	
 }
