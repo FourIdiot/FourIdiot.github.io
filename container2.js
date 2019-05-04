@@ -43,13 +43,12 @@ function readData(){
 
 function showDetail(event){
 	var subject = document.getElementById("subjectName");
-	var time = document.getElementById("detailTime");
 	var location = document.getElementById("locNum");
 	var reward = document.getElementById("reward");
-	var link = document.getElementById("detailLink");
+	var time = document.getElementById("detailTime");
 	subject.innerHTML = event[0];
-	//time.innerHTML = event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " event[2][1];
+	time.innerHTML = event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1];
 	location.innerHTML = "( " + event[3] + " )  " + locationDict[event[3]];
 	reward.innerHTML = event[4];
-	link.setAttribute('href',event[5]);
+	$("detailLink").attr("herf",event[5]);
 }

@@ -20,9 +20,17 @@
 	margin: 4px;
 }
 
+.logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .main{
 	grid-column:7/15;
 	margin: 4px;
+	padding-top: 20px;
+	font-size: 300%;
+	text-align: center;
 }
 .more{
 	grid-column:15/20;
@@ -49,13 +57,18 @@
 	grid-row: 20/75;
 }
 
+.map img {
+    max-width: 100%;
+}
+/* .map img{
+	width: 100%;
+	height: 100%;
+} */
+
 .content{
 	margin: 10px;
 }
-.map img{
-	width: 100%;
-	height: 100%;
-}
+
 
 .time_1{
 	display: grid;
