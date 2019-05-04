@@ -25,7 +25,7 @@ $('.timet').on('click', function(){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
 		timeSelectedList = []
-		for (var i =0;i < eventList.length,i++){
+		for (var i =0;i<eventList.length;i++){
 			currentEvent = eventlist[i];
 			if (currentEvnet[2][0] + 0 == timeid + 0){
 				timeSelectedList.push(currentEvent);
@@ -37,10 +37,7 @@ $('.timet').on('click', function(){
 	};
 });
 
-//timetable event 점찍기
-for (var i;i<eventList.length;i++) {
-	
-}
+
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
@@ -59,6 +56,14 @@ var coordinateDict = {
 	"E9" : "310,345,20",
 	"W8" : "190,320,20"
 };
+
+//timetable event 점찍기
+function writeevent(){
+	for (var i;i<eventList.length;i++) {
+		
+	}
+}
+
 function writeData(l){
 	//Just For Adding Events
 	var newdata = firebase.database().ref('/4idiots/').push();
