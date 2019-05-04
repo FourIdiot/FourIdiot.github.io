@@ -26,16 +26,16 @@ $('.timet').on('click', function(){
 	if($(this).data('clicked')){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
-		timeSelectedList = []
-		for (var i =0;i < eventList.length;i++){
-			currentEvent = eventlist[i];
-			if (currentEvent[2][0].slice(0,2) + 0 == timeid + 0){
-				timeSelectedList.push(currentEvent);
-			}
-		};
 	} else {
 		$(this).data('clicked', true);
 		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+		timeSelectedList = []
+		for (var i =0;i < eventList.length;i++){
+			currentEvent = eventList[i];
+			if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+				timeSelectedList.push(currentEvent);
+			}
+		};
 	};
 });
 
