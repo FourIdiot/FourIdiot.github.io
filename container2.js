@@ -32,13 +32,20 @@ $('.timet').on('click', function(){
 });
 
 
-
 // [Subject,[Month,Date],[start,end],locationN,explanation,link]
 //     0		  1			  2			 3		   4		 5
 var eventList = [];
 var locationDict = {
-	"N13" : "Tae-ul Gwan",
-	"E11" : "Chang-ui Gwan"
+	"N13-1" : "Shin-hak Gwan",
+	"E11" : "Chang-ui Gwan",
+	"E9" : "Academic Cultural Complex",
+	"W8" : "Educational Support Building"
+};
+var coordinateDict = {
+	"N13-1" : "290,220,20",
+	"E11" : "323,320,20",
+	"E9" : "310,345,20",
+	"W8" : "190,320,20"
 };
 function writeData(l){
 	//Just For Adding Events
@@ -57,15 +64,17 @@ function readData(){
 		}
 	});
 }
-
 function showDetail(event){
-	var subject = document.getElementById("subjectName");
-	var location = document.getElementById("locNum");
-	var reward = document.getElementById("reward");
-	var time = document.getElementById("detailTime");
-	subject.innerHTML = event[0];
-	time.innerHTML = event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1];
-	location.innerHTML = "( " + event[3] + " )  " + locationDict[event[3]];
-	reward.innerHTML = event[4];
-	$("detailLink").attr("herf",event[5]);
+	$("#detail content")
+		.append($('<p id = "subjectName">' + event[0]) + '<br>')
+		.append($('<p>When?'))
+		.append($('<p id = "detailTime">' + event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]) + '<br>Where?<br>')
+		.append($('<p id = "locNum">' + '( ' + event[3] + ' )  ' + locationDict[event[3]] + '<br>'))
+		.append($('<p id = "reward"' + event[4] + '<br>'))
+		.append($('<a id = "detailLink" herf="' + event[5] + '">Link'));
 }
+
+
+$( document ).ready(function(){
+	readData();
+})
