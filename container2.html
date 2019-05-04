@@ -10,9 +10,9 @@
 <body>
   <div class = "wrapper">
     <div class = "header">
-      <div class = "logo"><img src="./image/logo.PNG" style="width: 100%; max-width: 760px; vertical-align: middle"></div>
-      <div class = "main"></div>
-      <div class = "more"><button type="button" class="btn btn-success">Example</button></div>
+      <div class = "logo"><img src="./image/logo.PNG" style="width: 100%; max-width: 100px; vertical-align: middle"></div>
+      <div class = "main">Title</div>
+      <div class = "more"><button type="button" id="example" class="btn btn-success">Example</button></div>
     </div>
     <div class = "time">time</div>
     <div class = "detail">
@@ -30,8 +30,8 @@
     <div class = "map">map</div>
     <div class = "time">
       <div class = "time_1">
-        <div class = "today"><button type="button" class="btn btn-danger">Today</button></div>
-        <div class = "tomor"><button type="button" class="btn btn-primary">Tomorrow</button></div>
+        <div class = "today"><button type="button" id="today_btn" class="btn btn-danger">Today</button></div>
+        <div class = "tomor"><button type="button" id="tomor_btn" class="btn btn-primary">Tomorrow</button></div>
       </div>
       <div class="time_2">
           <div class="inner-wrap clock">
@@ -65,7 +65,13 @@
       </div>
     </div>
     <div class = "detail">detail</div>
-    <div class = "map"><img src="/image/example_img.PNG"></div>
+    <div class = "map">
+      <img src="./image/map.png" width="500" height="500" usemap="kaistmap">
+
+      <map name="kaistmap">
+        <area shape="rect" target="_blank"  coords="0,0,50,50" href="./index.html">
+      </map>
+    </div>
   </div>
   <script src="jquery/js/jquery-1.9.0.min.js"></script>
   <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
