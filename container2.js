@@ -26,6 +26,7 @@ $('.timet').on('click', function(){
 	if($(this).data('clicked')){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
+		timeSelectedList = eventList.slice();
 	} else {
 		$(this).data('clicked', true);
 		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
@@ -95,4 +96,7 @@ function showDetail(event){
 
 $( document ).ready(function(){
 	readData();
+	setTimeout(function(){
+		timeSelectedList = EventList.slice()
+	},500)
 })
