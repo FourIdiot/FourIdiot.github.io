@@ -115,6 +115,7 @@
     position: relative;
 	line-height: 35px;
 	width: 30px;
+	height: 30px;
     text-align: center;
     z-index: 20;
 }
@@ -122,22 +123,22 @@
 .hover:before {
     content: "";
     position: absolute;
-    z-index: 12;
+    z-index: 10;
     left: 0;
     top: 0;
-    width: 30px;
-    height: 30px;
-	border: solid 2px #8f8f8f;
+    width: 100%;
+    height: 100%;
+	border: solid 1.5px #8f8f8f;
 	border-radius: 30px;
     box-sizing: border-box;
 }
 
 .clock .scroll {
     position: absolute;
-    width: 144px;
-    height: 23px;
+    width: 30px;
+    height: 30px;
     background: #ea003d;
-    border-radius: 12px;
+    border-radius: 30px;
     left: 0;
     top: 0;
     z-index: 10;
