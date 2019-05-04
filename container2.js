@@ -65,13 +65,14 @@ function readData(){
 	});
 }
 function showDetail(event){
-	$("#detail content")
-		.append($('<p id = "subjectName">' + event[0]) + '<br>')
-		.append($('<p>When?'))
-		.append($('<p id = "detailTime">' + event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]) + '<br>Where?<br>')
-		.append($('<p id = "locNum">' + '( ' + event[3] + ' )  ' + locationDict[event[3]] + '<br>'))
-		.append($('<p id = "reward"' + event[4] + '<br>'))
-		.append($('<a id = "detailLink" herf="' + event[5] + '">Link'));
+	$("#content")
+		.append($('<br><p id = "subjectName">' + event[0] + '<br>'))
+		.append($('<p>').html("When?"))
+		.append($('<p id = "detailTime">').html(event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]))
+		.append($('<br>').html("Where?"))
+		.append($('<p id = "locNum">').html('( ' + event[3] + ' )  ' + locationDict[event[3]]))
+		.append($('<br><p id = "reward">').html(event[4]))
+		.append($('<a id = "detailLink" herf="' + event[5] + '">').html("Link"));
 }
 
 
