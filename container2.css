@@ -117,6 +117,7 @@
 	line-height: 35px;
 	width: 30px;
 	height: 30px;
+	top: 20px;
     text-align: center;
     z-index: 20;
 }
@@ -141,7 +142,18 @@
     background: #ea003d;
     border-radius: 30px;
     left: 0;
-    top: 0;
+    top: 20px;
+    z-index: 10;
+}
+
+.clock .event_time {
+	position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ea003d;
+    border-radius: 5px;
+    left: 0;
+    top: 11px;
     z-index: 10;
 }
 
@@ -156,7 +168,7 @@ body {
 
 .timet > span {
     position: absolute;
-    top: -25px;
+	bottom: 40px;
     left: 20%;
     font-size: 14px;
     font-weight: 600;
