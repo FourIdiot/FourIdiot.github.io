@@ -23,6 +23,9 @@
 .main{
 	grid-column:7/15;
 	margin: 4px;
+	padding-top: 20px;
+	font-size: 300%;
+	text-align: center;
 }
 .more{
 	grid-column:15/20;
