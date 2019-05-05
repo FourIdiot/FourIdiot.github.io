@@ -145,7 +145,7 @@ function timeevent(){
 			$('#'+j).data('canclick',true);
 			$('#'+j).data('canhover',true);
 		}
-		
+
 	}
 }
 
@@ -178,7 +178,7 @@ function showDetail(event){
     		.append($('<br>').html("Where?"))
     		.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
     		.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
-    		.append($('<a id = "detailLink" herf="' + timeSelectedList[i][5] + '">').html("Link"));
+    		.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
     }
   }
 
