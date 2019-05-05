@@ -167,9 +167,8 @@ function loadComplete(){
 
 //make dateList start
 function makedateList(month,date){
-  //make datelist, if n=0: today, n=1: tomorrow ...
-  a=[];
-  for (var i=0;i<eventList.lenth;i++){
+  var a=[];
+  for (var i=0;i<eventList.length;i++){
     if(month==eventList[i][1][0] && date==eventList[i][1][1]){
       a.push(eventList[i]);
     }
