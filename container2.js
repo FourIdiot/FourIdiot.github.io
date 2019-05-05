@@ -68,7 +68,7 @@ c="'./image/redpin1.png'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
     $('<div><img id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; LEFT:' + coordinateDict[list[i]][0] + 'px; TOP:' + coordinateDict[list[i]][1] +'px;  WIDTH:30px; HEIGHT:50px"' +
-    'onclick="window.location.href=' + a +'"/></div>').appendTo(".map1");
+    'onclick="showDetail(eventList[0])"/></div>').appendTo(".map1");
   }
 }
 // var $map = $('<map name="mapmap">').appendTo('.campusmap');
@@ -133,6 +133,7 @@ function readData(){
 	});
 }
 function showDetail(event){
+  $("#content").empty();
 	$("#content")
 		.append($('<br><p id = "subjectName">' + event[0] + '<br>'))
 		.append($('<p>').html("When?"))
@@ -149,6 +150,6 @@ $( document ).ready(function(){
 	setTimeout(function(){
   addpin(collectlocation(eventList));
   timeevent();
-	},1000)
+},2000)
 
 })
