@@ -95,7 +95,14 @@
 	background-color: black;
 }
 
+.detail {
+	border : 1px solid;
+}
 
+.contentbox {
+	background-color: #8f8f8f;
+	margin: 0 0 10px 0;
+}
 
 .time_2 {
     background: #000000;
