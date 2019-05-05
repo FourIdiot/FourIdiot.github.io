@@ -102,6 +102,20 @@ $("#today_btn").on('click', function(){
 		addpin(collectlocation(timeSelectedList));
 });
 
+// //accordian test
+// var acc = document.getElementsByClassName("accordion");
+
+// for (var i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     var panel = this.nextElementSibling;
+//     if (panel.style.display === "block") {
+//       panel.style.display = "none";
+//     } else {
+//       panel.style.display = "block";
+//     }
+//   });
+// }
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
@@ -126,12 +140,30 @@ function addpin(list){
 $('.pins').children().remove();
 b="'./image/redpin2.png'";
 c="'./image/redpin1.png'";
+d="Off";
+e="pinbutton";
   for (var i=0; i<list.length ; i++){
     a="'"+list[i]+"'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<img id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
-    'style="position: absolute; LEFT:' + coordinateDict[list[i]][0] + 'px; TOP:' + coordinateDict[list[i]][1] +'px;  WIDTH:30px; HEIGHT:50px"' +
-    'onclick="showDetail('+a+')"/>').appendTo(".pins");
+    $('<img  id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
+    'style="position: absolute; left:' + coordinateDict[list[i]][0] + 'px; top:' + coordinateDict[list[i]][1] +'px;  width:30px; heigth:50px"' +
+    'onclick="onoroff('+a+')" value="Off" />').appendTo(".pins");
+  }
+}
+
+function onoroff(id){
+  currentValue= document.getElementById(id).value;
+  if(currentValue== "On"){
+    $('#content').empty();
+    // $('.pins').children()[0].value="Off";
+    document.getElementById(id).value="Off";
+  }
+  else{
+    showDetail(id);
+    for(var i=0;i<$('.pins').children().length;i++){
+      $('.pins').children()[i].value="Off";
+    }
+    document.getElementById(id).value="On";
   }
 }
 
@@ -167,9 +199,8 @@ function loadComplete(){
 
 //make dateList start
 function makedateList(month,date){
-  //make datelist, if n=0: today, n=1: tomorrow ...
-  a=[];
-  for (var i=0;i<eventList.lenth;i++){
+  var a=[];
+  for (var i=0;i<eventList.length;i++){
     if(month==eventList[i][1][0] && date==eventList[i][1][1]){
       a.push(eventList[i]);
     }
