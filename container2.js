@@ -159,8 +159,8 @@ function removeoverlap(list){
 
 // 데이터 로드 완료시 실행되는 함수입니다!
 function loadComplete(){
-	addpin(collectlocation(eventList));
 	timeevent();
+	addpin(collectlocation(eventList));
 }
 ///////////////
 
@@ -223,15 +223,16 @@ function showDetail(event){
   $("#content").empty();
   for(var i=0;i<timeSelectedList.length;i++){
     if(event == timeSelectedList[i][3]){
-      $("#content")
-    		.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
-    		.append($('<p>').html("When?"))
-    		.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
-        + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
-    		.append($('<br>').html("Where?"))
-    		.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
-    		.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
-    		.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+			$("#content").append($('<div id="contentbox">'))
+			$("#contentbox")
+    	.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+    	.append($('<p>').html("When?"))
+    	.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+      + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+    	.append($('<br>').html("Where?"))
+    	.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+    	.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+    	.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
     }
   }
 
