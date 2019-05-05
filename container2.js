@@ -13,7 +13,9 @@ var timeSelectedList = [];
 //timetable
 //timetable hover
 $('.timet').hover(function() {
-    	$(this).addClass('hover');
+			if($(this).data('canhover')){
+			$(this).addClass('hover');
+			}
     }, function() {
 		$(this).removeClass('hover');
     }
@@ -23,6 +25,7 @@ $('.timet').hover(function() {
 $('.timet').on('click', function(){
 	var timeid = $(this).attr('id');
 	var dis = 20+timeid*50;
+<<<<<<< HEAD
 	if($(this).data('clicked')){
 		$(this).data('clicked', false);
 		$('#scrollBar'+dis).remove();
@@ -40,6 +43,25 @@ $('.timet').on('click', function(){
 		};
     addpin(collectlocation(timeSelectedList));
 	};
+=======
+	if($(this).data('canclick')){
+		if($(this).data('clicked')){
+			$(this).data('clicked', false);
+			$('#scrollBar'+dis).remove();
+			timeSelectedList = eventList.slice();
+		} else {
+			$(this).data('clicked', true);
+			$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+			timeSelectedList = []
+			for (var i =0;i < eventList.length;i++){
+				currentEvent = eventList[i];
+				if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+					timeSelectedList.push(currentEvent);
+				}
+			};
+		};
+	}
+>>>>>>> 2428c58f15054017f38492b5c367b1277af93fbb
 });
 
 
@@ -98,7 +120,7 @@ function removeoverlap(list){
 //pin on the map end
 
 
-//timetable event 점찍기
+//timetable event 점찍기&click,hover 가능여부
 function timeevent(){
   var eventtimeSet = new Set();
   for (var i =0;i < eventList.length;i++){
@@ -109,9 +131,19 @@ function timeevent(){
   eventtimeSet.forEach(function(a){
     var dist=33+a*50;
     $('.inner-wrap').append("<span id='event_time"+a+"' class='event_time' style='left:"+dist+"px;'></span>");
-  });
+	});
+	for(j=0;j<16;j++){
+		if(eventtimeSet.has(j)!=true){
+			$('#'+j).css('color','gray');
+			$('#'+j).data('canclick',false);
+			$('#'+j).data('canhover',false);
+		} else {
+			$('#'+j).data('canclick',true);
+			$('#'+j).data('canhover',true);
+		}
+		
+	}
 }
-
 
 function writeData(l){
 	//Just For Adding Events
