@@ -113,7 +113,6 @@
 	display: block;
 	float:left;
     margin-left: 20px;
-
     color: #fff;
     font-weight: 600;
     font-size: 16px;
@@ -125,6 +124,7 @@
     text-align: center;
     z-index: 20;
 }
+
 
 .hover:before {
     content: "";
