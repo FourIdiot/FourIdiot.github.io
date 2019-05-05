@@ -42,8 +42,8 @@ $('.timet').on('click', function(){
 
 
 
-// [Subject,[Month,Date],[start,end],locationN,explanation,link]
-//     0		  1			  2			 3		   4		 5
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
+//     0		  1			  2			 3		   4		 5		   6
 
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
