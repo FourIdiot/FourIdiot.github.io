@@ -1,0 +1,163 @@
+.wrapper{
+	display: grid;
+	grid-template-columns: repeat(10,140px);
+	grid-template-rows: auto;
+	grid-gap: 10px;
+	width:1490px;
+	margin-left: 20px;
+}
+
+.header{
+	display: grid;
+	grid-template-columns: repeat(20,1fr);
+	grid-template-rows: auto;
+	grid-gap: 5px;
+	grid-column: 1/11;
+	grid-row: 1/10;
+	background-color: #848484;
+}
+
+.logo{
+	grid-column:1/7;
+	margin: 4px;
+}
+
+.logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.main{
+	grid-column:7/15;
+	margin: 4px;
+	padding-top: 20px;
+	font-size: 300%;
+	text-align: center;
+}
+.more{
+	grid-column:15/20;
+	margin: 4px;
+	text-align: right;
+}
+#example{
+	width: 110px;
+	height:50px;
+	margin-top: 20px
+}
+
+body {
+    font-family: Tahoma;
+}
+
+header {
+    text-align: center;
+}
+
+#calendar {
+    width: 100%;    
+}
+
+#calendar a {
+    color: #8e352e;
+    text-decoration: none;
+}
+
+#calendar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#calendar li {
+    display: block;
+    float: left;
+    width:14.342%;
+    padding: 5px;
+    box-sizing:border-box;
+    border: 1px solid #ccc;
+    margin-right: -1px;
+    margin-bottom: -1px;
+}
+
+#calendar ul.weekdays {
+    height: 40px;
+    background: #8e352e;
+}
+
+#calendar ul.weekdays li {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 20px;
+    border: none !important;
+    padding: 10px 6px;
+    color: #fff;
+    font-size: 13px;
+}
+
+#calendar .days li {
+    height: 140px;
+}
+
+#calendar .days li:hover {
+    background: #d3d3d3;
+}
+
+#calendar .date {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #333;
+    width: 20px;
+}
+
+#calendar .event {
+    clear: both;
+    display: block;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 14px;
+    background: #e4f2f2;
+    border: 1px solid #b5dbdc;
+    color: #009aaf;
+    text-decoration: none;
+}
+
+#calendar .event-desc {
+    color: #666;
+    margin: 3px 0 7px 0;
+    text-decoration: none;  
+}
+
+#calendar .other-month {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.detail{
+	grid-column: 1/3;
+	grid-row: 13/75;
+}
+
+.content{
+	grid-column: 3/10;
+	grid-row: 13/75;
+}
+
+.heart{
+	float: right;
+}
+
+.go_main{
+	background-color: #848484;
+	width:90px;
+	height:auto;
+	border: none;
+}
+
+.map_icon{
+	width: 100%;
+	height: 100%;
+}

@@ -52,6 +52,7 @@
 .detail{
 	grid-column: 1/3;
 	grid-row: 20/75;
+	border : 1px solid;
 }
 
 .map1{
@@ -95,7 +96,10 @@
 	background-color: black;
 }
 
-
+.contentbox {
+	background-color: #8f8f8f;
+	margin: 0 0 10px 0;
+}
 
 .time_2 {
     background: #000000;

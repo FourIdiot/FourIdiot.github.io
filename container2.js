@@ -223,8 +223,8 @@ function showDetail(event){
   $("#content").empty();
   for(var i=0;i<timeSelectedList.length;i++){
     if(event == timeSelectedList[i][3]){
-			$("#content").append($('<div id="contentbox">'))
-			$("#contentbox")
+			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
+			$("#contentbox"+i)
     	.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
     	.append($('<p>').html("When?"))
     	.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
