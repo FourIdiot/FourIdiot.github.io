@@ -8,8 +8,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Global variables
 var eventList = [];
 var timeSelectedList = [];
+var eventtimeSet = new Set();
+
 //timetable
 //timetable hover
 $('.timet').hover(function() {
@@ -27,13 +30,20 @@ $('.timet').on('click', function(){
 	var dis = 20+timeid*50;
 	if($(this).data('canclick')){
 		if($(this).data('clicked')){
-			$(this).data('clicked', false);
-			$('#scrollBar'+dis).remove();
+			$('#today_btn').click()
 			timeSelectedList = eventList.slice();
 			addpin(collectlocation(timeSelectedList));
 		} else {
-			$(this).data('clicked', true);
-			$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+			if($('#time-ctrl').data('havescroll')){
+				$('#today_btn').click();
+				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+				$('#time-ctrl').data('havescroll', true);
+				$(this).data('clicked', true);
+			} else {
+				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+				$('#time-ctrl').data('havescroll', true);
+				$(this).data('clicked', true);
+			}
 			timeSelectedList = []
 			for (var i =0;i < eventList.length;i++){
 				currentEvent = eventList[i];
@@ -45,6 +55,20 @@ $('.timet').on('click', function(){
 		};
 	}
 });
+
+//Today button click
+$("#today_btn").on('click', function(){
+		$('#scrollBar').remove()
+		$('#time-ctrl').data('havescroll', false);
+		eventtimeSet.forEach(function(a){
+			if($('#'+a).data('clicked')){
+				$('#'+a).data('clicked',false);
+			}
+		});
+		timeSelectedList = eventList.slice();
+		addpin(collectlocation(timeSelectedList));
+});
+
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
@@ -103,7 +127,6 @@ function removeoverlap(list){
 
 //timetable event 점찍기&click,hover 가능여부
 function timeevent(){
-  var eventtimeSet = new Set();
   for (var i =0;i < eventList.length;i++){
     currentEvent = eventList[i];
     var b = currentEvent[2][0].slice(0,2)*1-8;
