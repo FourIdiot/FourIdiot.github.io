@@ -25,30 +25,12 @@ $('.timet').hover(function() {
 $('.timet').on('click', function(){
 	var timeid = $(this).attr('id');
 	var dis = 20+timeid*50;
-<<<<<<< HEAD
-	if($(this).data('clicked')){
-		$(this).data('clicked', false);
-		$('#scrollBar'+dis).remove();
-		timeSelectedList = eventList.slice();
-    addpin(collectlocation(timeSelectedList));
-	} else {
-		$(this).data('clicked', true);
-		$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
-		timeSelectedList = []
-		for (var i =0;i < eventList.length;i++){
-			currentEvent = eventList[i];
-			if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
-				timeSelectedList.push(currentEvent);
-			}
-		};
-    addpin(collectlocation(timeSelectedList));
-	};
-=======
 	if($(this).data('canclick')){
 		if($(this).data('clicked')){
 			$(this).data('clicked', false);
 			$('#scrollBar'+dis).remove();
 			timeSelectedList = eventList.slice();
+			addpin(collectlocation(timeSelectedList));
 		} else {
 			$(this).data('clicked', true);
 			$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
@@ -59,11 +41,10 @@ $('.timet').on('click', function(){
 					timeSelectedList.push(currentEvent);
 				}
 			};
+			addpin(collectlocation(timeSelectedList));
 		};
 	}
->>>>>>> 2428c58f15054017f38492b5c367b1277af93fbb
 });
-
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
