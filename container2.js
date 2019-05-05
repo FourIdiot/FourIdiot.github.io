@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 //Global variables
 var eventList = [];
 var timeSelectedList = [];
+var idchecked = false;
 var eventtimeSet = new Set();
 
 //timetable
@@ -34,6 +35,7 @@ $('.timet').on('click', function(){
 			timeSelectedList = eventList.slice();
 			addpin(collectlocation(timeSelectedList));
 		} else {
+      $('#content').empty();
 			if($('#time-ctrl').data('havescroll')){
 				$('#today_btn').click();
 				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
@@ -56,9 +58,40 @@ $('.timet').on('click', function(){
 	}
 });
 
+//login
+function addIdData(id,pw){
+	var newID = firebase.database().ref("/4idiotslogin/").push()
+	newID.set({
+		ID : id,
+		PW : pw
+	});
+}
+
+function checkIdData(id,pw){
+	firebase.database().ref("/4idiotslogin/").once('value',function(snapshot){
+		var myValue = snapshot.val();
+		var keylist = Object.keys(myValue);
+		for (var i =0; i<keylist.length; i++){
+			var current = keylist[i];
+			console.log(myValue[current]);
+			if (id == myValue[current].ID){
+				if (pw == myValue[current].PW){
+					idchecked = true;
+				}
+				else{
+					idchecked = false;
+				}
+			}
+			else{
+				idchecked = false;
+			}
+		};
+	})
+}
 //Today button click
 $("#today_btn").on('click', function(){
-		$('#scrollBar').remove()
+    $('#content').empty();
+		$('#scrollBar').remove();
 		$('#time-ctrl').data('havescroll', false);
 		eventtimeSet.forEach(function(a){
 			if($('#'+a).data('clicked')){
@@ -124,6 +157,26 @@ function removeoverlap(list){
 // addpin(collectlocation(eventList));
 //pin on the map end
 
+// 데이터 로드 완료시 실행되는 함수입니다!
+function loadComplete(){
+	addpin(collectlocation(eventList));
+	timeevent();
+}
+///////////////
+
+//make dateList start
+function makedateList(month,date){
+  //make datelist, if n=0: today, n=1: tomorrow ...
+  a=[];
+  for (var i=0;i<eventList.lenth;i++){
+    if(month==eventList[i][1][0] && date==eventList[i][1][1]){
+      a.push(eventList[i]);
+    }
+  }
+  return a;
+}
+//make dateList end
+
 
 //timetable event 점찍기&click,hover 가능여부
 function timeevent(){
@@ -145,7 +198,6 @@ function timeevent(){
 			$('#'+j).data('canclick',true);
 			$('#'+j).data('canhover',true);
 		}
-
 	}
 }
 
@@ -164,7 +216,8 @@ function readData(){
 		for (var i =0; i<keylist.length;i++){
 			eventList.push(myValue[keylist[i]].value);
 		}
-	});
+		loadComplete();
+	})
 }
 function showDetail(event){
   $("#content").empty();
@@ -187,10 +240,4 @@ function showDetail(event){
 
 $( document ).ready(function(){
 	readData();
-	setTimeout(function(){
-    timeSelectedList = eventList.slice();
-  addpin(collectlocation(eventList));
-  timeevent();
-},2000)
-
-})
+});
