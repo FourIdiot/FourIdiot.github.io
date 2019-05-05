@@ -159,6 +159,7 @@ function removeoverlap(list){
 
 // 데이터 로드 완료시 실행되는 함수입니다!
 function loadComplete(){
+  timeSelectedList = eventList.slice();
 	addpin(collectlocation(eventList));
 	timeevent();
 }
