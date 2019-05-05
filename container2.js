@@ -127,6 +127,20 @@ function removeoverlap(list){
 //pin on the map end
 
 
+//make dateList start
+function makedateList(month,date){
+  //make datelist, if n=0: today, n=1: tomorrow ...
+  a=[];
+  for (var i=0;i<eventList.lenth;i++){
+    if(month==eventList[i][1][0] && date==eventList[i][1][1]){
+      a.push(eventList[i]);
+    }
+  }
+  return a;
+}
+//make dateList end
+
+
 //timetable event 점찍기&click,hover 가능여부
 function timeevent(){
   for (var i =0;i < eventList.length;i++){
