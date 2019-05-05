@@ -34,6 +34,7 @@ $('.timet').on('click', function(){
 			timeSelectedList = eventList.slice();
 			addpin(collectlocation(timeSelectedList));
 		} else {
+      $('#content').empty();
 			if($('#time-ctrl').data('havescroll')){
 				$('#today_btn').click();
 				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
@@ -58,7 +59,8 @@ $('.timet').on('click', function(){
 
 //Today button click
 $("#today_btn").on('click', function(){
-		$('#scrollBar').remove()
+    $('#content').empty();
+		$('#scrollBar').remove();
 		$('#time-ctrl').data('havescroll', false);
 		eventtimeSet.forEach(function(a){
 			if($('#'+a).data('clicked')){
