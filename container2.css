@@ -193,6 +193,24 @@ body {
 	height:50px;
 	margin-top: 20px
 }
+
+.logingrid{
+	grid-column: 15/18;
+}
+.input-group{
+	margin-top : 6px;
+	margin-bottom : 6px;
+}
+.sbmitbtn{
+    font-weight: 600;
+    width: 90%;
+    color: #282726;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding:2%;
+    text-align : center;
+}
 /*
 div{
 	border : 1px solid;
