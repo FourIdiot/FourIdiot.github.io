@@ -8,9 +8,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Global variables
 var eventList = [];
 var timeSelectedList = [];
 var idchecked = false;
+var eventtimeSet = new Set();
+
 //timetable
 //timetable hover
 $('.timet').hover(function() {
@@ -28,12 +31,21 @@ $('.timet').on('click', function(){
 	var dis = 20+timeid*50;
 	if($(this).data('canclick')){
 		if($(this).data('clicked')){
-			$(this).data('clicked', false);
-			$('#scrollBar'+dis).remove();
+			$('#today_btn').click()
 			timeSelectedList = eventList.slice();
+			addpin(collectlocation(timeSelectedList));
 		} else {
-			$(this).data('clicked', true);
-			$('#time-ctrl').append("<span id='scrollBar"+dis+"' class='scroll' style='left:"+dis+"px;'></span>");
+      $('#content').empty();
+			if($('#time-ctrl').data('havescroll')){
+				$('#today_btn').click();
+				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+				$('#time-ctrl').data('havescroll', true);
+				$(this).data('clicked', true);
+			} else {
+				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+				$('#time-ctrl').data('havescroll', true);
+				$(this).data('clicked', true);
+			}
 			timeSelectedList = []
 			for (var i =0;i < eventList.length;i++){
 				currentEvent = eventList[i];
@@ -41,6 +53,7 @@ $('.timet').on('click', function(){
 					timeSelectedList.push(currentEvent);
 				}
 			};
+			addpin(collectlocation(timeSelectedList));
 		};
 	}
 });
@@ -75,6 +88,20 @@ function checkIdData(id,pw){
 		};
 	})
 }
+//Today button click
+$("#today_btn").on('click', function(){
+    $('#content').empty();
+		$('#scrollBar').remove();
+		$('#time-ctrl').data('havescroll', false);
+		eventtimeSet.forEach(function(a){
+			if($('#'+a).data('clicked')){
+				$('#'+a).data('clicked',false);
+			}
+		});
+		timeSelectedList = eventList.slice();
+		addpin(collectlocation(timeSelectedList));
+});
+
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
@@ -96,21 +123,17 @@ var coordinateDict = {
 
 //pin on the map start
 function addpin(list){
-a="'http://naver.com'";
+$('.pins').children().remove();
 b="'./image/redpin2.png'";
 c="'./image/redpin1.png'";
   for (var i=0; i<list.length ; i++){
+    a="'"+list[i]+"'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<div><img id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
+    $('<img id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; LEFT:' + coordinateDict[list[i]][0] + 'px; TOP:' + coordinateDict[list[i]][1] +'px;  WIDTH:30px; HEIGHT:50px"' +
-    'onclick="showDetail(eventList[0])"/></div>').appendTo(".map1");
+    'onclick="showDetail('+a+')"/>').appendTo(".pins");
   }
 }
-// var $map = $('<map name="mapmap">').appendTo('.campusmap');
-// $('<area id="1" shape="rect" coords="75,300,125,400" onclick="writeDiv(this.id)" />').appendTo($map);
-// $('<area id="2" shape="rect" coords="175,300,225,400" onclick="writeDiv(this.id)" />').appendTo($map);
-// $('<area id="3" shape="rect" coords="275,300,325,400" onclick="writeDiv(this.id)" />').appendTo($map);
-
 
 function collectlocation(list){
   var a=[];
@@ -143,7 +166,6 @@ function loadComplete(){
 
 //timetable event 점찍기&click,hover 가능여부
 function timeevent(){
-  var eventtimeSet = new Set();
   for (var i =0;i < eventList.length;i++){
     currentEvent = eventList[i];
     var b = currentEvent[2][0].slice(0,2)*1-8;
@@ -185,14 +207,20 @@ function readData(){
 }
 function showDetail(event){
   $("#content").empty();
-	$("#content")
-		.append($('<br><p id = "subjectName">' + event[0] + '<br>'))
-		.append($('<p>').html("When?"))
-		.append($('<p id = "detailTime">').html(event[1][0] + " / " + event[1][1] + "  " + event[2][0] + " ~ " + event[2][1]))
-		.append($('<br>').html("Where?"))
-		.append($('<p id = "locNum">').html('( ' + event[3] + ' )  ' + locationDict[event[3]]))
-		.append($('<br><p id = "reward">').html(event[4]))
-		.append($('<a id = "detailLink" herf="' + event[5] + '">').html("Link"));
+  for(var i=0;i<timeSelectedList.length;i++){
+    if(event == timeSelectedList[i][3]){
+      $("#content")
+    		.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+    		.append($('<p>').html("When?"))
+    		.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+        + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+    		.append($('<br>').html("Where?"))
+    		.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+    		.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+    		.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+    }
+  }
+
 }
 
 
