@@ -10,6 +10,8 @@ firebase.initializeApp(config);
 
 //Global variables
 var eventList = [];
+var todayList = [];
+var tomorrowList = [];
 var timeSelectedList = [];
 var idchecked = false;
 var eventtimeSet = new Set();
@@ -29,33 +31,66 @@ $('.timet').hover(function() {
 $('.timet').on('click', function(){
 	var timeid = $(this).attr('id');
 	var dis = 20+timeid*50;
-	if($(this).data('canclick')){
-		if($(this).data('clicked')){
-			$('#today_btn').click()
-			timeSelectedList = eventList.slice();
-			addpin(collectlocation(timeSelectedList));
-		} else {
-      $('#content').empty();
-			if($('#time-ctrl').data('havescroll')){
-				$('#today_btn').click();
-				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
-				$('#time-ctrl').data('havescroll', true);
-				$(this).data('clicked', true);
-			} else {
-				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
-				$('#time-ctrl').data('havescroll', true);
-				$(this).data('clicked', true);
-			}
-			timeSelectedList = []
-			for (var i =0;i < eventList.length;i++){
-				currentEvent = eventList[i];
-				if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
-					timeSelectedList.push(currentEvent);
-				}
-			};
-			addpin(collectlocation(timeSelectedList));
-		};
-	}
+  if($('.today').hasClass('active1')){
+  	if($(this).data('canclick')){
+  		if($(this).data('clicked')){
+  			$('#today_btn').click()
+  			// timeSelectedList = eventList.slice();
+        timeSelectedList = todayList.slice();
+  			addpin(collectlocation(timeSelectedList));
+  		} else {
+        $('#content').empty();
+  			if($('#time-ctrl').data('havescroll')){
+  				$('#today_btn').click();
+  				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+  				$('#time-ctrl').data('havescroll', true);
+  				$(this).data('clicked', true);
+  			} else {
+  				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+  				$('#time-ctrl').data('havescroll', true);
+  				$(this).data('clicked', true);
+  			}
+  			timeSelectedList = []
+  			for (var i =0;i < todayList.length;i++){
+  				currentEvent = todayList[i];
+  				if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+  					timeSelectedList.push(currentEvent);
+  				}
+  			};
+  			addpin(collectlocation(timeSelectedList));
+  		};
+  	}
+  }
+  else{
+    if($(this).data('canclick')){
+  		if($(this).data('clicked')){
+  			$('#tomor_btn').click()
+  			// timeSelectedList = eventList.slice();
+        timeSelectedList = tomorrowList.slice();
+  			addpin(collectlocation(timeSelectedList));
+  		} else {
+        $('#content').empty();
+  			if($('#time-ctrl').data('havescroll')){
+  				$('#tomor_btn').click();
+  				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+  				$('#time-ctrl').data('havescroll', true);
+  				$(this).data('clicked', true);
+  			} else {
+  				$('#time-ctrl').append("<span id='scrollBar' class='scroll' style='left:"+dis+"px;'></span>");
+  				$('#time-ctrl').data('havescroll', true);
+  				$(this).data('clicked', true);
+  			}
+  			timeSelectedList = []
+  			for (var i =0;i < tomorrowList.length;i++){
+  				currentEvent = tomorrowList[i];
+  				if (currentEvent[2][0].slice(0,2)*1 == timeid*1 + 8){
+  					timeSelectedList.push(currentEvent);
+  				}
+  			};
+  			addpin(collectlocation(timeSelectedList));
+  		};
+  	}
+  }
 });
 
 //login
@@ -88,7 +123,7 @@ function checkIdData(id,pw){
 		};
 	})
 }
-//Today button click
+//Today Tomorrow button click
 $("#today_btn").on('click', function(){
     $('#content').empty();
 		$('#scrollBar').remove();
@@ -98,7 +133,22 @@ $("#today_btn").on('click', function(){
 				$('#'+a).data('clicked',false);
 			}
 		});
-		timeSelectedList = eventList.slice();
+    timeevent(todayList);
+		timeSelectedList = todayList.slice();
+		addpin(collectlocation(timeSelectedList));
+});
+
+$("#tomor_btn").on('click', function(){
+    $('#content').empty();
+		$('#scrollBar').remove();
+		$('#time-ctrl').data('havescroll', false);
+		eventtimeSet.forEach(function(a){
+			if($('#'+a).data('clicked')){
+				$('#'+a).data('clicked',false);
+			}
+		});
+    timeevent(tomorrowList);
+		timeSelectedList = tomorrowList.slice();
 		addpin(collectlocation(timeSelectedList));
 });
 
@@ -215,9 +265,9 @@ function removeoverlap(list){
 
 // 데이터 로드 완료시 실행되는 함수입니다!
 function loadComplete(){
-  timeSelectedList = eventList.slice();
-	timeevent();
-	addpin(collectlocation(eventList));
+  timeSelectedList = todayList.slice();
+	timeevent(todayList);
+	addpin(collectlocation(todayList));
 }
 ///////////////
 
@@ -233,11 +283,20 @@ function makedateList(month,date){
 }
 //make dateList end
 
+//today and Tomorrow
+$("button").click(function(){
+  $("button").removeClass("active1");
+  $(this).addClass("active1");
+});
+
 
 //timetable event 점찍기&click,hover 가능여부
-function timeevent(){
-  for (var i =0;i < eventList.length;i++){
-    currentEvent = eventList[i];
+function timeevent(list){
+  eventtimeSet.clear();
+  $('.timet').removeAttr("style");
+  $('.inner-wrap').find('.event_time').remove();
+  for (var i =0;i < list.length;i++){
+    currentEvent = list[i];
     var b = currentEvent[2][0].slice(0,2)*1-8;
     eventtimeSet.add(b);
   }
@@ -251,6 +310,7 @@ function timeevent(){
 			$('#'+j).data('canclick',false);
 			$('#'+j).data('canhover',false);
 		} else {
+      $('#'+j).css('color','white');
 			$('#'+j).data('canclick',true);
 			$('#'+j).data('canhover',true);
 		}
@@ -271,6 +331,8 @@ function readData(){
 		var keylist = Object.keys(myValue);
 		for (var i =0; i<keylist.length;i++){
 			eventList.push(myValue[keylist[i]].value);
+      todayList=makedateList(5,22);
+      tomorrowList=makedateList(5,23);
 		}
 		loadComplete();
 	})
