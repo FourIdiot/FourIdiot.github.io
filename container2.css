@@ -40,7 +40,7 @@
 	text-align: right;
 }
 
-/* .accordion {
+.accordion {
 	background-color: #eee;
 	color: #444;
 	cursor: pointer;
@@ -62,7 +62,7 @@ padding: 0 18px;
 display: none;
 background-color: white;
 overflow: hidden;
-} */
+}
 
 .time{
 	display: grid;
@@ -249,6 +249,10 @@ body {
 	height: 65%;
 	float:right;
 	margin-right: 20px;
+}
+
+.heart{
+	float: right;
 }
 
 /*
