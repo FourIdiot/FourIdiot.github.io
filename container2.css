@@ -247,6 +247,10 @@ body {
 	margin-right: 20px;
 }
 
+.heart{
+	float: right;
+}
+
 /*
 div{
 	border : 1px solid;
