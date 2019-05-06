@@ -453,14 +453,10 @@ function showDetail(event){
 $(document).on('click','.heart', function(){
 	console.log($(this).css("color"))
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
-		$(this).css("color","red")
-		var eventidx = $(this).parent().parent().attr('id');
-		addInterests(eventidx);
+		$(this).css("color","red");
 	}
 	else{
-		$(this).css("color","gray")
-		var eventidx = $(this).parent().parent().attr('id');
-		addInterests(eventidx);
+		$(this).css("color","gray");
 	}
 
 });
