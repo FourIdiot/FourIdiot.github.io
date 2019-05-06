@@ -28,7 +28,7 @@ var eventtimeSet = new Set();
 //timetable
 //timetable hover
 $('.timet').hover(function() {
-			if($(this).data('canhover')){
+		if(($this).data('canhover')){
 			$(this).addClass('hover');
 			}
     }, function() {
@@ -143,7 +143,7 @@ function checkIdData(id,pw){
 				if (pw == myValue[current].PW){
 					idchecked = true;
 					alert("login success!")
-					myID = id;
+					myID = current;
 					myInterst = myValue[current].Interests;
 					console.log("hello, ",myID, "!!");
 				}
@@ -173,14 +173,14 @@ function addInterests(index){
 	eventList[index][6] += 1;
 	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
-	firebase.database().ref("/4idiotslogin/Interests/").set(myInterest);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 
 function deleteInterests(index){
 	eventList[index][6] -= 1;
 	myInterest.splice(index,1);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
-	firebase.database().ref("/4idiotslogin/Interests/").set(myInterest);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 
 $(".sbmitbtn").on('click',function(){
