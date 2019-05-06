@@ -52,7 +52,7 @@
 	font-size: 15px;
 	transition: 0.4s;
   }
-  
+
 .active, .accordion:hover {
 	background-color: #ccc; 
 }
@@ -110,17 +110,21 @@
 	grid-template-rows: repeat(2,1fr);
 }
 
+.active1 {
+  background-color: green !important;
+}
+
 .today{
 	grid-column: 1;
 	grid-row: 1;
 	text-align: right;
-	background-color: black;
+	background-color: grey;
 }
 .tomor{
 	grid-column: 1;
 	grid-row: 2;
 	text-align: right;
-	background-color: black;
+	background-color: grey;
 }
 
 .contentbox {
