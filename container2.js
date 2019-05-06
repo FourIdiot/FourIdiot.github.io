@@ -8,6 +8,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
 //Global variables
 
 // 각 event 형식
