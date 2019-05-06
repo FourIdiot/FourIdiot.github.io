@@ -456,7 +456,6 @@ $(document).on('click','.heart', function(){
 		$(this).css("color","red")
 		var eventidx = $(this).parent().parent().attr('id');
 		addInterests(eventidx);
-		var 
 	}
 	else{
 		$(this).css("color","gray")
@@ -464,7 +463,7 @@ $(document).on('click','.heart', function(){
 		addInterests(eventidx);
 	}
 
-})
+});
 
 $( document ).ready(function(){
 	readData();
