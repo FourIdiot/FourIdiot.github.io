@@ -11,8 +11,9 @@ firebase.initializeApp(config);
 //global variables
 var keylist;
 var eventList = [];
+var eventkeylist = [];
 var timeSelectedList = [];
-var myinterestlist = [];
+var myInterest = [];
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
 	"E11" : "Chang-ui Gwan",
@@ -24,11 +25,12 @@ $(document).on('click','.heart', function(){
 	console.log($(this).css("color"))
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
 		$(this).css("color","red")
-		$(this).parent().parent().attr('id');
-		//addInterest();
+		var eventidx = $(this).parent().parent().attr('id');
+		addInterests(eventidx);
 	} else{
 		$(this).css("color","gray")
-		//deleteInterest();
+		var eventidx = $(this).parent().parent().attr('id');
+		addInterests(eventidx);
 	}
 });
 
@@ -40,25 +42,33 @@ function readData_calendar(){
 				var event = myValue[keylist[i]].value;
 				var date = event[1];
 				var date_id = String(date[1]);
-				var info = '<div class="event" id="'+event[0]+'">'
+				var info = '<div class="event" id="'+i+'">'
 					info += '<div class="event-desc">'
 					info += event[0]+'<br>@'+event[3]+'<br>'+event[4]
 					info += '</div>'
 					info += '<div class="event-time">'+event[2][0]+'~'+event[2][1]
-					info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
-					info += '</div></div>'
-					// if(myinterestlist.includes(event)){
-					// 	info += '<div class="heart" style="color:red;"><i class="fas fa-heart"></i></div>'
-					// 	info += '</div></div>'
-					// } else{
-					// 	info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
-					// 	info += '</div></div>'
-					// }
+					if(myInterest.includes(event)){
+						info += '<div class="heart" style="color:red;"><i class="fas fa-heart"></i></div>'
+						info += '</div></div>'
+					} else{
+						info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
+						info += '</div></div>'
+					}
 					console.log(info)
 				//document.getElementById(date_id).innerHTML = info;
 				$('#'+date_id).append(info);
 		}
 	});
+}
+
+function addInterests(index){
+	eventList[index][6] += 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+}
+
+function deleteInterests(index){
+	eventList[index][6] -= 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
 }
 
 function loadComplete(){
@@ -68,7 +78,7 @@ function loadComplete(){
 function readData(){
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
-		var keylist = Object.keys(myValue);
+		eventkeylist = Object.keys(myValue);
 		for (var i =0; i<keylist.length;i++){
 			eventList.push(myValue[keylist[i]].value);
 		}

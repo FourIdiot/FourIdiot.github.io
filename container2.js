@@ -169,7 +169,6 @@ function login(){
 	checkIdData(currentid,currentpw);
 }
 
-
 function addInterests(index){
 	eventList[index][6] += 1;
 	myInterest.push(eventkeylist[index]);
@@ -217,7 +216,7 @@ $("#tomor_btn").on('click', function(){
 		addpin(collectlocation(timeSelectedList));
 });
 
-// //accordian test
+// //accordian
 var acc = document.getElementsByClassName("accordion");
 
 for (var i = 0; i < acc.length; i++) {
@@ -455,9 +454,14 @@ $(document).on('click','.heart', function(){
 	console.log($(this).css("color"))
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
 		$(this).css("color","red")
+		var eventidx = $(this).parent().parent().attr('id');
+		addInterests(eventidx);
+		var 
 	}
 	else{
 		$(this).css("color","gray")
+		var eventidx = $(this).parent().parent().attr('id');
+		addInterests(eventidx);
 	}
 
 })
