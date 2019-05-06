@@ -8,47 +8,58 @@ var config = {
 };
 firebase.initializeApp(config);
 
-$(document).on('click','.heart', function(){
-	console.log($(this).css("color"))
-	if ("rgb(128, 128, 128)" == $(this).css("color")){
-		$(this).css("color","red")
-	}
-	else{
-		$(this).css("color","gray")
-	}
-	
-})
-
-function readData_calendar(){
-	firebase.database().ref('/4idiots/').once('value',function(snapshot){
-		var myValue = snapshot.val();
-		var keylist = Object.keys(myValue);
-		for (var i =0; i<keylist.length;i++){
-			var event = myValue[keylist[i]].value;
-			var date = event[1];
-			var date_id = String(date[1]);
-			var info = '<div class="event">'
-		    info += '<div class="event-desc">'
-		    info += event[0]+'<br>@'+event[3]+'<br>'+event[4]
-		    info += '</div>'
-		    info += '<div class="event-time">'+event[2][0]+'~'+event[2][1]
-		    info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
-		    info += '</div></div>'
-		    console.log(info)
-			//document.getElementById(date_id).innerHTML = info;
-			$('#'+date_id).append(info);
-		}
-	});
-}
-
+//global variables
+var keylist;
 var eventList = [];
 var timeSelectedList = [];
+var myinterestlist = [];
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
 	"E11" : "Chang-ui Gwan",
 	"E9" : "Academic Cultural Complex",
 	"W8" : "Educational Support Building"
 };
+
+$(document).on('click','.heart', function(){
+	console.log($(this).css("color"))
+	if ("rgb(128, 128, 128)" == $(this).css("color")){
+		$(this).css("color","red")
+		$(this).parent().parent().attr('id');
+		//addInterest();
+	} else{
+		$(this).css("color","gray")
+		//deleteInterest();
+	}
+});
+
+function readData_calendar(){
+	firebase.database().ref('/4idiots/').once('value',function(snapshot){
+		var myValue = snapshot.val();
+		keylist = Object.keys(myValue);
+		for (var i =0; i<keylist.length;i++){
+				var event = myValue[keylist[i]].value;
+				var date = event[1];
+				var date_id = String(date[1]);
+				var info = '<div class="event" id="'+event[0]+'">'
+					info += '<div class="event-desc">'
+					info += event[0]+'<br>@'+event[3]+'<br>'+event[4]
+					info += '</div>'
+					info += '<div class="event-time">'+event[2][0]+'~'+event[2][1]
+					info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
+					info += '</div></div>'
+					// if(myinterestlist.includes(event)){
+					// 	info += '<div class="heart" style="color:red;"><i class="fas fa-heart"></i></div>'
+					// 	info += '</div></div>'
+					// } else{
+					// 	info += '<div class="heart" style="color:gray;"><i class="fas fa-heart"></i></div>'
+					// 	info += '</div></div>'
+					// }
+					console.log(info)
+				//document.getElementById(date_id).innerHTML = info;
+				$('#'+date_id).append(info);
+		}
+	});
+}
 
 function loadComplete(){
   	timeSelectedList = eventList.slice();
