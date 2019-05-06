@@ -346,7 +346,8 @@ function showDetail(event){
 			.append($('<br>').html("Where?"))
 			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
 			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
-			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
+			.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 			
 			
 			$("#accordion"+i).bind("click", function() {
@@ -379,6 +380,17 @@ function showDetail(event){
 	// 		}
 	// 	}
 }
+
+$(document).on('click','.heart', function(){
+	console.log($(this).css("color"))
+	if ("rgb(128, 128, 128)" == $(this).css("color")){
+		$(this).css("color","red")
+	}
+	else{
+		$(this).css("color","gray")
+	}
+	
+})
 
 $( document ).ready(function(){
 	readData();
