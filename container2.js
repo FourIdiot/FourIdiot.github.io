@@ -383,17 +383,11 @@ function writeData(l){
 function readData(){
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
-<<<<<<< HEAD
-		var keylist = Object.keys(myValue);
-		for (var i =0; i<keylist.length;i++){
-			eventList.push(myValue[keylist[i]].value);
-      todayList=makedateList(5,22);
-      tomorrowList=makedateList(5,23);
-=======
 		eventkeylist = Object.keys(myValue);
 		for (var i =0; i<eventkeylist.length;i++){
 			eventList.push(myValue[eventkeylist[i]].value);
->>>>>>> dce51115b65075a416fb540e9b0bf620b42c8218
+      todayList=makedateList(5,22);
+      tomorrowList=makedateList(5,23);
 		}
 		loadComplete();
 	})
