@@ -10,8 +10,11 @@ firebase.initializeApp(config);
 
 //Global variables
 var eventList = [];
+var eventkeylist = [];
 var timeSelectedList = [];
 var idchecked = false;
+var myID = "None";
+var myInterest = [];
 var eventtimeSet = new Set();
 
 //timetable
@@ -60,11 +63,32 @@ $('.timet').on('click', function(){
 
 //login
 function addIdData(id,pw){
-	var newID = firebase.database().ref("/4idiotslogin/").push()
-	newID.set({
-		ID : id,
-		PW : pw
-	});
+	if (id != "Null"){
+		var dat = firebase.database().ref("/4idiotslogin/");
+		dat.once('value',function(snapshot){
+			var myValue = snapshot.val();
+			var keylist = Object.keys(myValue);
+			for (var i =0; i<keylist.length; i++){
+				var current = keylist[i];
+				if (id == myValue[current].ID){
+					alert("There already exist such ID!")
+					return;
+				}
+				else{
+					continue;
+				}
+			};
+			dat.push()
+			newID.set({
+				ID : id,
+				PW : pw
+			});
+		})
+		
+	}
+	else{
+		alert("invalid id form");
+	}
 }
 
 function checkIdData(id,pw){
@@ -77,17 +101,48 @@ function checkIdData(id,pw){
 			if (id == myValue[current].ID){
 				if (pw == myValue[current].PW){
 					idchecked = true;
+					alert("login success!")
+					myID = id;
+					myInterst = myValue[current].Interests;
+					console.log("hello, ",myID, "!!");
 				}
 				else{
 					idchecked = false;
+					alert("login failed! : Invalid PW")
 				}
 			}
 			else{
 				idchecked = false;
+				alert("login failed! : NO such ID")
 			}
 		};
+		document.getElementById("ID").value = "";
+		document.getElementById("password").value = "";
 	})
 }
+
+function login(){
+	var currentid = document.getElementById("ID").value;
+	var currentpw = document.getElementById("password").value;
+	console.log(currentid,currentpw);
+	checkIdData(currentid,currentpw);
+}
+
+
+function addInterests(index){
+	eventList[index][6] += 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+}
+
+function deleteInterests(index){
+	eventList[index][6] -= 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+}
+
+$(".sbmitbtn").on('click',function(){
+	login();
+});
+
 //Today button click
 $("#today_btn").on('click', function(){
     $('#content').empty();
@@ -268,9 +323,9 @@ function writeData(l){
 function readData(){
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
-		var keylist = Object.keys(myValue);
-		for (var i =0; i<keylist.length;i++){
-			eventList.push(myValue[keylist[i]].value);
+		eventkeylist = Object.keys(myValue);
+		for (var i =0; i<eventkeylist.length;i++){
+			eventList.push(myValue[eventkeylist[i]].value);
 		}
 		loadComplete();
 	})
