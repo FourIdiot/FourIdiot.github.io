@@ -41,6 +41,57 @@ function readData_calendar(){
 	});
 }
 
-$( document ).ready(function () {
+var eventList = [];
+var timeSelectedList = [];
+var locationDict = {
+	"N13-1" : "Shin-hak Gwan",
+	"E11" : "Chang-ui Gwan",
+	"E9" : "Academic Cultural Complex",
+	"W8" : "Educational Support Building"
+};
+
+function loadComplete(){
+  	timeSelectedList = eventList.slice();
+  
+}
+function readData(){
+	firebase.database().ref('/4idiots/').once('value',function(snapshot){
+		var myValue = snapshot.val();
+		var keylist = Object.keys(myValue);
+		for (var i =0; i<keylist.length;i++){
+			eventList.push(myValue[keylist[i]].value);
+		}
+		loadComplete();
+	})
+}
+
+function showDetail_date(event){
+  $("#content").empty();
+  for(var i=0;i<timeSelectedList.length;i++){
+    if(event == timeSelectedList[i][1][1]){
+			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
+			$("#contentbox"+i)
+    	.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+    	.append($('<p>').html("When?"))
+    	.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+      + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+    	.append($('<br>').html("Where?"))
+    	.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+    	.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+    	.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+    }
+  }
+
+}
+
+$(document).on('click', '.day' ,function(){
+	var date = $(this).children('.date').text();
+	console.log(date);
+	showDetail_date(date);
+})
+
+$( document ).ready(function(){
+	readData();
 	readData_calendar();
+
 })
