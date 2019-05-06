@@ -12,8 +12,11 @@ firebase.initializeApp(config);
 var eventList = [];
 var todayList = [];
 var tomorrowList = [];
+var eventkeylist = [];
 var timeSelectedList = [];
 var idchecked = false;
+var myID = "None";
+var myInterest = [];
 var eventtimeSet = new Set();
 
 //timetable
@@ -95,11 +98,32 @@ $('.timet').on('click', function(){
 
 //login
 function addIdData(id,pw){
-	var newID = firebase.database().ref("/4idiotslogin/").push()
-	newID.set({
-		ID : id,
-		PW : pw
-	});
+	if (id != "Null"){
+		var dat = firebase.database().ref("/4idiotslogin/");
+		dat.once('value',function(snapshot){
+			var myValue = snapshot.val();
+			var keylist = Object.keys(myValue);
+			for (var i =0; i<keylist.length; i++){
+				var current = keylist[i];
+				if (id == myValue[current].ID){
+					alert("There already exist such ID!")
+					return;
+				}
+				else{
+					continue;
+				}
+			};
+			dat.push()
+			newID.set({
+				ID : id,
+				PW : pw
+			});
+		})
+
+	}
+	else{
+		alert("invalid id form");
+	}
 }
 
 function checkIdData(id,pw){
@@ -112,17 +136,48 @@ function checkIdData(id,pw){
 			if (id == myValue[current].ID){
 				if (pw == myValue[current].PW){
 					idchecked = true;
+					alert("login success!")
+					myID = id;
+					myInterst = myValue[current].Interests;
+					console.log("hello, ",myID, "!!");
 				}
 				else{
 					idchecked = false;
+					alert("login failed! : Invalid PW")
 				}
 			}
 			else{
 				idchecked = false;
+				alert("login failed! : NO such ID")
 			}
 		};
+		document.getElementById("ID").value = "";
+		document.getElementById("password").value = "";
 	})
 }
+
+function login(){
+	var currentid = document.getElementById("ID").value;
+	var currentpw = document.getElementById("password").value;
+	console.log(currentid,currentpw);
+	checkIdData(currentid,currentpw);
+}
+
+
+function addInterests(index){
+	eventList[index][6] += 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+}
+
+function deleteInterests(index){
+	eventList[index][6] -= 1;
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+}
+
+$(".sbmitbtn").on('click',function(){
+	login();
+});
+
 //Today Tomorrow button click
 $("#today_btn").on('click', function(){
     $('#content').empty();
@@ -153,19 +208,19 @@ $("#tomor_btn").on('click', function(){
 });
 
 // //accordian test
-// var acc = document.getElementsByClassName("accordion");
+var acc = document.getElementsByClassName("accordion");
 
-// for (var i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     var panel = this.nextElementSibling;
-//     if (panel.style.display === "block") {
-//       panel.style.display = "none";
-//     } else {
-//       panel.style.display = "block";
-//     }
-//   });
-// }
+for (var i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+     this.classList.toggle("active");
+     var panel = this.nextElementSibling;
+     if (panel.style.display === "block") {
+       panel.style.display = "none";
+     } else {
+       panel.style.display = "block";
+     }
+   });
+}
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
@@ -328,34 +383,82 @@ function writeData(l){
 function readData(){
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
+<<<<<<< HEAD
 		var keylist = Object.keys(myValue);
 		for (var i =0; i<keylist.length;i++){
 			eventList.push(myValue[keylist[i]].value);
       todayList=makedateList(5,22);
       tomorrowList=makedateList(5,23);
+=======
+		eventkeylist = Object.keys(myValue);
+		for (var i =0; i<eventkeylist.length;i++){
+			eventList.push(myValue[eventkeylist[i]].value);
+>>>>>>> dce51115b65075a416fb540e9b0bf620b42c8218
 		}
 		loadComplete();
 	})
 }
-function showDetail(event){
-  $("#content").empty();
-  for(var i=0;i<timeSelectedList.length;i++){
-    if(event == timeSelectedList[i][3]){
-			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
-			$("#contentbox"+i)
-    	.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
-    	.append($('<p>').html("When?"))
-    	.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
-      + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
-    	.append($('<br>').html("Where?"))
-    	.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
-    	.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
-    	.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
-    }
-  }
 
+function showDetail(event){
+	$("#content").empty();
+	for(var i=0;i<timeSelectedList.length;i++){
+		if(event == timeSelectedList[i][3]){
+			$("#content")
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'</button>'))
+			.append($('<div class="panel" id="panel'+i+'"></div>'));
+			$("#panel"+i)
+			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+			.append($('<p>').html("When?"))
+			.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+			+ timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+			.append($('<br>').html("Where?"))
+			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
+			.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
+
+
+			$("#accordion"+i).bind("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.display === "block") {
+					panel.style.display = "none";
+				} else {
+					panel.style.display = "block";
+				}
+			});
+
+		}
+	}
+	// event 하나일 때 accordion 안할거면 아래 코드 이용 가능
+	// } else {
+	// 	console.log(3);
+	// 	for(var i=0;i<timeSelectedList.length;i++){
+	// 		if(event == timeSelectedList[i][3]){
+	// 			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
+	// 			$("#contentbox"+i)
+	// 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+	// 			.append($('<p>').html("When?"))
+	// 			.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+	// 			+ timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+	// 			.append($('<br>').html("Where?"))
+	// 			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+	// 			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+	// 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+	// 		}
+	// 	}
 }
 
+$(document).on('click','.heart', function(){
+	console.log($(this).css("color"))
+	if ("rgb(128, 128, 128)" == $(this).css("color")){
+		$(this).css("color","red")
+	}
+	else{
+		$(this).css("color","gray")
+	}
+
+})
 
 $( document ).ready(function(){
 	readData();
