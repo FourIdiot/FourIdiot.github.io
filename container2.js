@@ -9,13 +9,18 @@ var config = {
 firebase.initializeApp(config);
 
 //Global variables
-var eventList = [];
-var eventkeylist = [];
-var timeSelectedList = [];
-var idchecked = false;
-var myID = "None";
-var myInterest = [];
-var eventtimeSet = new Set();
+
+// 각 event 형식
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
+//     0		  1			  2			 3		   4		 5		   6
+
+var eventList = []; // event들로 구성됨.
+var eventkeylist = []; // firebase 안 event들의 key들로 구성됨. (고유 번호라고 생각하면 됩니다)
+var timeSelectedList = []; // select된 event들로 구성됨.
+var idchecked = false; // 로그인에 성공하면 true
+var myID = "None"; // 로그인에 성공하면 id 저장
+var myInterest = []; // 로그인에 성공하면 interest불러옴. key로 구성됨.
+var eventtimeSet = new Set(); 
 
 //timetable
 //timetable hover
@@ -131,12 +136,16 @@ function login(){
 
 function addInterests(index){
 	eventList[index][6] += 1;
+	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+	firebase.database().ref("/4idiotslogin/Interests/").set(myInterest);
 }
 
 function deleteInterests(index){
 	eventList[index][6] -= 1;
+	myInterest.splice(index,1);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
+	firebase.database().ref("/4idiotslogin/Interests/").set(myInterest);
 }
 
 $(".sbmitbtn").on('click',function(){
@@ -173,8 +182,6 @@ for (var i = 0; i < acc.length; i++) {
 }
 
 
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
-//     0		  1			  2			 3		   4		 5		   6
 
 var locationDict = {
 	"N13-1" : "Shin-hak Gwan",
