@@ -28,7 +28,7 @@ var eventtimeSet = new Set();
 //timetable
 //timetable hover
 $('.timet').hover(function() {
-		if(($this).data('canhover')){
+		if($(this).data('canhover')){
 			$(this).addClass('hover');
 			}
     }, function() {
@@ -451,14 +451,12 @@ function showDetail(event){
 }
 
 $(document).on('click','.heart', function(){
-	console.log($(this).css("color"))
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
 		$(this).css("color","red");
 	}
 	else{
 		$(this).css("color","gray");
 	}
-
 });
 
 $( document ).ready(function(){
