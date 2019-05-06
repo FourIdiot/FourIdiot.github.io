@@ -103,19 +103,19 @@ $("#today_btn").on('click', function(){
 });
 
 // //accordian test
-// var acc = document.getElementsByClassName("accordion");
+var acc = document.getElementsByClassName("accordion");
 
-// for (var i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     var panel = this.nextElementSibling;
-//     if (panel.style.display === "block") {
-//       panel.style.display = "none";
-//     } else {
-//       panel.style.display = "block";
-//     }
-//   });
-// }
+for (var i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+     this.classList.toggle("active");
+     var panel = this.nextElementSibling;
+     if (panel.style.display === "block") {
+       panel.style.display = "none";
+     } else {
+       panel.style.display = "block";
+     }
+   });
+}
 
 
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
@@ -233,25 +233,55 @@ function readData(){
 		loadComplete();
 	})
 }
+
 function showDetail(event){
-  $("#content").empty();
-  for(var i=0;i<timeSelectedList.length;i++){
-    if(event == timeSelectedList[i][3]){
-			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
-			$("#contentbox"+i)
-    	.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
-    	.append($('<p>').html("When?"))
-    	.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
-      + timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
-    	.append($('<br>').html("Where?"))
-    	.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
-    	.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
-    	.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
-    }
-  }
-
+	$("#content").empty();
+	for(var i=0;i<timeSelectedList.length;i++){
+		if(event == timeSelectedList[i][3]){
+			$("#content")
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'</button>'))
+			.append($('<div class="panel" id="panel'+i+'"></div>'));
+			$("#panel"+i)
+			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+			.append($('<p>').html("When?"))
+			.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+			+ timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+			.append($('<br>').html("Where?"))
+			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+			
+			
+			$("#accordion"+i).bind("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.display === "block") {
+					panel.style.display = "none";
+				} else {
+					panel.style.display = "block";
+				}
+			});
+				
+		}
+	}
+	// event 하나일 때 accordion 안할거면 아래 코드 이용 가능
+	// } else {
+	// 	console.log(3);
+	// 	for(var i=0;i<timeSelectedList.length;i++){
+	// 		if(event == timeSelectedList[i][3]){
+	// 			$("#content").append($('<div class="contentbox" id="contentbox'+i+'"></div>'));
+	// 			$("#contentbox"+i)
+	// 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
+	// 			.append($('<p>').html("When?"))
+	// 			.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
+	// 			+ timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
+	// 			.append($('<br>').html("Where?"))
+	// 			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
+	// 			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+	// 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"));
+	// 		}
+	// 	}
 }
-
 
 $( document ).ready(function(){
 	readData();
