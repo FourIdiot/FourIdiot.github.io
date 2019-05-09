@@ -8,22 +8,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-
 //Global variables
 
 // 각 event 형식
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
-//     0		  1			  2			 3		   4		 5		   6
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
+//     0		  1			  2			 3		   4		 5		   6		  7
+//ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null"]
+//reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
 
 var eventtimeSet = new Set(); 
 var eventList = []; // event들로 구성됨.
@@ -194,6 +185,7 @@ function deleteInterests(index){
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 
+
 $(".sbmitbtn").on('click',function(){
 	login();
 });
@@ -316,6 +308,9 @@ function pincolor(id){
 
 function collectlocation(list){
   var a=[];
+  if (a.length == 0){
+  	return a;
+  }
   for (var i=0; i<list.length ; i++){
     a.push(list[i][3]);
   }
@@ -344,17 +339,6 @@ function loadComplete(){
 }
 ///////////////
 
-//make dateList start
-function makedateList(month,date){
-  var a=[];
-  for (var i=0;i<eventList.length;i++){
-    if(month==eventList[i][1][0] && date==eventList[i][1][1]){
-      a.push(eventList[i]);
-    }
-  }
-  return a;
-}
-//make dateList end
 
 //today and Tomorrow
 $("button").click(function(){
@@ -398,14 +382,34 @@ function writeData(l){
 	});
 }
 
-function readData(){
+function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
+		var today = Date.parse('2019/05/22/09:00:00');	
+		//var today = Date.now() + 32400000;
 		for (var i =0; i<eventkeylist.length;i++){
-			eventList.push(myValue[eventkeylist[i]].value);
-      todayList=makedateList(5,22);
-      tomorrowList=makedateList(5,23);
+			var event = myValue[eventkeylist[i]].value;
+			var eventsec = Date.parse('2019/' + 
+				String(event[1][0]).padStart(2,'0') + '/' + 
+				String(event[1][1]).padStart(2,'0') + '/' + 
+				event[2][1] + ':00');
+			var eventdatesec = Date.parse('2019/' + 
+				String(event[1][0]).padStart(2,'0') + '/' + 
+				String(event[1][1]).padStart(2,'0') + '/00:00:00');
+			if (today >= eventsec){
+				//여기에서 firebase에서 지우는것도 고려
+				continue;
+			}
+			else if (today >= eventdatesec - 86400000){
+				if (today >= eventdatesec){
+					todayList.push(event);
+				}
+				else{
+					tomorrowList.push(event);
+				}
+			}
+			eventList.push(event);
 		}
 		loadComplete();
 	})
