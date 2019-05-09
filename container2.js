@@ -8,22 +8,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
-/*FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}*/
-
 //Global variables
 
 // 각 event 형식
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests]
 //     0		  1			  2			 3		   4		 5		   6
+//ex
 
 var eventtimeSet = new Set(); 
 var eventList = []; // event들로 구성됨.
