@@ -36,7 +36,7 @@
     <!-- <div class = "map">map</div> -->
     <div class = "time">
       <div class= "calendar_btn">
-        <button type="button" class="go_calendar" onclick="location.href='calendar.html'"><img src="image/cal_icon.png" class = "cal_icon"></button>
+        <button type="button" class="go_calendar" herf = ".dim-layer"><img src="image/cal_icon.png" class = "cal_icon"></button>
       </div>
       <!-- <div class = "time_1">
         <div class = "today"><button type="button" id="today_btn" class="btn btn-danger">Today</button></div>
@@ -80,11 +80,30 @@
       <div class = "pins"></div>
     </div>
   </div>
+  <div class="dim-layer">
+    <div class="dimBg"></div>
+    <div id="layer2" class="pop-layer">
+      <div class="pop-container">
+        <div class="pop-conts">
+          <!--content //-->
+          <p class="ctxt mb20">Thank you.<br>
+            Your registration was submitted successfully.<br>
+            Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
+            Hope to see you soon!
+          </p>
+          <div class="btn-r">
+            <div href="#" class="btn-layerClose">Close</div>
+          </div>
+          <!--// content-->
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="jquery/js/jquery-1.9.0.min.js"></script>
   <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
   <script src="./container2.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
