@@ -54,7 +54,7 @@
   }
 
 .active, .accordion:hover {
-	background-color: #ccc; 
+	background-color: #ccc;
 }
 
 .sbmitbtn {
@@ -90,9 +90,9 @@
 /* .map img {
     max-width: 100%;
 } */
-.map1 mapmap{
-	width: auto;
-	height: 100%;
+.mapmap{
+	width: 100%;
+	height: auto;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
