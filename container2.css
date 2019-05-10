@@ -54,7 +54,7 @@
   }
 
 .active, .accordion:hover {
-	background-color: #ccc; 
+	background-color: #ccc;
 }
 
 .sbmitbtn {
@@ -90,9 +90,9 @@
 /* .map img {
     max-width: 100%;
 } */
-.map1 mapmap{
-	width: auto;
-	height: 100%;
+.mapmap{
+	width: 100%;
+	height: auto;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -224,23 +224,6 @@ body {
 	height:50px;
 	margin-top: 20px
 }
-.logingrid{
-	grid-column: 15/18;
-}
-.input-group{
-	margin-top : 6px;
-	margin-bottom : 6px;
-}
-.sbmitbtn{
-    font-weight: 600;
-    width: 90%;
-    color: #282726;
-    background-color: #fff;
-    border: none;
-    border-radius: 1.5rem;
-    padding:2%;
-    text-align : center;
-}
 .go_calendar{
 	background-color: black;
 	border: none;
@@ -257,13 +240,6 @@ body {
 
 .heart{
 	float: right;
-}
-
-.hamburger{
-	width: 22px;
-	float: right;
-	margin-right: 10px;
-
 }
 
 /*
