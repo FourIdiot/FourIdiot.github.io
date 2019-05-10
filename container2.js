@@ -464,7 +464,6 @@ function showDetail(event){
 	// 		}
 	// 	}
 }
-<<<<<<< HEAD
 /*
 function moving_pin(){
 	$(".pin").animate({marginTop: "30px"},1200,"",function(){
@@ -474,8 +473,6 @@ function moving_pin(){
 	});
 }*/
 
-=======
->>>>>>> parent of 70cdecc... d
 
 $(document).on('click','.heart', function(){
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
