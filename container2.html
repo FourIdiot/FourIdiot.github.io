@@ -36,7 +36,7 @@
     <!-- <div class = "map">map</div> -->
     <div class = "time">
       <div class= "calendar_btn">
-        <button type="button" class="go_calendar" herf = ".dim-layer"><img src="image/cal_icon.png" class = "cal_icon"></button>
+        <button type="button" id="go_calendar" herf = ".dim-layer"><img src="image/cal_icon.png" class = "cal_icon"></button>
       </div>
       <!-- <div class = "time_1">
         <div class = "today"><button type="button" id="today_btn" class="btn btn-danger">Today</button></div>
@@ -80,25 +80,27 @@
       <div class = "pins"></div>
     </div>
   </div>
-  <div class="dim-layer">
-    <div class="dimBg"></div>
-    <div id="layer2" class="pop-layer">
-      <div class="pop-container">
-        <div class="pop-conts">
-          <!--content //-->
-          <p class="ctxt mb20">Thank you.<br>
-            Your registration was submitted successfully.<br>
-            Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
-            Hope to see you soon!
-          </p>
-          <div class="btn-r">
-            <a href="#" class="btn-layerClose">Close</a>
-          </div>
-          <!--// content-->
+  
+
+    <!-- Trigger/Open The Modal -->
+ 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          "사전예약"
+        <span class="close">&times;</span>
         </div>
+        <div class="modal-body">
+        <div class="modal_left"><p>Some text in the left Modal..</p></div>  
+        <div class="modal_right"><p>Some text in the right Modal..</p></div>         
+       </div>                                                
       </div>
+
     </div>
-  </div>
+
   <script src="jquery/js/jquery-1.9.0.min.js"></script>
   <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
