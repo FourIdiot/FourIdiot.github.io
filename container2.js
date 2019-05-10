@@ -479,7 +479,7 @@ $('.go_calendar').click(function(){
     var $href = $(this).attr('href');
     layer_popup($href);
 }); function layer_popup(el){
-        var $el = $(el);        //레이어의 id를 $el 변수에 저장
+        var $el = $(el);
         $('.dim-layer').fadeIn();
 
         var $elWidth = ~~($el.outerWidth()),
@@ -487,7 +487,6 @@ $('.go_calendar').click(function(){
             docWidth = $(document).width(),
             docHeight = $(document).height();
 
-        // 화면의 중앙에 레이어를 띄운다.
         if ($elHeight < docHeight || $elWidth < docWidth) {
             $el.css({
                 marginTop: -$elHeight /2,
@@ -496,8 +495,7 @@ $('.go_calendar').click(function(){
         } else {
             $el.css({top: 0, left: 0});	
         }
-
-        $el.find('a.btn-layerClose').click(function(){
+        $('a.btn-layerClose').click(function(){
         	console.log("sdf")
             $('.dim-layer').fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
             return false;
