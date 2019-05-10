@@ -258,7 +258,7 @@ e="pinbutton";
   for (var i=0; i<list.length ; i++){
     a="'"+list[i]+"'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<img  id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+
+    $('<img  class = "pin" id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+
     ';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; left:' + coordinateDict[list[i]][0] + 'px; top:' + coordinateDict[list[i]][1] +'px;  width:30px; heigth:50px"' +
     'onclick="onoroff('+a+')" value="Off" />').appendTo(".pins");
@@ -406,7 +406,7 @@ function showDetail(event){
 	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
 			$("#content")
-			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'</button>'))
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
@@ -417,7 +417,7 @@ function showDetail(event){
 			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
 			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
-			.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
+			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 
 
 			$("#accordion"+i).bind("click", function() {
@@ -450,6 +450,15 @@ function showDetail(event){
 	// 		}
 	// 	}
 }
+/*
+function moving_pin(){
+	$(".pin").animate({marginTop: "30px"},1200,"",function(){
+		$(this).animate({marginTop:"0px"},1200,"", function(){
+			moving_pin();
+		});
+	});
+}*/
+
 
 $(document).on('click','.heart', function(){
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
@@ -460,6 +469,8 @@ $(document).on('click','.heart', function(){
 	}
 });
 
-$( document ).ready(function(){
+$( document ).ready(function(){	
 	readData();
+	//moving_pin();
 });
+
