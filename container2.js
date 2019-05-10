@@ -475,38 +475,33 @@ function moving_pin(){
 
 
 
-$('.go_calendar').click(function(){
-    var $href = $(this).attr('href');
-    layer_popup($href);
-}); function layer_popup(el){
-        var $el = $(el);
-        $('.dim-layer').fadeIn();
 
-        var $elWidth = ~~($el.outerWidth()),
-            $elHeight = ~~($el.outerHeight()),
-            docWidth = $(document).width(),
-            docHeight = $(document).height();
 
-        if ($elHeight < docHeight || $elWidth < docWidth) {
-            $el.css({
-                marginTop: -$elHeight /2,
-                marginLeft: -$elWidth/2
-            })
-        } else {
-            $el.css({top: 0, left: 0});	
-        }
-        $('a.btn-layerClose').click(function(){
-        	console.log("sdf")
-            $('.dim-layer').fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-            return false;
-        });
+// Get the modal
+var modal = document.getElementById('myModal');
+ 
+// Get the button that opens the modal
+var btn = document.getElementById("go_calendar");
 
-        $('.dim-layer .dimBg').click(function(){
-            $('.dim-layer').fadeOut();
-            return false;
-        });
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];                                          
 
-    }
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+		modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+		modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+		if (event.target == modal) {
+				modal.style.display = "none";
+		}
+}
 
 
 $(document).on('click','.heart', function(){
