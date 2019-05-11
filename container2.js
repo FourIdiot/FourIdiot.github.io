@@ -367,7 +367,7 @@ function timeevent(list){
 			$('#'+j).data('canclick',false);
 			$('#'+j).data('canhover',false);
 		} else {
-      $('#'+j).css('color','white');
+      $('#'+j).css('color','black');
 			$('#'+j).data('canclick',true);
 			$('#'+j).data('canhover',true);
 		}
