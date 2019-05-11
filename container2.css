@@ -331,6 +331,21 @@ div{
 	float:right;
 	margin-right: 20px;
 }
+
+/*for layer divs*/
+.rsvdate{
+	float:left;
+}
+.rsvcontent{
+	float:left;
+	border-left : 1px;
+	margin : 5px;
+}
+.daydiv{
+	width : 100%;
+	height : 40px;
+}
+
 /*
 div{
 	border: 1px solid red;

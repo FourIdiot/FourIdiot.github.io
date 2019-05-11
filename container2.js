@@ -25,6 +25,7 @@ var myID = "None"; // 로그인에 성공하면 id 저장
 var myInterest = []; // 로그인에 성공하면 interest불러옴. key로 구성됨.
 var todayList = [];
 var tomorrowList = [];
+var remainderList = [];
 var eventtimeSet = new Set();
 
 //timetable
@@ -410,6 +411,7 @@ function readData(){ //데이터 로드 from firebase
 				}
 			}
 			eventList.push(event);
+			remainderList.push(event);
 		}
 		loadComplete();
 	})
@@ -474,7 +476,20 @@ function moving_pin(){
 }*/
 
 
-
+function popupContents(){
+	$(".modal_left").empty();
+	$(".modal_right").empty();
+	for(var i=0;i<5;i++){
+		var now = new Date(Date.now() + 86400000 * (2 + i));
+		console.log(now);
+		$(".modal_left")
+		.append($('<div class="daydiv">')
+			.append($('<div class="rsvdate">')
+				.append($('<div class="rsvdateData">').html(now.getMonth()+1 + ' / ' + now.getDate())))
+			.append($('<div class="rsvcontent">')
+				.append($('<div class="rsvcontentData" id="' + (now.getMonth()+1) + '/' + now.getDate() + '">').html("testcontent" + i))));
+	};
+}
 
 
 // Get the modal
@@ -489,6 +504,7 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal 
 btn.onclick = function() {
 		modal.style.display = "block";
+		popupContents();
 }
 
 // When the user clicks on <span> (x), close the modal
