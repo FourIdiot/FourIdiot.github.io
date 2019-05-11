@@ -302,3 +302,9 @@ div{
   width: 100%;
   height: 100%;
 }
+
+.hamburger{
+	width:23px;
+	float:right;
+	margin-right: 20px;
+}
