@@ -100,6 +100,12 @@
 	background-color: white;
 }
 
+#subjectName{
+	text-align: center;
+	font-weight: bold;
+	font-size: medium;
+}
+
 .map1{
 	grid-column: 4/10;
 	grid-row: 11/36;
@@ -329,7 +335,8 @@ div{
   height: 100%;
 }
 .modal_header {
-  border-bottom: 1px;
+	border-bottom: 1px;
+	text-align: center;
 }
 .modal_body {
   width: 100%;
