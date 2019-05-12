@@ -492,11 +492,8 @@ function moving_pin(){
 function popupContents(){
 	// $(".modal_left").empty();
 	$(".modal_right").empty();
-	for(var j=0;j<5;j++){
-		var now = new Date(Date.now() + 86400000 * (2 + j));
-		console.log(now);
-    $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
-	}
+	var now = new Date(Date.now() + 86400000 * j);
+    $('.dates').html((now.getMonth()+1).toString()+'/'+now.getDate().toString());
 }
 
 // for(var j=0;j<5;j++){
@@ -552,9 +549,6 @@ window.onclick = function(event) {
 		}
 }
 
-$(".modal_body")
-			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
-			.append($('<div class="panel" id="panel'+i+'"></div>'));
 
 $(document).on('click','.heart', function(){
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
