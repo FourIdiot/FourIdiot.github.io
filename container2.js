@@ -11,10 +11,11 @@ firebase.initializeApp(config);
 //Global variables
 
 // 각 event 형식
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
-//     0		  1			  2			 3		   4		 5		   6		  7
-//ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null"]
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat,gifttyep]
+//     0		  1			  2			 3		   4		 5		   6		  7			8
+//ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null",0]
 //reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
+//8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
 
 var eventtimeSet = new Set();
 var eventList = []; // event들로 구성됨.
@@ -252,6 +253,11 @@ var coordinateDict = {
 	"E9" : ["237","275","20"],
 	"W8" : ["145","250","20"]
 };
+var imageDict = {
+	0 : '<img class = "hamburger" src="./image/beef.png">',
+	1 : '<img class = "gift" src="./image/gift.png">',
+	2 : '<img class = "hamburger" src="./image/beef.png"><img class = "gift" src="./image/gift.png">'
+};
 
 
 //pin on the map start
@@ -425,7 +431,7 @@ function showDetail(event){
 	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
 			$("#content")
-			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+imageDict[timeSelectedList[i][8]]+'</button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
