@@ -504,48 +504,55 @@ function moving_pin(){
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
 //     0		  1			  2			 3		   4		 5		   6		  7
 function popupContents(list){
-	if (list.length == 0){
-		return;
+	var nlist = [];
+	for(var i=0;i<list.length;i++){
+		if(list[i][7]!= "Null") {
+			nlist.push(list[i])
+		}
 	}
-	// $(".modal_left").empty();
-	if (list.length == 0) {
+
+	if (nlist.length == 0){
+		$(".modal_left_body").empty();
+		$(".modal_right").empty();
 		return
 	}
 	$(".modal_left_body").empty();
 	$(".modal_right").empty();
-	for(var i=0;i<list.length;i++){
+	
+	for(var i=0;i<nlist.length;i++){
 			$(".modal_left_body")
-			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+list[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
+			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+nlist[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
 
 
 			$("#prereserve"+i).bind('click', function(){
 				$(".modal_right").empty();
 				var k = Number($(this).attr('id').slice(-1));
 				$(".modal_right")
-				.append($('<br><p id = "subjectName">' + list[k][0] + '<br>'))
+				.append($('<br><p id = "subjectName">' + nlist[k][0] + '<br>'))
 				.append($('<p style="font-weight:bold">').html("When?"))
-				.append($('<p id = "detailTime">').html(list[k][1][0] + " / "
-				+ list[k][1][1] + "  " + list[k][2][0] + " ~ " + list[k][2][1]))
+				.append($('<p id = "detailTime">').html(nlist[k][1][0] + " / "
+				+ nlist[k][1][1] + "  " + nlist[k][2][0] + " ~ " + nlist[k][2][1]))
 				.append($('<p style="font-weight:bold">').html("Where?"))
-				.append($('<p id = "locNum">').html('( ' + list[k][3] + ' )  ' + locationDict[list[k][3]]))
+				.append($('<p id = "locNum">').html('( ' + nlist[k][3] + ' )  ' + locationDict[nlist[k][3]]))
 				.append($('<p style="font-weight:bold">').html("What?"))
-				.append($('<p id = "reward">').html(list[k][4]))
-				.append($('<a id = "detailLink" href="' + list[k][5] + '">').html("Link"))
+				.append($('<p id = "reward">').html(nlist[k][4]))
+				.append($('<a id = "detailLink" href="' + nlist[k][5] + '">').html("Link"))
+				.append($('<br><br><a id = "preLink" href="'+ nlist[k][7] + '">').html("PreReservation"))
 			});
-
-
+		
 	}
 
 	$(".modal_right")
-				.append($('<br><p id = "subjectName">' + list[0][0] + '<br>'))
+				.append($('<br><p id = "subjectName">' + nlist[0][0] + '<br>'))
 				.append($('<p style="font-weight:bold">').html("When?"))
-				.append($('<p id = "detailTime">').html(list[0][1][0] + " / "
-				+ list[0][1][1] + "  " + list[0][2][0] + " ~ " + list[0][2][1]))
+				.append($('<p id = "detailTime">').html(nlist[0][1][0] + " / "
+				+ nlist[0][1][1] + "  " + nlist[0][2][0] + " ~ " + nlist[0][2][1]))
 				.append($('<p style="font-weight:bold">').html("Where?"))
-				.append($('<p id = "locNum">').html('( ' + list[0][3] + ' )  ' + locationDict[list[0][3]]))
+				.append($('<p id = "locNum">').html('( ' + nlist[0][3] + ' )  ' + locationDict[nlist[0][3]]))
 				.append($('<p style="font-weight:bold">').html("What?"))
-				.append($('<p id = "reward">').html(list[0][4]))
-				.append($('<a id = "detailLink" href="' + list[0][5] + '">').html("Link"));
+				.append($('<p id = "reward">').html(nlist[0][4]))
+				.append($('<a id = "detailLink" href="' + nlist[0][5] + '">').html("Link"))
+				.append($('<br><br><a id = "preLink" href="'+ nlist[0][7] + '">').html("PreReservation"));
 }
 
 
@@ -571,7 +578,7 @@ $(".glyphicon-chevron-left").on('click',function(){
 		var objectList = [];
 		for (var i = 0; i<eventList.length;i++){
 			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
-				objectList.push(evnetList[i]);
+				objectList.push(eventList[i]);
 			}
 		};
 		popupContents(objectList);
@@ -591,7 +598,7 @@ $(".glyphicon-chevron-right").on('click',function(){
 		var objectList = [];
 		for (var i = 0; i<eventList.length;i++){
 			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
-				objectList.push(evnetList[i]);
+				objectList.push(eventList[i]);
 			}
 		};
 		popupContents(objectList);
