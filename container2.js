@@ -492,10 +492,12 @@ function moving_pin(){
 //     0		  1			  2			 3		   4		 5		   6		  7
 function popupContents(list){
 	// $(".modal_left").empty();
+	if (list.length == 0) {
+		return
+	}
 	$(".modal_left_body").empty();
 	$(".modal_right").empty();
 	for(var i=0;i<list.length;i++){
-			console.log(5);
 			$(".modal_left_body")
 			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+list[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
 
@@ -503,7 +505,6 @@ function popupContents(list){
 			$("#prereserve"+i).bind('click', function(){
 				$(".modal_right").empty();
 				var k = Number($(this).attr('id').slice(-1));
-				console.log(k);
 				$(".modal_right")
 				.append($('<br><p id = "subjectName">' + list[k][0] + '<br>'))
 				.append($('<p style="font-weight:bold">').html("When?"))
@@ -542,7 +543,8 @@ function popupContents(list){
 $(".glyphicon-chevron-left").on('click',function(){
 	dateoffset-=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	document.getElementsByClassName("dates").innerHTML((current.getMonth()+1) + '/' + current.getDate())
+	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	
 	
 	if (dateoffset == 0){
 		this.disabled = true;
@@ -563,11 +565,14 @@ $(".glyphicon-chevron-left").on('click',function(){
 			document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
 		}
 	}
-})
+});
+
 $(".glyphicon-chevron-right").on('click',function(){
 	dateoffset+=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	
+	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	console.log((current.getMonth()+1) + '/' + current.getDate());
+
 	if (dateoffset == 1){
 		popupContents(tomorrowList);
 		document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
@@ -584,7 +589,7 @@ $(".glyphicon-chevron-right").on('click',function(){
 			this.disabled = true;
 		}
 	}
-})
+});
 
 // for(var j=0;j<5;j++){
 //   var modalbtn = document.getElementById("modal"+j);
@@ -650,7 +655,9 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
 		modal.style.display = "block";
-		popupContents(eventList);
+		var current = new Date(Date.now());
+		$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+		popupContents(todayList);
 }
 
 // When the user clicks on <span> (x), close the modal
