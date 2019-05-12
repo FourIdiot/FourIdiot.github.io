@@ -91,7 +91,6 @@
 	padding: 0 18px;
 	display: none;
 	background-color: white;
-	overflow: scroll;
 }
 
 .modal_left_body {
@@ -142,8 +141,9 @@
 }
 
 
-.content{
+#content{
 	margin: 10px;
+	overflow-y: scroll;
 }
 
 
