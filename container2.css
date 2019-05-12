@@ -287,6 +287,14 @@ div{
 	border : 1px solid;
 }
 */
+.modal_left_content{
+	margin:0 auto;
+}
+
+.dates {
+	display:inline-block;
+}
+
 
 .modal {
   display: none; /* Hidden by default */
@@ -307,8 +315,8 @@ div{
   margin: 15% auto; /* 15% from the top and centered */
   padding: 0px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
-  height: 50%;
+  width: 758px; /* Could be more or less, depending on screen size */
+  height: 361px;
 }
 /* The Close Button */
 .close {
@@ -325,7 +333,7 @@ div{
 }
 .modal_left {
   float: left;
-  grid-row: 1/11;
+  grid-row: 1/12;
   border-right: 1px solid #aaa;
 }
 .modal_right {
@@ -336,12 +344,12 @@ div{
 	border-bottom: 1px;
 	text-align: center;
 }
+
 .modal-body {
 	display: grid;
 	grid-template-columns: 1fr 1fr; 
 	grid-template-rows: repeat(10,28px);
 }
-
 
 .hamburger{
 	width:23px;
