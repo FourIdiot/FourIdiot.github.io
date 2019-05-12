@@ -429,12 +429,13 @@ function showDetail(event){
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
-			.append($('<p>').html("When?"))
+			.append($('<p style="font-weight:bold">').html("When?"))
 			.append($('<p id = "detailTime">').html(timeSelectedList[i][1][0] + " / "
 			+ timeSelectedList[i][1][1] + "  " + timeSelectedList[i][2][0] + " ~ " + timeSelectedList[i][2][1]))
-			.append($('<br>').html("Where?"))
+			.append($('<p style="font-weight:bold">').html("Where?"))
 			.append($('<p id = "locNum">').html('( ' + timeSelectedList[i][3] + ' )  ' + locationDict[timeSelectedList[i][3]]))
-			.append($('<br><p id = "reward">').html(timeSelectedList[i][4]))
+			.append($('<p style="font-weight:bold">').html("What?"))
+			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 
