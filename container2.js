@@ -16,7 +16,7 @@ firebase.initializeApp(config);
 //ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null"]
 //reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
 
-var eventtimeSet = new Set(); 
+var eventtimeSet = new Set();
 var eventList = []; // event들로 구성됨.
 var eventkeylist = []; // firebase 안 event들의 key들로 구성됨. (고유 번호라고 생각하면 됩니다)
 var timeSelectedList = []; // select된 event들로 구성됨.
@@ -220,6 +220,7 @@ $("#tomor_btn").on('click', function(){
 		addpin(collectlocation(timeSelectedList));
 });
 
+
 // //accordian
 var acc = document.getElementsByClassName("accordion");
 
@@ -234,6 +235,8 @@ for (var i = 0; i < acc.length; i++) {
      }
    });
 }
+
+
 
 
 
@@ -387,16 +390,16 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		var today = Date.parse('2019/05/22/09:00:00');	
+		var today = Date.parse('2019/05/22/09:00:00');
 		//var today = Date.now() + 32400000;
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
-			var eventsec = Date.parse('2019/' + 
-				String(event[1][0]).padStart(2,'0') + '/' + 
-				String(event[1][1]).padStart(2,'0') + '/' + 
+			var eventsec = Date.parse('2019/' +
+				String(event[1][0]).padStart(2,'0') + '/' +
+				String(event[1][1]).padStart(2,'0') + '/' +
 				event[2][1] + ':00');
-			var eventdatesec = Date.parse('2019/' + 
-				String(event[1][0]).padStart(2,'0') + '/' + 
+			var eventdatesec = Date.parse('2019/' +
+				String(event[1][0]).padStart(2,'0') + '/' +
 				String(event[1][1]).padStart(2,'0') + '/00:00:00');
 			if (today >= eventsec){
 				//여기에서 firebase에서 지우는것도 고려
@@ -476,32 +479,55 @@ function moving_pin(){
 }*/
 
 
+//팝업창
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
+//     0		  1			  2			 3		   4		 5		   6		  7
 function popupContents(){
-	$(".modal_left").empty();
+	// $(".modal_left").empty();
 	$(".modal_right").empty();
-	for(var i=0;i<5;i++){
-		var now = new Date(Date.now() + 86400000 * (2 + i));
+	for(var j=0;j<5;j++){
+		var now = new Date(Date.now() + 86400000 * (2 + j));
 		console.log(now);
-		$(".modal_left")
-		.append($('<div class="daydiv">')
-			.append($('<div class="rsvdate">')
-				.append($('<div class="rsvdateData">').html(now.getMonth()+1 + ' / ' + now.getDate())))
-			.append($('<div class="rsvcontent">')
-				.append($('<div class="rsvcontentData" id="' + (now.getMonth()+1) + '/' + now.getDate() + '">').html("testcontent" + i))));
-	};
+    $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
+	}
+}
+
+for(var j=0;j<5;j++){
+  var modalbtn = document.getElementById("modal"+j);
+
+  modalbtn.onclick = function() {
+    $(".modal_right").empty();
+    var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
+    for(var i=0;i<eventList.length;i++){
+      if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
+        console.log(i);
+        $(".modal_right")
+          .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
+        $("#modalpanel"+i)
+          .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
+          .append($('<p>').html("When?"))
+          .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
+          + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
+          .append($('<br>').html("Where?"))
+          .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
+          .append($('<br><p id = "reward">').html(eventList[i][4]))
+          .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
+      }
+    }
+  }
 }
 
 
 // Get the modal
 var modal = document.getElementById('myModal');
- 
+
 // Get the button that opens the modal
 var btn = document.getElementById("go_calendar");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];                                          
+var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btn.onclick = function() {
 		modal.style.display = "block";
 		popupContents();
@@ -529,8 +555,7 @@ $(document).on('click','.heart', function(){
 	}
 });
 
-$( document ).ready(function(){	
+$( document ).ready(function(){
 	readData();
 	//moving_pin();
 });
-
