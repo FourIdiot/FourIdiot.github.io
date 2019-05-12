@@ -28,6 +28,7 @@ var todayList = [];
 var tomorrowList = [];
 var remainderList = [];
 var eventtimeSet = new Set();
+var dateoffset = 0;
 
 //timetable
 //timetable hover
@@ -495,6 +496,53 @@ function popupContents(){
 	var now = new Date(Date.now() + 86400000 * j);
     $('.dates').html((now.getMonth()+1).toString()+'/'+now.getDate().toString());
 }
+
+$(".glyphicon-chevron-left").on('click',function(){
+	dateoffset-=1;
+	var current = new Date(Date.now() + 86400000 * dateoffset);
+	document.getElementsByClassName("dates").innerHTML((current.getMonth()+1) + '/' + current.getDate())
+	
+	if (dateoffset == 0){
+		this.disabled = true;
+		popupContents(todayList);
+	}
+	else if (dateoffset == 1){
+		popupContents(tomorrowList);
+	}
+	else{
+		var objectList;
+		for (var i = 0; i<eventList.length;i++){
+			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
+				objectList.push(evnetList[i]);
+			}
+		};
+		popupContents(objectList);
+		if (dateoffset == 3){
+			document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
+		}
+	}
+})
+$(".glyphicon-chevron-right").on('click',function(){
+	dateoffset+=1;
+	var current = new Date(Date.now() + 86400000 * dateoffset);
+	
+	if (dateoffset == 1){
+		popupContents(tomorrowList);
+		document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
+	}
+	else{
+		var objectList;
+		for (var i = 0; i<eventList.length;i++){
+			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
+				objectList.push(evnetList[i]);
+			}
+		};
+		popupContents(objectList);
+		if (dateoffset == 4){
+			this.disabled = true;
+		}
+	}
+})
 
 // for(var j=0;j<5;j++){
 //   var modalbtn = document.getElementById("modal"+j);
