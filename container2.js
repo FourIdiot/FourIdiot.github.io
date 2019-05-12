@@ -483,40 +483,80 @@ function moving_pin(){
 //팝업창
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
 //     0		  1			  2			 3		   4		 5		   6		  7
-function popupContents(){
+function popupContents(list){
 	// $(".modal_left").empty();
+	$(".modal_left_body").empty();
 	$(".modal_right").empty();
-	for(var j=0;j<5;j++){
-		var now = new Date(Date.now() + 86400000 * (2 + j));
-		console.log(now);
-    $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
+	for(var i=0;i<list.length;i++){
+			console.log(5);
+			$(".modal_left_body")
+			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+list[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
+
+
+			$("#prereserve"+i).bind('click', function(){
+				$(".modal_right").empty();
+				var k = Number($(this).attr('id').slice(-1));
+				console.log(k);
+				$(".modal_right")
+				.append($('<br><p id = "subjectName">' + list[k][0] + '<br>'))
+				.append($('<p style="font-weight:bold">').html("When?"))
+				.append($('<p id = "detailTime">').html(list[k][1][0] + " / "
+				+ list[k][1][1] + "  " + list[k][2][0] + " ~ " + list[k][2][1]))
+				.append($('<p style="font-weight:bold">').html("Where?"))
+				.append($('<p id = "locNum">').html('( ' + list[k][3] + ' )  ' + locationDict[list[k][3]]))
+				.append($('<p style="font-weight:bold">').html("What?"))
+				.append($('<p id = "reward">').html(list[k][4]))
+				.append($('<a id = "detailLink" href="' + list[k][5] + '">').html("Link"))
+			});		
+
+		
 	}
+
+	$(".modal_right")
+				.append($('<br><p id = "subjectName">' + list[0][0] + '<br>'))
+				.append($('<p style="font-weight:bold">').html("When?"))
+				.append($('<p id = "detailTime">').html(list[0][1][0] + " / "
+				+ list[0][1][1] + "  " + list[0][2][0] + " ~ " + list[0][2][1]))
+				.append($('<p style="font-weight:bold">').html("Where?"))
+				.append($('<p id = "locNum">').html('( ' + list[0][3] + ' )  ' + locationDict[list[0][3]]))
+				.append($('<p style="font-weight:bold">').html("What?"))
+				.append($('<p id = "reward">').html(list[0][4]))
+				.append($('<a id = "detailLink" href="' + list[0][5] + '">').html("Link"));
 }
 
-// for(var j=0;j<5;j++){
-//   var modalbtn = document.getElementById("modal"+j);
 
-//   modalbtn.onclick = function() {
-//     $(".modal_right").empty();
-//     var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
-//     for(var i=0;i<eventList.length;i++){
-//       if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
-//         console.log(i);
-//         $(".modal_right")
-//           .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
-//         $("#modalpanel"+i)
-//           .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
-//           .append($('<p>').html("When?"))
-//           .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
-//           + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
-//           .append($('<br>').html("Where?"))
-//           .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
-//           .append($('<br><p id = "reward">').html(eventList[i][4]))
-//           .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
-//       }
-//     }
-//   }
+// 	for(var j=0;j<5;j++){
+// 		var now = new Date(Date.now() + 86400000 * (2 + j));
+// 		console.log(now);
+//     $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
+// 	}
 // }
+
+// 	for(var j=0;j<5;j++){
+// 	 var modalbtn = document.getElementById("modal"+j);
+
+// 	 modalbtn.onclick = function() {
+// 	   $(".modal_right").empty();
+// 	   var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
+// 	   for(var i=0;i<eventList.length;i++){
+// 	     if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
+// 	       console.log(i);
+// 	       $(".modal_right")
+// 	         .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
+// 	       $("#modalpanel"+i)
+// 	         .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
+// 	         .append($('<p>').html("When?"))
+// 	         .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
+// 	         + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
+// 	         .append($('<br>').html("Where?"))
+// 	         .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
+// 	         .append($('<br><p id = "reward">').html(eventList[i][4]))
+// 	         .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
+// 	     }
+// 	   }
+// 	  }
+// 	}
+
 
 
 // Get the modal
@@ -531,7 +571,7 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
 		modal.style.display = "block";
-		popupContents();
+		popupContents(eventList);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -546,9 +586,6 @@ window.onclick = function(event) {
 		}
 }
 
-$(".modal_body")
-			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
-			.append($('<div class="panel" id="panel'+i+'"></div>'));
 
 $(document).on('click','.heart', function(){
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
