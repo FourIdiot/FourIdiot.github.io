@@ -499,30 +499,30 @@ function popupContents(){
 	}
 }
 
-for(var j=0;j<5;j++){
-  var modalbtn = document.getElementById("modal"+j);
+// for(var j=0;j<5;j++){
+//   var modalbtn = document.getElementById("modal"+j);
 
-  modalbtn.onclick = function() {
-    $(".modal_right").empty();
-    var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
-    for(var i=0;i<eventList.length;i++){
-      if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
-        console.log(i);
-        $(".modal_right")
-          .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
-        $("#modalpanel"+i)
-          .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
-          .append($('<p>').html("When?"))
-          .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
-          + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
-          .append($('<br>').html("Where?"))
-          .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
-          .append($('<br><p id = "reward">').html(eventList[i][4]))
-          .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
-      }
-    }
-  }
-}
+//   modalbtn.onclick = function() {
+//     $(".modal_right").empty();
+//     var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
+//     for(var i=0;i<eventList.length;i++){
+//       if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
+//         console.log(i);
+//         $(".modal_right")
+//           .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
+//         $("#modalpanel"+i)
+//           .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
+//           .append($('<p>').html("When?"))
+//           .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
+//           + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
+//           .append($('<br>').html("Where?"))
+//           .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
+//           .append($('<br><p id = "reward">').html(eventList[i][4]))
+//           .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
+//       }
+//     }
+//   }
+// }
 
 
 // Get the modal
@@ -552,6 +552,9 @@ window.onclick = function(event) {
 		}
 }
 
+$(".modal_body")
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
+			.append($('<div class="panel" id="panel'+i+'"></div>'));
 
 $(document).on('click','.heart', function(){
 	if ("rgb(128, 128, 128)" == $(this).css("color")){
