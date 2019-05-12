@@ -504,6 +504,9 @@ function moving_pin(){
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
 //     0		  1			  2			 3		   4		 5		   6		  7
 function popupContents(list){
+	if (list.length == 0){
+		return;
+	}
 	// $(".modal_left").empty();
 	$(".modal_left_body").empty();
 	$(".modal_right").empty();
@@ -555,7 +558,8 @@ function popupContents(list){
 $(".glyphicon-chevron-left").on('click',function(){
 	dateoffset-=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	document.getElementsByClassName("dates").innerHTML((current.getMonth()+1) + '/' + current.getDate())
+	console.log(dateoffset);
+	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
 
 	if (dateoffset == 0){
 		this.disabled = true;
@@ -565,7 +569,7 @@ $(".glyphicon-chevron-left").on('click',function(){
 		popupContents(tomorrowList);
 	}
 	else{
-		var objectList;
+		var objectList = [];
 		for (var i = 0; i<eventList.length;i++){
 			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
 				objectList.push(evnetList[i]);
@@ -580,13 +584,15 @@ $(".glyphicon-chevron-left").on('click',function(){
 $(".glyphicon-chevron-right").on('click',function(){
 	dateoffset+=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
+	console.log(dateoffset);
+	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
 
 	if (dateoffset == 1){
 		popupContents(tomorrowList);
 		document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
 	}
 	else{
-		var objectList;
+		var objectList = [];
 		for (var i = 0; i<eventList.length;i++){
 			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
 				objectList.push(evnetList[i]);
