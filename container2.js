@@ -241,16 +241,29 @@ for (var i = 0; i < acc.length; i++) {
 
 
 var locationDict = {
-	"N13-1" : "Shin-hak Gwan",
+	"N13-1" : "Chang Young Shin Student Center",
 	"E11" : "Chang-ui Gwan",
 	"E9" : "Academic Cultural Complex",
-	"W8" : "Educational Support Building"
+	"W8" : "Educational Support Building",
+  "N1" : "Kim Beang-Ho KIM Sam-Youl ITC Building",
+  "E15" : "Auditorium",
+  "E6" : "Natural Science B/D",
+  "W1" : "Applied Engineering B/D",
+  "N13" : "Tae Wul Gwan",
+  "E3" : "Information & Electronics B/D"
+
 };
 var coordinateDict = {
-	"N13-1" : ["225","150","20"],
-	"E11" : ["258","240","20"],
-	"E9" : ["237","275","20"],
-	"W8" : ["145","250","20"]
+	"N13-1" : ["225","150"],
+	"E11" : ["258","240"],
+	"E9" : ["237","275"],
+	"W8" : ["145","250"],
+  "N1" : ["400","200"],
+  "E15" : ["400","200"],
+  "E6" : ["400","200"],
+  "W1" : ["400","200"],
+  "N13" : ["400","200"],
+  "E3" : ["400","200"]
 };
 
 
@@ -486,7 +499,7 @@ function popupContents(){
 	// $(".modal_left").empty();
 	$(".modal_right").empty();
 	for(var j=0;j<5;j++){
-		var now = new Date(Date.now() + 86400000 * (2 + j));
+		var now = new Date(Date.now() + 86400000 * (10 + j));
 		console.log(now);
     $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
 	}
@@ -497,7 +510,7 @@ for(var j=0;j<5;j++){
 
   modalbtn.onclick = function() {
     $(".modal_right").empty();
-    var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
+    var now = new Date(Date.now() + 86400000 * (10 + Number(this.value)));
     for(var i=0;i<eventList.length;i++){
       if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
         console.log(i);
