@@ -11,10 +11,11 @@ firebase.initializeApp(config);
 //Global variables
 
 // 각 event 형식
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
-//     0		  1			  2			 3		   4		 5		   6		  7
-//ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null"]
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat,gifttyep]
+//     0		  1			  2			 3		   4		 5		   6		  7			8
+//ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null",0]
 //reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
+//8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
 
 var eventtimeSet = new Set();
 var eventList = []; // event들로 구성됨.
@@ -27,6 +28,7 @@ var todayList = [];
 var tomorrowList = [];
 var remainderList = [];
 var eventtimeSet = new Set();
+var dateoffset = 0;
 
 //timetable
 //timetable hover
@@ -252,6 +254,11 @@ var coordinateDict = {
 	"E9" : ["237","275","20"],
 	"W8" : ["145","250","20"]
 };
+var imageDict = {
+	0 : '<img class = "hamburger" src="./image/beef.png">',
+	1 : '<img class = "gift" src="./image/gift.png">',
+	2 : '<img class = "hamburger" src="./image/beef.png"><img class = "gift" src="./image/gift.png">'
+};
 
 
 //pin on the map start
@@ -425,7 +432,7 @@ function showDetail(event){
 	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
 			$("#content")
-			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'))
+			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+imageDict[timeSelectedList[i][8]]+'</button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
@@ -530,6 +537,78 @@ function popupContents(list){
 // 		console.log(now);
 //     $('#modal'+j).text((now.getMonth()+1).toString()+'/'+now.getDate().toString());
 // 	}
+	
+
+$(".glyphicon-chevron-left").on('click',function(){
+	dateoffset-=1;
+	var current = new Date(Date.now() + 86400000 * dateoffset);
+	document.getElementsByClassName("dates").innerHTML((current.getMonth()+1) + '/' + current.getDate())
+	
+	if (dateoffset == 0){
+		this.disabled = true;
+		popupContents(todayList);
+	}
+	else if (dateoffset == 1){
+		popupContents(tomorrowList);
+	}
+	else{
+		var objectList;
+		for (var i = 0; i<eventList.length;i++){
+			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
+				objectList.push(evnetList[i]);
+			}
+		};
+		popupContents(objectList);
+		if (dateoffset == 3){
+			document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
+		}
+	}
+})
+$(".glyphicon-chevron-right").on('click',function(){
+	dateoffset+=1;
+	var current = new Date(Date.now() + 86400000 * dateoffset);
+	
+	if (dateoffset == 1){
+		popupContents(tomorrowList);
+		document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
+	}
+	else{
+		var objectList;
+		for (var i = 0; i<eventList.length;i++){
+			if (current.getMonth()+1 == eventList[i][1][0] && current.getDate() == eventList[i][1][1]){
+				objectList.push(evnetList[i]);
+			}
+		};
+		popupContents(objectList);
+		if (dateoffset == 4){
+			this.disabled = true;
+		}
+	}
+})
+
+// for(var j=0;j<5;j++){
+//   var modalbtn = document.getElementById("modal"+j);
+
+//   modalbtn.onclick = function() {
+//     $(".modal_right").empty();
+//     var now = new Date(Date.now() + 86400000 * (2 + Number(this.value)));
+//     for(var i=0;i<eventList.length;i++){
+//       if(now.getMonth()+1 == eventList[i][1][0] && now.getDate() == eventList[i][1][1]){
+//         console.log(i);
+//         $(".modal_right")
+//           .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
+//         $("#modalpanel"+i)
+//           .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
+//           .append($('<p>').html("When?"))
+//           .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
+//           + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
+//           .append($('<br>').html("Where?"))
+//           .append($('<p id = "locNum">').html('( ' + eventList[i][3] + ' )  ' + locationDict[eventList[i][3]]))
+//           .append($('<br><p id = "reward">').html(eventList[i][4]))
+//           .append($('<a id = "detailLink" href="' + eventList[i][5] + '">').html("Link"))
+//       }
+//     }
+//   }
 // }
 
 // 	for(var j=0;j<5;j++){
