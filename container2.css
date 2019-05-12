@@ -5,11 +5,11 @@
 	grid-template-columns: repeat(10,140px);
 	grid-template-rows: repeat(36,11px);
 	grid-gap: 10px;
-	
-	
+
+
 	/*background-color: #C5F4FF;*/
 	background-color: #D0F2F2;
-	
+
 }
 
 .header{
@@ -58,6 +58,8 @@
 	transition: 0.4s;
   }
 
+	.
+
 .active, .accordion:hover {
 	background-color: #ccc;
 }
@@ -70,7 +72,11 @@
 	padding: 0 18px;
 	display: none;
 	background-color: white;
-	overflow: hidden;
+	overflow: scroll;
+}
+
+.modal_right {
+	overflow-y: scroll;
 }
 
 .time{
@@ -292,7 +298,7 @@ div{
   padding: 0px;
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */
-  height: 50%;                          
+  height: 50%;
 }
 /* The Close Button */
 .close {
