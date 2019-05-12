@@ -86,13 +86,17 @@
 	grid-template-rows: auto;
 	grid-column: 2/10;
 	grid-row: 6/11;
-	border:1px solid;
+	border-radius: 6px;
+	box-shadow: 0 3px 0 0 rgb(87, 193, 201);
+	/* border:1px solid; */
 }
 
 .detail{
 	grid-column: 2/4;
 	grid-row: 11/36;
-	border : 1px solid;
+	/* border : 1px solid; */
+	border-radius: 6px;
+	box-shadow: 0 3px 0 0 rgb(87, 193, 201);
 	background-color: white;
 }
 
