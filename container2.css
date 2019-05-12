@@ -58,7 +58,7 @@
 	transition: 0.4s;
   }
 
-	
+
 
 .active, .accordion:hover {
 	background-color: #ccc;
@@ -77,7 +77,7 @@
 	transition: 0.4s;
   }
 
-	
+
 
 .active, .prereserve:hover {
 	background-color: #ccc;
@@ -95,6 +95,8 @@
 
 .modal_left_body {
 	overflow-y: scroll;
+	height: 252px;
+
 }
 
 .time{
@@ -144,6 +146,7 @@
 #content{
 	margin: 10px;
 	overflow-y: scroll;
+	height: 500px;
 }
 
 
@@ -366,7 +369,7 @@ div{
 
 .modal-body {
 	display: grid;
-	grid-template-columns: 1fr 1fr; 
+	grid-template-columns: 1fr 1fr;
 	grid-template-rows: repeat(10,28px);
 }
 
