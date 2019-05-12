@@ -561,7 +561,7 @@ $(".glyphicon-chevron-left").on('click',function(){
 	var current = new Date(Date.now() + 86400000 * dateoffset);
 	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
 	if (dateoffset == 0){
-		this.disabled = true;
+		$(".glyphicon-chevron-left").prop('disabled',true);
 		popupContents(todayList);
 	}
 	else if (dateoffset == 1){
@@ -575,9 +575,6 @@ $(".glyphicon-chevron-left").on('click',function(){
 			}
 		};
 		popupContents(objectList);
-		if (dateoffset == 3){
-			document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
-		}
 	}
 });
 
@@ -588,7 +585,7 @@ $(".glyphicon-chevron-right").on('click',function(){
 
 	if (dateoffset == 1){
 		popupContents(tomorrowList);
-		document.getElementsByClassName("glyphicon-chevron-left").disabled = false;
+		$(".glyphicon-chevron-left").prop('disabled',false)
 	}
 	else{
 		var objectList = [];
@@ -598,9 +595,6 @@ $(".glyphicon-chevron-right").on('click',function(){
 			}
 		};
 		popupContents(objectList);
-		if (dateoffset == 4){
-			this.disabled = true;
-		}
 	}
 });
 
