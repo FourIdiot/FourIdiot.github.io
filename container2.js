@@ -256,16 +256,16 @@ var locationDict = {
 
 };
 var coordinateDict = {
-	"N13-1" : ["225","150"],
-	"E11" : ["258","240"],
-	"E9" : ["237","275"],
-	"W8" : ["145","250"],
-  "N1" : ["400","200"],
-  "E15" : ["400","200"],
-  "E6" : ["400","200"],
-  "W1" : ["400","200"],
-  "N13" : ["400","200"],
-  "E3" : ["400","200"]
+	"N13-1" : ["390","165"],
+	"E11" : ["410","255"],
+	"E9" : ["400","290"],
+	"W8" : ["285","260"],
+  "N1" : ["610","160"],
+  "E15" : ["455","220"],
+  "E6" : ["500","280"],
+  "W1" : ["250","410"],
+  "N13" : ["370","165"],
+  "E3" : ["510","350"]
 };
 var imageDict = {
 	0 : '<img class = "hamburger" src="./image/beef.png">',
@@ -410,8 +410,8 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		var today = Date.parse('2019/05/22/09:00:00');
-		//var today = Date.now() + 32400000;
+		// var today = Date.parse('2019/05/22/09:00:00');
+		var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
 			var eventsec = Date.parse('2019/' +
@@ -518,7 +518,7 @@ function popupContents(list){
 	}
 	$(".modal_left_body").empty();
 	$(".modal_right").empty();
-	
+
 	for(var i=0;i<nlist.length;i++){
 			$(".modal_left_body")
 			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+nlist[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
@@ -539,7 +539,7 @@ function popupContents(list){
 				.append($('<a id = "detailLink" href="' + nlist[k][5] + '">').html("Link"))
 				.append($('<br><br><a id = "preLink" href="'+ nlist[k][7] + '">').html("PreReservation"))
 			});
-		
+
 	}
 
 	$(".modal_right")
