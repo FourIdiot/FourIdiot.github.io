@@ -365,8 +365,8 @@ function loadComplete(){
 
 
 //today and Tomorrow
-$("button").click(function(){
-  $("button").removeClass("active1");
+$(".btn").click(function(){
+  $(".btn").removeClass("active1");
   $(this).addClass("active1");
 });
 

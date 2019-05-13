@@ -287,15 +287,15 @@ body {
 #go_calendar{
 	background-color: white;
 	border:none;
-
+	margin-left: 10px;
 	width:100%;
 	height:100%;
 }
 .cal_icon{
-	width: 50%;
-	height: 65%;
+	width: 100%;
+	height: 70%;
 	float:right;
-	margin-right: 20px;
+	margin-right: 0px;
 }
 
 .heart{
@@ -360,6 +360,7 @@ div{
 }
 .modal_right {
   float: right;
+  margin-right: 10px;
   grid-row: 1/11;
 }
 .modal_header {
@@ -371,17 +372,18 @@ div{
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: repeat(10,28px);
+	grid-gap: 10px;
 }
 
 .hamburger{
-	width:23px;
+	width:21px;
 	float:right;
-	margin-right: 20px;
+	margin-right: 5px;
 }
 .gift{
-	width:23px;
+	width:21px;
 	float:right;
-	margin-right: 20px;
+	margin-right: 5px;
 }
 
 /*for layer divs*/
