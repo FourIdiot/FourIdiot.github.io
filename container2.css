@@ -99,6 +99,12 @@
 
 }
 
+.modal_right {
+	overflow-y: scroll;
+	height: 252px;
+
+}
+
 .time{
 	display: grid;
 	background-color: white;
