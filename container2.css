@@ -250,7 +250,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background: #ea003d;
+    background: rgb(87, 193, 201);
     border-radius: 30px;
     left: 0;
     top: 20px;
@@ -384,8 +384,8 @@ div{
 .modal-body {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: repeat(10,28px);
-	grid-gap: 10px;
+	grid-template-rows: repeat(10,26px);
+	grid-gap: 2px;
 }
 
 .hamburger{
