@@ -167,7 +167,7 @@ function checkIdData(id,pw){
 	})
 }
 
-function login(){
+/*function login(){
 	var currentid = document.getElementById("ID").value;
 	var currentpw = document.getElementById("password").value;
 	console.log(currentid,currentpw);
@@ -186,7 +186,7 @@ function deleteInterests(index){
 	myInterest.splice(index,1);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
-}
+}*/
 
 
 $(".sbmitbtn").on('click',function(){
