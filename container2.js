@@ -458,8 +458,7 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-
-
+			
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
@@ -537,7 +536,7 @@ function popupContents(list){
 				.append($('<p style="font-weight:bold">').html("What?"))
 				.append($('<p id = "reward">').html(nlist[k][4]))
 				.append($('<a id = "detailLink" href="' + nlist[k][5] + '">').html("Link"))
-				.append($('<br><br><a id = "preLink" href="'+ nlist[k][7] + '">').html("PreReservation"))
+				.append($('<br><br><a id = "preLink" href="'+ nlist[k][7] + '">').html("Pre-Registration"))
 			});
 
 	}
@@ -552,7 +551,7 @@ function popupContents(list){
 				.append($('<p style="font-weight:bold">').html("What?"))
 				.append($('<p id = "reward">').html(nlist[0][4]))
 				.append($('<a id = "detailLink" href="' + nlist[0][5] + '">').html("Link"))
-				.append($('<br><br><a id = "preLink" href="'+ nlist[0][7] + '">').html("PreReservation"));
+				.append($('<br><br><a id = "preLink" href="'+ nlist[0][7] + '">').html("Pre-Registration"));
 }
 
 
@@ -698,5 +697,9 @@ $(document).on('click','.heart', function(){
 
 $( document ).ready(function(){
 	readData();
+	
 	//moving_pin();
 });
+
+
+
