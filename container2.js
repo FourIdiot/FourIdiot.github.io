@@ -107,7 +107,7 @@ $('.timet').on('click', function(){
   }
 });
 
-//login
+/*//login
 function addIdData(id,pw){
 	if (id != "Null"){
 		var dat = firebase.database().ref("/4idiotslogin/");
@@ -167,7 +167,7 @@ function checkIdData(id,pw){
 	})
 }
 
-/*function login(){
+function login(){
 	var currentid = document.getElementById("ID").value;
 	var currentpw = document.getElementById("password").value;
 	console.log(currentid,currentpw);
@@ -186,12 +186,12 @@ function deleteInterests(index){
 	myInterest.splice(index,1);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
-}*/
+}
 
 
 $(".sbmitbtn").on('click',function(){
 	login();
-});
+});*/
 
 //Today Tomorrow button click
 $("#today_btn").on('click', function(){
@@ -240,7 +240,7 @@ for (var i = 0; i < acc.length; i++) {
 
 
 
-
+//Dictionaries for event showing
 
 var locationDict = {
 	"N13-1" : "Chang Young Shin Student Center",
@@ -766,8 +766,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com'
+              mobileWebUrl: 'https://fouridiot.github.io/container2.html',
+              webUrl: 'https://fouridiot.github.io/container2.html'
             }
           }
         ]
