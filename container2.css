@@ -12,6 +12,13 @@
 
 }
 
+.main {
+	font-family: 'Srisakdi', cursive;
+	font-size: 35px;
+	font-weight: bold;
+	color: #555555;
+}
+
 .header{
 	display: grid;
 	grid-template-columns: repeat(20,1fr);
@@ -94,6 +101,12 @@
 }
 
 .modal_left_body {
+	overflow-y: scroll;
+	height: 252px;
+
+}
+
+.modal_right {
 	overflow-y: scroll;
 	height: 252px;
 
@@ -237,7 +250,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background: #ea003d;
+    background: rgb(87, 193, 201);
     border-radius: 30px;
     left: 0;
     top: 20px;
@@ -371,8 +384,8 @@ div{
 .modal-body {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: repeat(10,28px);
-	grid-gap: 10px;
+	grid-template-rows: repeat(10,26px);
+	grid-gap: 2px;
 }
 
 .hamburger{
