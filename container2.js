@@ -760,8 +760,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com'
+              mobileWebUrl: 'https://fouridiot.github.io/container2.html',
+              webUrl: 'https://fouridiot.github.io/container2.html'
             }
           }
         ]
