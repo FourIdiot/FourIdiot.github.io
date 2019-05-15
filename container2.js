@@ -458,8 +458,8 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+event+')"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
-
+			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+event+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+			
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
@@ -699,18 +699,18 @@ $(document).on('click','.heart', function(){
 $( document ).ready(function(){
 	readData();
 	kakao_share();
-
+	
 	//moving_pin();
 });
 
-//.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+
 
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('c53ea5317cc7bf239ff6cd3c0f941e8d');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
-function kakao_share() {
+function kakao_share() {   
 	for(var i=0;i<timeSelectedList.length;i++){
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
@@ -733,7 +733,7 @@ Kakao.Link.createDefaultButton({
       },
       buttons: [
         {
-          title: 'More Info',
+          title: '웹으로 보기',
           link: {
             mobileWebUrl: timeSelectedList[i][5],
             webUrl: timeSelectedList[i][5]
@@ -766,7 +766,7 @@ Kakao.Link.createDefaultButton({
         },
         buttons: [
           {
-            title: 'More Info',
+            title: '웹으로 보기',
             link: {
               mobileWebUrl:timeSelectedList[i][5],
               webUrl: timeSelectedList[i][5]
