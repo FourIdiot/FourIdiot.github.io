@@ -703,7 +703,7 @@ $( document ).ready(function(){
 	//moving_pin();
 });
 
-
+//.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
 
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -722,8 +722,8 @@ Kakao.Link.createDefaultButton({
         description: eventList[i][4],
         imageUrl: '/image/logo.PNG',
         link: {
-          mobileWebUrl: eventList[i][5],
-          webUrl: eventList[i][5]
+          mobileWebUrl: ""+eventList[i][5],
+          webUrl: ""+eventList[i][5]
         }
       },
       social: {
@@ -733,10 +733,10 @@ Kakao.Link.createDefaultButton({
       },
       buttons: [
         {
-          title: '웹으로 보기',
+          title: 'More Info',
           link: {
-            mobileWebUrl: eventList[i][5],
-            webUrl: eventList[i][5]
+            mobileWebUrl: ""+eventList[i][5],
+            webUrl: ""+eventList[i][5]
           }
         }
       ]
@@ -750,11 +750,11 @@ Kakao.Link.createDefaultButton({
         addressTitle: locationDict[eventList[i][3]],
         content: {
           title: eventList[i][0],
-          description: eventList[i][4],
+					description: eventList[i][4],
           imageUrl: '/image/logo.PNG',
           link: {
-            mobileWebUrl: eventList[i][5],
-            webUrl: eventList[i][5]
+            mobileWebUrl: ""+eventList[i][5],
+            webUrl: ""+eventList[i][5]
           }
         },
         social: {
@@ -764,10 +764,10 @@ Kakao.Link.createDefaultButton({
         },
         buttons: [
           {
-            title: '웹으로 보기',
+            title: 'More Info',
             link: {
-              mobileWebUrl:eventList[i][5],
-              webUrl: eventList[i][5]
+              mobileWebUrl:""+eventList[i][5],
+              webUrl: ""+eventList[i][5]
             }
           }
         ]
