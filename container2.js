@@ -536,8 +536,8 @@ function popupContents(list){
 				.append($('<p id = "locNum">').html('( ' + nlist[k][3] + ' )  ' + locationDict[nlist[k][3]]))
 				.append($('<p style="font-weight:bold">').html("What?"))
 				.append($('<p id = "reward">').html(nlist[k][4]))
-				.append($('<a id = "detailLink" href="' + nlist[k][5] + '">').html("Link"))
-				.append($('<br><br><a id = "preLink" href="'+ nlist[k][7] + '">').html("Pre-Registration"))
+				.append($('<a id = "detailLink" href="' + nlist[k][5] + '">').html("Detail info"))
+				.append($('<a id = "preLink" class="preReg" href="'+ nlist[k][7] + '">').html("Pre-Registration"))
 			});
 
 	}
@@ -551,8 +551,8 @@ function popupContents(list){
 				.append($('<p id = "locNum">').html('( ' + nlist[0][3] + ' )  ' + locationDict[nlist[0][3]]))
 				.append($('<p style="font-weight:bold">').html("What?"))
 				.append($('<p id = "reward">').html(nlist[0][4]))
-				.append($('<a id = "detailLink" href="' + nlist[0][5] + '">').html("Link"))
-				.append($('<br><br><a id = "preLink" href="'+ nlist[0][7] + '">').html("Pre-Registration"));
+				.append($('<a id = "detailLink" href="' + nlist[0][5] + '">').html("Detail info"))
+				.append($('<a id = "preLink" class="preReg" href="'+ nlist[0][7] + '">').html("Pre-Registration"));
 }
 
 
