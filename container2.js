@@ -255,6 +255,20 @@ var locationDict = {
   "E3" : "Information & Electronics B/D"
 
 };
+
+var locationDict_KR = {
+	"N13-1" : "장영신 학생회관",
+	"E11" : "항의학습관",
+	"E9" : "중앙도서관 학술문화관",
+	"W8" : "W8",
+  "N1" : "Kim Beang-Ho KIM Sam-Youl ITC Building",
+  "E15" : "대강당",
+  "E6" : "자연과학동",
+  "W1" : "응용공학동",
+  "N13" : "태울관",
+  "E3" : "전자정보동"
+};
+
 var coordinateDict = {
 	"N13-1" : ["390","165"],
 	"E11" : ["410","255"],
@@ -749,11 +763,11 @@ Kakao.Link.createDefaultButton({
 			console.log('"'+timeSelectedList[i][5]+'"');
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '카이스트 ' + timeSelectedList[i][3],
+        address: '카이스트 ' + locationDict_KR[timeSelectedList[i][3]],
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4] + timeSelectedList[i][5],
+          description: timeSelectedList[i][4] +"    " + timeSelectedList[i][5],
           imageUrl: '/image/logo.PNG',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
@@ -767,7 +781,7 @@ Kakao.Link.createDefaultButton({
         },
         buttons: [
           {
-            title: '웹으로 보기',
+            title: '행사 더보기',
             link: {
               mobileWebUrl:"https://fouridiot.github.io/container2.html",
               webUrl: "https://fouridiot.github.io/container2.html"
