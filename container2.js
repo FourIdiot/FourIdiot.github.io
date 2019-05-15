@@ -722,8 +722,8 @@ Kakao.Link.createDefaultButton({
         description: timeSelectedList[i][4],
         imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
+          mobileWebUrl: timeSelectedList[i][5],
+          webUrl: timeSelectedList[i][5]
         }
       },
       social: {
@@ -735,8 +735,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: timeSelectedList[i][5],
+            webUrl: timeSelectedList[i][5]
           }
         }
       ]
@@ -746,15 +746,15 @@ Kakao.Link.createDefaultButton({
     function sendLink() {
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '경기 성남시 분당구 판교역로 235 에이치스퀘어 N동 8층',
-        addressTitle: '카카오 판교오피스 카페톡',
+        address: '대전광역시 대학로 291 카이스트 '+timeSelectedList[i][3],
+        addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
-          title: '신메뉴 출시♥︎ 체리블라썸라떼',
-          description: '이번 주는 체리블라썸라떼 1+1',
+          title: timeSelectedList[i][0],
+          description: timeSelectedList[i][4],
           imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: timeSelectedList[i][5],
+            webUrl: timeSelectedList[i][5]
           }
         },
         social: {
@@ -766,8 +766,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'https://fouridiot.github.io/container2.html',
-              webUrl: 'https://fouridiot.github.io/container2.html'
+              mobileWebUrl: timeSelectedList[i][5],
+              webUrl: timeSelectedList[i][5]
             }
           }
         ]
