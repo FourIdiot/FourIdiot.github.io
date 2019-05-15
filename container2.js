@@ -715,15 +715,15 @@ function kakao_share() {
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
       objectType: 'location',
-      address: '대전광역시 대학로 291 카이스트 '+timeSelectedList[i][3],
+      address: '카이스트 '+timeSelectedList[i][3],
       addressTitle: locationDict[timeSelectedList[i][3]],
       content: {
         title: timeSelectedList[i][0],
         description: timeSelectedList[i][4],
         imageUrl: './image/logo.PNG',
         link: {
-          mobileWebUrl: timeSelectedList[i][5],
-          webUrl: timeSelectedList[i][5]
+          mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+          webUrl: '"'+timeSelectedList[i][5]+'"'
         }
       },
       social: {
@@ -735,8 +735,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         }
       ]
@@ -746,7 +746,7 @@ Kakao.Link.createDefaultButton({
     function sendLink() {
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '대전광역시 대학로 291 카이스트 '+timeSelectedList[i][3],
+        address: '카이스트 '+timeSelectedList[i][3],
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
@@ -766,8 +766,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: timeSelectedList[i][5],
-              webUrl: 'https://fouridiot.github.io/container2.html'
+              mobileWebUrl:'"'+timeSelectedList[i][5]+'"',
+              webUrl: '"'+timeSelectedList[i][5]+'"'
             }
           }
         ]
