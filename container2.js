@@ -753,7 +753,7 @@ Kakao.Link.createDefaultButton({
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4],
+          description: timeSelectedList[i][4] + timeSelectedList[i][5],
           imageUrl: '/image/logo.PNG',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
@@ -769,8 +769,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl:'"'+timeSelectedList[i][5]+'"',
-              webUrl: "https://portal.kaist.ac.kr/ennotice/notice/11557710443686"
+              mobileWebUrl:"https://fouridiot.github.io/container2.html",
+              webUrl: "https://fouridiot.github.io/container2.html"
             }
           }
         ]
