@@ -417,6 +417,11 @@ div{
 	float:right;
 }
 
+.preReg{
+	float: right;
+	margin-right: 5px;
+}
+
 /*
 div{
 	border: 1px solid red;
