@@ -722,8 +722,8 @@ Kakao.Link.createDefaultButton({
         description: timeSelectedList[i][4],
         imageUrl: '/image/logo.PNG',
         link: {
-          mobileWebUrl: timeSelectedList[i][5],
-          webUrl: timeSelectedList[i][5]
+          mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+          webUrl: '"'+timeSelectedList[i][5]+'"'
         }
       },
       social: {
@@ -735,8 +735,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         }
       ]
@@ -746,6 +746,7 @@ Kakao.Link.createDefaultButton({
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
+			console.log(timeSelectedList[i][5]);
       Kakao.Link.sendDefault({
         objectType: 'location',
         address: '카이스트 ' + timeSelectedList[i][3],
@@ -755,8 +756,8 @@ Kakao.Link.createDefaultButton({
           description: timeSelectedList[i][4],
           imageUrl: '/image/logo.PNG',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         },
         social: {
@@ -768,8 +769,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl:timeSelectedList[i][5],
-              webUrl: timeSelectedList[i][5]
+              mobileWebUrl:'"'+timeSelectedList[i][5]+'"',
+              webUrl: '"'+timeSelectedList[i][5]+'"'
             }
           }
         ]
