@@ -711,19 +711,19 @@ $( document ).ready(function(){
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
 function kakao_share() {   
-	for(var i=0;i<timeSelectedList.length;i++){
+	for(var i=0;i<eventList.length;i++){
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
       objectType: 'location',
-      address: '카이스트 "'+timeSelectedList[i][3]+ '"',
-      addressTitle: '"'+locationDict[timeSelectedList[i][3]]+ '"',
+      address: '카이스트 '+eventList[i][3],
+      addressTitle: locationDict[eventList[i][3]],
       content: {
-        title: timeSelectedList[i][0],
-        description: timeSelectedList[i][4],
-        imageUrl: './image/logo.PNG',
+        title: eventList[i][0],
+        description: eventList[i][4],
+        imageUrl: '/image/logo.PNG',
         link: {
-          mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
-          webUrl: '"'+timeSelectedList[i][5]+'"'
+          mobileWebUrl: eventList[i][5],
+          webUrl: eventList[i][5]
         }
       },
       social: {
@@ -735,8 +735,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
-            webUrl: '"'+timeSelectedList[i][5]+'"'
+            mobileWebUrl: eventList[i][5],
+            webUrl: eventList[i][5]
           }
         }
       ]
@@ -746,15 +746,15 @@ Kakao.Link.createDefaultButton({
     function sendLink() {
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '카이스트 "'+timeSelectedList[i][3]+'"',
-        addressTitle: '"'+locationDict[timeSelectedList[i][3]]+'"',
+        address: '카이스트 ' + eventList[i][3],
+        addressTitle: locationDict[eventList[i][3]],
         content: {
-          title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4],
-          imageUrl: './image/logo.PNG',
+          title: eventList[i][0],
+          description: eventList[i][4],
+          imageUrl: '/image/logo.PNG',
           link: {
-            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
-            webUrl: '"'+timeSelectedList[i][5]+'"'
+            mobileWebUrl: eventList[i][5],
+            webUrl: eventList[i][5]
           }
         },
         social: {
@@ -766,8 +766,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl:'"'+timeSelectedList[i][5]+'"',
-              webUrl: '"'+timeSelectedList[i][5]+'"'
+              mobileWebUrl:eventList[i][5],
+              webUrl: eventList[i][5]
             }
           }
         ]
