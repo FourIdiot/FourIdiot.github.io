@@ -767,7 +767,7 @@ Kakao.Link.createDefaultButton({
             title: '웹으로 보기',
             link: {
               mobileWebUrl: timeSelectedList[i][5],
-              webUrl: timeSelectedList[i][5]
+              webUrl: 'https://fouridiot.github.io/container2.html'
             }
           }
         ]
