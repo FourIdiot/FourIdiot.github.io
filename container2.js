@@ -715,8 +715,8 @@ function kakao_share() {
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
       objectType: 'location',
-      address: '카이스트 '+timeSelectedList[i][3],
-      addressTitle: locationDict[timeSelectedList[i][3]],
+      address: '카이스트 "'+timeSelectedList[i][3]+ '"',
+      addressTitle: '"'+locationDict[timeSelectedList[i][3]]+ '"',
       content: {
         title: timeSelectedList[i][0],
         description: timeSelectedList[i][4],
@@ -746,8 +746,8 @@ Kakao.Link.createDefaultButton({
     function sendLink() {
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '카이스트 '+timeSelectedList[i][3],
-        addressTitle: locationDict[timeSelectedList[i][3]],
+        address: '카이스트 "'+timeSelectedList[i][3]+'"',
+        addressTitle: '"'+locationDict[timeSelectedList[i][3]]+'"',
         content: {
           title: timeSelectedList[i][0],
           description: timeSelectedList[i][4],
