@@ -753,8 +753,8 @@ Kakao.Link.createDefaultButton({
           description: timeSelectedList[i][4],
           imageUrl: './image/logo.PNG',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         },
         social: {
