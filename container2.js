@@ -720,7 +720,7 @@ Kakao.Link.createDefaultButton({
       content: {
         title: timeSelectedList[i][0],
         description: timeSelectedList[i][4],
-        imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
+        imageUrl: '/image/logo.PNG',
         link: {
           mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
           webUrl: '"'+timeSelectedList[i][5]+'"'
@@ -754,7 +754,7 @@ Kakao.Link.createDefaultButton({
         content: {
           title: timeSelectedList[i][0],
           description: timeSelectedList[i][4],
-          imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
+          imageUrl: '/image/logo.PNG',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
             webUrl: '"'+timeSelectedList[i][5]+'"'
@@ -770,7 +770,7 @@ Kakao.Link.createDefaultButton({
             title: '웹으로 보기',
             link: {
               mobileWebUrl:'"'+timeSelectedList[i][5]+'"',
-              webUrl: '"'+timeSelectedList[i][5]+'"'
+              webUrl: "https://portal.kaist.ac.kr/ennotice/notice/11557710443686"
             }
           }
         ]
