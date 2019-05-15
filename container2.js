@@ -720,7 +720,7 @@ Kakao.Link.createDefaultButton({
       content: {
         title: timeSelectedList[i][0],
         description: timeSelectedList[i][4],
-        imageUrl: '/image/logo.PNG',
+        imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
         link: {
           mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
           webUrl: '"'+timeSelectedList[i][5]+'"'
@@ -746,7 +746,7 @@ Kakao.Link.createDefaultButton({
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
-			console.log(timeSelectedList[i][5]);
+			console.log('"'+timeSelectedList[i][5]+'"');
       Kakao.Link.sendDefault({
         objectType: 'location',
         address: '카이스트 ' + timeSelectedList[i][3],
@@ -754,7 +754,7 @@ Kakao.Link.createDefaultButton({
         content: {
           title: timeSelectedList[i][0],
           description: timeSelectedList[i][4],
-          imageUrl: '/image/logo.PNG',
+          imageUrl: 'http://mud-kage.kakao.co.kr/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
             webUrl: '"'+timeSelectedList[i][5]+'"'
