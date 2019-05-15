@@ -458,7 +458,7 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+event+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink("'+event+'");"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
 			
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
@@ -745,6 +745,7 @@ Kakao.Link.createDefaultButton({
 }
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
+    		console("hi");
 		if(event == timeSelectedList[i][3]){
       Kakao.Link.sendDefault({
         objectType: 'location',
