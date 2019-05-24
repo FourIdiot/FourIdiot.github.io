@@ -1,4 +1,9 @@
 
+html{
+	background-color: #D0F2F2;
+	
+}
+
 .wrapper{
 	display: grid;
 	grid-template-columns: repeat(10,140px);
