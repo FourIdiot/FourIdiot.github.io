@@ -11,8 +11,8 @@ firebase.initializeApp(config);
 //Global variables
 
 // 각 event 형식
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat,gifttyep]
-//     0		  1			  2			 3		   4		 5		   6		  7			8
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,[view,share],reservat,gifttyep]
+//     0		  1			  2			 3		   4		 5		  6		 	7		  8
 //ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null",0]
 //reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
 //8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
