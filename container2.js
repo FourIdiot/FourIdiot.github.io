@@ -472,6 +472,7 @@ function showDetail(event){
 			$("#content")
 			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+imageDict[timeSelectedList[i][8]]+'</button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
+
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
 			.append($('<p style="font-weight:bold">').html("When?"))
@@ -704,7 +705,7 @@ function sunny_moving(){
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
 				},900,function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
 					},function(){
@@ -749,7 +750,7 @@ function sunny_today(){
 				$('.black').animate({
 					opacity:"0"
 				},900,"",function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$('.pin').animate({marginTop: "-12px"},600,"",function(){
 						$(this).animate({marginTop:"0px"},600,"", function(){
 							//moving_pin(this);
