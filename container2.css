@@ -69,7 +69,7 @@ html{
 	outline: none;
 	font-size: 15px;
 	transition: 0.4s;
-  }
+}
 
 
 
@@ -437,6 +437,7 @@ div{
 	grid-row: 1/37;
 	grid-column: 1/12;
 	opacity: 0;
+	z-index: -10;
 }
 /*
 div{
