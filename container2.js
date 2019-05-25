@@ -32,7 +32,8 @@ var dateoffset = 0;
 var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-
+var sun_on_tomor = true;
+var sun_on_today = false;
 
 //timetable
 //timetable hover
@@ -213,6 +214,7 @@ $("#today_btn").on('click', function(){
 });
 
 $("#tomor_btn").on('click', function(){
+	//sunny_moving();
     $('#content').empty();
 		$('#scrollBar').remove();
 		$('#time-ctrl').data('havescroll', false);
@@ -259,6 +261,20 @@ var locationDict = {
   "E3" : "Information & Electronics B/D"
 
 };
+
+var locationDict_KR = {
+	"N13-1" : "장영신 학생회관",
+	"E11" : "항의학습관",
+	"E9" : "중앙도서관 학술문화관",
+	"W8" : "W8",
+  "N1" : "Kim Beang-Ho KIM Sam-Youl ITC Building",
+  "E15" : "대강당",
+  "E6" : "자연과학동",
+  "W1" : "응용공학동",
+  "N13" : "태울관",
+  "E3" : "전자정보동"
+};
+
 var coordinateDict = {
 	"N13-1" : ["390","165"],
 	"E11" : ["410","255"],
@@ -293,6 +309,11 @@ e="pinbutton";
     'style="position: absolute; left:' + coordinateDict[list[i]][0] + 'px; top:' + coordinateDict[list[i]][1] +'px;  width:30px; heigth:50px"' +
     'onclick="onoroff('+a+')" value="Off" />').appendTo(".pins");
   }
+  $('.pin').animate({marginTop: "-12px"},600,"",function(){
+		$(this).animate({marginTop:"0px"},600,"", function(){
+			//moving_pin(this);
+		});
+	});
 }
 
 function onoroff(id){
@@ -462,8 +483,8 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+event+')"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
-
+			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+			
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
@@ -494,15 +515,18 @@ function showDetail(event){
 	// 		}
 	// 	}
 }
-/*
-function moving_pin(){
-	$(".pin").animate({marginTop: "30px"},1200,"",function(){
-		$(this).animate({marginTop:"0px"},1200,"", function(){
-			moving_pin();
+
+function moving_pin(pin){
+	$(pin).animate({marginTop: "-12px"},600,"",function(){
+		$(this).animate({marginTop:"0px"},600,"", function(){
+			//moving_pin(this);
 		});
 	});
-}*/
+}
 
+$(document).on("click",".pin",function(){
+	moving_pin(this);
+});
 
 //팝업창
 // [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat]
@@ -647,7 +671,7 @@ $(".glyphicon-chevron-right").on('click',function(){
 // 	       $(".modal_right")
 // 	         .append($('<div class="modalpanel" id="modalpanel'+i+'"></div>'));
 // 	       $("#modalpanel"+i)
-// 	         .append($('<br><p id = "subjectName">' + eventList[i][0] + '<br>'))
+// 	         .append($('<br><p id = "subjectNameun">' + eventList[i][0] + '<br>'))
 // 	         .append($('<p>').html("When?"))
 // 	         .append($('<p id = "detailTime">').html(eventList[i][1][0] + " / "
 // 	         + eventList[i][1][1] + "  " + eventList[i][2][0] + " ~ " + eventList[i][2][1]))
@@ -660,7 +684,108 @@ $(".glyphicon-chevron-right").on('click',function(){
 // 	  }
 // 	}
 
+function sunny_moving(){
+	$('.black').css('z-index',99);
+	$('.black').animate({
+			opacity: "0.7"
+		},1200);
+	$('#sunny').animate({
+			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
+	},900,"", function(){	
+		$('#moon').animate({
+			marginLeft: "-300px", marginTop:"30px", opacity:"0"
+		},900,"", function(){
+			$("#sunny").animate({
+				marginLeft:"50px",marginTop:"0px"
+			},function(){
+				$('.black').animate({
+					opacity: "0"
+		}		,900);
+				$("#sunny").animate({
+					marginLeft:"0px", opacity:"1"
+				},900,function(){
+					$('.black').css('z-index',0);
+					$("#moon").animate({
+						marginLeft:"0px",marginTop:"0px"
+					},function(){
+						$("#moon").animate({
+							opacity:"1"
+						});
+						$('.pin').animate({marginTop: "-12px"},600,"",function(){
+							$(this).animate({marginTop:"0px"},600,"", function(){
+								//moving_pin(this);
+							});
+						});
+					});
+				});
+			});
+		});
+	});
+}
 
+function sunny_today(){
+	$('#sunny').animate({
+		marginLeft:"50px", opacity:"0"
+	},900);
+	$('.black').css('z-index',99);
+	$('.black').animate({
+		opacity:"0.7"
+	},1300);
+	$("#moon").animate({
+		opacity:"0"
+	},function(){
+		$("#moon").animate({
+			marginLeft:"-300px",marginTop:"30px"
+		});
+		$("#sunny").animate({
+			marginLeft:"-300px",marginTop:"-30px"
+		},function(){
+			$("#moon").animate({
+				marginLeft:"0px",marginTop:"0px",opacity:"1"
+			},900,"",function(){
+				$("#sunny").animate({
+					marginLeft:"0px",marginTop:"0px", opacity:"1"
+				},900);
+				$('.black').animate({
+					opacity:"0"
+				},900,"",function(){
+					$('.black').css('z-index',0);
+					$('.pin').animate({marginTop: "-12px"},600,"",function(){
+						$(this).animate({marginTop:"0px"},600,"", function(){
+							//moving_pin(this);
+						});
+					});
+				});
+			});
+		});
+	});
+}
+
+
+function sun_moving(){
+	$('#sunny').animate({
+		marginLeft:"20px",marginTop:"10px",opacity:"0.1"},1200,"",function(){
+		$(this).animate({marginLeft:"0px",marginTop:"0px" ,opacity:"0.9"},1200,"",function(){
+			sun_moving();
+		});
+	});
+}
+
+$('#tomor_btn').click(function(){
+	if (sun_on_tomor == true){
+		sunny_moving();
+	}
+	sun_on_tomor = false;
+	sun_on_today = true;
+});
+
+$('#today_btn').click(function(){
+	if(sun_on_today == true){
+		sunny_today();
+	}
+	sun_on_today = false;
+	sun_on_tomor = true;
+});
 
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -704,18 +829,19 @@ $(document).on('click','.heart', function(){
 $( document ).ready(function(){
 	readData();
 	kakao_share();
-
+	//sun_moving();
+	
 	//moving_pin();
 });
 
-//.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+
 
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('c53ea5317cc7bf239ff6cd3c0f941e8d');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
-function kakao_share() {
+function kakao_share() {   
 	for(var i=0;i<timeSelectedList.length;i++){
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
@@ -727,8 +853,8 @@ Kakao.Link.createDefaultButton({
         description: timeSelectedList[i][4],
         imageUrl: '/image/logo.PNG',
         link: {
-          mobileWebUrl: timeSelectedList[i][5],
-          webUrl: timeSelectedList[i][5]
+          mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+          webUrl: '"'+timeSelectedList[i][5]+'"'
         }
       },
       social: {
@@ -738,10 +864,10 @@ Kakao.Link.createDefaultButton({
       },
       buttons: [
         {
-          title: 'More Info',
+          title: '웹으로 보기',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         }
       ]
@@ -751,17 +877,18 @@ Kakao.Link.createDefaultButton({
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
 		if(event == timeSelectedList[i][3]){
+			console.log('"'+timeSelectedList[i][5]+'"');
       Kakao.Link.sendDefault({
         objectType: 'location',
-        address: '카이스트 ' + timeSelectedList[i][3],
+        address: '카이스트 ' + locationDict_KR[timeSelectedList[i][3]],
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4],
+          description: timeSelectedList[i][4] +"    " + timeSelectedList[i][5],
           imageUrl: '/image/logo.PNG',
           link: {
-            mobileWebUrl: timeSelectedList[i][5],
-            webUrl: timeSelectedList[i][5]
+            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
+            webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         },
         social: {
@@ -771,10 +898,10 @@ Kakao.Link.createDefaultButton({
         },
         buttons: [
           {
-            title: 'More Info',
+            title: '행사 더보기',
             link: {
-              mobileWebUrl:timeSelectedList[i][5],
-              webUrl: timeSelectedList[i][5]
+              mobileWebUrl:"https://fouridiot.github.io/container2.html",
+              webUrl: "https://fouridiot.github.io/container2.html"
             }
           }
         ]

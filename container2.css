@@ -1,4 +1,8 @@
 
+html{
+	background-color: #D0F2F2;
+
+}
 
 .wrapper{
 	display: grid;
@@ -32,6 +36,8 @@
 .logo{
 	grid-column:1/7;
 	margin: 4px;
+	position: relative;
+	z-index: 98;
 }
 
 .logo img {
@@ -293,12 +299,16 @@ body {
 	margin-left: 10px;
 	width:100%;
 	height:100%;
+	position: relative;
+	z-index: 10;
 }
 .cal_icon{
 	width: 100%;
 	height: 70%;
 	float:right;
 	margin-right: 0px;
+	position: relative;
+	z-index: 10;
 }
 
 .heart{
@@ -412,6 +422,22 @@ div{
 	margin-right: 5px;
 }
 
+.sun{
+	grid-row: 13/17;
+	grid-column: 9/10;
+}
+
+.moon_{
+	grid-row: 13/17;
+	grid-column: 6/7;
+}
+
+.black{
+	background-color: black;
+	grid-row: 1/37;
+	grid-column: 1/12;
+	opacity: 0;
+}
 /*
 div{
 	border: 1px solid red;
