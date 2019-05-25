@@ -179,13 +179,6 @@ function login(){
 	checkIdData(currentid,currentpw);
 }
 
-function addInterests(index){
-	eventList[index][6] += 1;
-	myInterest.push(eventkeylist[index]);
-	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
-	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
-}
-
 function deleteInterests(index){
 	eventList[index][6] -= 1;
 	myInterest.splice(index,1);
@@ -490,6 +483,7 @@ function showDetail(event){
 				var panel = this.nextElementSibling;
 				if (panel.style.display === "block") {
 					panel.style.display = "none";
+					addViewcount(eventtoindex(timeSelectedList[i]));
 				} else {
 					panel.style.display = "block";
 				}
@@ -872,7 +866,7 @@ Kakao.Link.createDefaultButton({
         }
       ]
     });
-}
+	};
 }
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
@@ -910,3 +904,24 @@ Kakao.Link.createDefaultButton({
 	}
     }
   //]]>
+
+
+function addViewcount(index){
+	eventList[index][6][0] += 1;
+	myInterest.push(eventkeylist[index]);
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
+}
+function addSharecount(index){
+	eventList[index][6][1] += 1;
+	myInterest.push(eventkeylist[index]);
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/1/").set(eventList[index][6][1]);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
+}
+function eventtoindex(event){
+	for (var i=0; i<eventList.length; i++){
+		if (eventList[i] == event){
+			return i;
+		}
+	};
+}
