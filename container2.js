@@ -29,6 +29,10 @@ var tomorrowList = [];
 var remainderList = [];
 var eventtimeSet = new Set();
 var dateoffset = 0;
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 
 //timetable
 //timetable hover
@@ -365,8 +369,8 @@ function loadComplete(){
 
 
 //today and Tomorrow
-$(".btn").click(function(){
-  $(".btn").removeClass("active1");
+$(".radio-button").click(function(){
+  $(".radio-button").removeClass("active1");
   $(this).addClass("active1");
 });
 
@@ -410,7 +414,7 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		// var today = Date.parse('2019/05/22/09:00:00');
+		//var today = Date.parse('2019/05/16/09:00:00');
 		var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
@@ -514,6 +518,7 @@ function popupContents(list){
 	if (nlist.length == 0){
 		$(".modal_left_body").empty();
 		$(".modal_right").empty();
+		$(".modal_left_body").append($('<p>').html("There are no events"));
 		return
 	}
 	$(".modal_left_body").empty();
@@ -566,7 +571,7 @@ function popupContents(list){
 $(".glyphicon-chevron-left").on('click',function(){
 	dateoffset-=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 	if (dateoffset == 0){
 		$(".glyphicon-chevron-left").prop('disabled',true);
 		popupContents(todayList);
@@ -588,7 +593,7 @@ $(".glyphicon-chevron-left").on('click',function(){
 $(".glyphicon-chevron-right").on('click',function(){
 	dateoffset+=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 
 	if (dateoffset == 1){
 		popupContents(tomorrowList);
@@ -670,7 +675,7 @@ var span = document.getElementsByClassName("close")[0];
 btn.onclick = function() {
 		modal.style.display = "block";
 		var current = new Date(Date.now());
-		$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+		$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 		popupContents(todayList);
 }
 
