@@ -290,14 +290,14 @@ var imageDict = {
 //pin on the map start
 function addpin(list){
 $('.pins').children().remove();
-b="'./image/redpin2.png'";
-c="'./image/redpin1.png'";
+b="'./image/pin1.png'";
+c="'./image/pin2.png'";
 d="Off";
 e="pinbutton";
   for (var i=0; i<list.length ; i++){
     a="'"+list[i]+"'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<img  class = "pin" id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+
+    $('<img  class = "pin" id="' + list[i] +'" src="./image/pin1.png"' + 'onmouseover="this.src='+c+
     ';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; left:' + coordinateDict[list[i]][0] + 'px; top:' + coordinateDict[list[i]][1] +'px;  width:30px; heigth:50px"' +
     'onclick="onoroff('+a+')" value="Off" />').appendTo(".pins");
@@ -315,19 +315,19 @@ function onoroff(id){
     $('#content').empty();
     // $('.pins').children()[0].value="Off";
     document.getElementById(id).value="Off";
-    document.getElementById(id).onmouseout = function() { this.src='./image/redpin2.png'; };
+    document.getElementById(id).onmouseout = function() { this.src='./image/pin1.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
   }
   else{
     showDetail(id);
     for(var i=0;i<$('.pins').children().length;i++){
       $('.pins').children()[i].value="Off";
-      document.getElementById($('.pins').children()[i].id).onmouseout = function() { this.src='./image/redpin2.png'; };
-      document.getElementById($('.pins').children()[i].id).src='./image/redpin2.png';
+      document.getElementById($('.pins').children()[i].id).onmouseout = function() { this.src='./image/pin1.png'; };
+      document.getElementById($('.pins').children()[i].id).src='./image/pin1.png';
       // document.getElementById($('.pins').children()[i].id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
     }
     document.getElementById(id).value="On";
-    document.getElementById(id).onmouseout = function() { this.src='./image/blackpin.png'; };
+    document.getElementById(id).onmouseout = function() { this.src='./image/pin3.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/blackpin.png';" );
   }
 }
@@ -337,14 +337,14 @@ function pincolor(id){
    if(currentValue){
      currentValue2= document.getElementById(id).value;
      if(currentValue== "On"){
-       return "'./image/blackpin.png'";
+       return "'./image/pin3.png'";
      }
      else{
-       return "'./image/redpin2.png'";
+       return "'./image/pin1.png'";
      }
    }
    else{
-     return "'./image/redpin2.png'";
+     return "'./image/pin1.png'";
    }
 }
 
@@ -465,6 +465,7 @@ function showDetail(event){
 			$("#content")
 			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+imageDict[timeSelectedList[i][8]]+'</button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
+
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
 			.append($('<p style="font-weight:bold">').html("When?"))
@@ -477,7 +478,7 @@ function showDetail(event){
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
-			
+
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
@@ -685,7 +686,7 @@ function sunny_moving(){
 		},1200);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},900,"", function(){	
+	},900,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
 		},900,"", function(){
@@ -698,7 +699,7 @@ function sunny_moving(){
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
 				},900,function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
 					},function(){
@@ -743,7 +744,7 @@ function sunny_today(){
 				$('.black').animate({
 					opacity:"0"
 				},900,"",function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$('.pin').animate({marginTop: "-12px"},600,"",function(){
 						$(this).animate({marginTop:"0px"},600,"", function(){
 							//moving_pin(this);
@@ -824,7 +825,7 @@ $( document ).ready(function(){
 	readData();
 	kakao_share();
 	//sun_moving();
-	
+
 	//moving_pin();
 });
 
@@ -835,7 +836,7 @@ $( document ).ready(function(){
     Kakao.init('c53ea5317cc7bf239ff6cd3c0f941e8d');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
-function kakao_share() {   
+function kakao_share() {
 	for(var i=0;i<timeSelectedList.length;i++){
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
