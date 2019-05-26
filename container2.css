@@ -38,6 +38,7 @@ html{
 	margin: 4px;
 	position: relative;
 	z-index: 98;
+	margin-top: 14px;
 }
 
 .logo img {
