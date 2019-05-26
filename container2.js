@@ -11,8 +11,8 @@ firebase.initializeApp(config);
 //Global variables
 
 // 각 event 형식
-// [Subject,[Month,Date],[start,end],locationN,explanation,link,numofinterests,reservat,gifttyep]
-//     0		  1			  2			 3		   4		 5		   6		  7			8
+// [Subject,[Month,Date],[start,end],locationN,explanation,link,[view,share],reservat,gifttyep]
+//     0		  1			  2			 3		   4		 5		  6		 	7		  8
 //ex ["Four Idiots Project Showcase",[6,4],["16:00","16:30"],"E11","All free events are ready for you!","http://~~",100,"Null",0]
 //reservation 이 필요없으면 Null, 필요하면 링크가 들어있습니다.
 //8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
@@ -29,6 +29,9 @@ var tomorrowList = [];
 var remainderList = [];
 var eventtimeSet = new Set();
 var dateoffset = 0;
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 var sun_on_tomor = true;
 var sun_on_today = false;
 
@@ -176,13 +179,6 @@ function login(){
 	checkIdData(currentid,currentpw);
 }
 
-function addInterests(index){
-	eventList[index][6] += 1;
-	myInterest.push(eventkeylist[index]);
-	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/").set(eventList[index][6]);
-	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
-}
-
 function deleteInterests(index){
 	eventList[index][6] -= 1;
 	myInterest.splice(index,1);
@@ -294,14 +290,14 @@ var imageDict = {
 //pin on the map start
 function addpin(list){
 $('.pins').children().remove();
-b="'./image/redpin2.png'";
-c="'./image/redpin1.png'";
+b="'./image/pin1.png'";
+c="'./image/pin2.png'";
 d="Off";
 e="pinbutton";
   for (var i=0; i<list.length ; i++){
     a="'"+list[i]+"'";
     // $('<area shape="circle" id="N13-1" target="_blank"  coords="290,220,20" href="https://www.naver.com" />').appendTo(".campusmap");
-    $('<img  class = "pin" id="' + list[i] +'" src="./image/redpin2.png"' + 'onmouseover="this.src='+c+
+    $('<img  class = "pin" id="' + list[i] +'" src="./image/pin1.png"' + 'onmouseover="this.src='+c+
     ';" onmouseout="this.src='+b+';"' +
     'style="position: absolute; left:' + coordinateDict[list[i]][0] + 'px; top:' + coordinateDict[list[i]][1] +'px;  width:30px; heigth:50px"' +
     'onclick="onoroff('+a+')" value="Off" />').appendTo(".pins");
@@ -319,19 +315,19 @@ function onoroff(id){
     $('#content').empty();
     // $('.pins').children()[0].value="Off";
     document.getElementById(id).value="Off";
-    document.getElementById(id).onmouseout = function() { this.src='./image/redpin2.png'; };
+    document.getElementById(id).onmouseout = function() { this.src='./image/pin1.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
   }
   else{
     showDetail(id);
     for(var i=0;i<$('.pins').children().length;i++){
       $('.pins').children()[i].value="Off";
-      document.getElementById($('.pins').children()[i].id).onmouseout = function() { this.src='./image/redpin2.png'; };
-      document.getElementById($('.pins').children()[i].id).src='./image/redpin2.png';
+      document.getElementById($('.pins').children()[i].id).onmouseout = function() { this.src='./image/pin1.png'; };
+      document.getElementById($('.pins').children()[i].id).src='./image/pin1.png';
       // document.getElementById($('.pins').children()[i].id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
     }
     document.getElementById(id).value="On";
-    document.getElementById(id).onmouseout = function() { this.src='./image/blackpin.png'; };
+    document.getElementById(id).onmouseout = function() { this.src='./image/pin3.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/blackpin.png';" );
   }
 }
@@ -341,14 +337,14 @@ function pincolor(id){
    if(currentValue){
      currentValue2= document.getElementById(id).value;
      if(currentValue== "On"){
-       return "'./image/blackpin.png'";
+       return "'./image/pin3.png'";
      }
      else{
-       return "'./image/redpin2.png'";
+       return "'./image/pin1.png'";
      }
    }
    else{
-     return "'./image/redpin2.png'";
+     return "'./image/pin1.png'";
    }
 }
 
@@ -387,8 +383,8 @@ function loadComplete(){
 
 
 //today and Tomorrow
-$(".btn").click(function(){
-  $(".btn").removeClass("active1");
+$(".radio-button").click(function(){
+  $(".radio-button").removeClass("active1");
   $(this).addClass("active1");
 });
 
@@ -432,7 +428,7 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		// var today = Date.parse('2019/05/22/09:00:00');
+		//var today = Date.parse('2019/05/16/09:00:00');
 		var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
@@ -469,6 +465,7 @@ function showDetail(event){
 			$("#content")
 			.append($('<button class="accordion" id="accordion'+i+'">'+timeSelectedList[i][0]+imageDict[timeSelectedList[i][8]]+'</button>'))
 			.append($('<div class="panel" id="panel'+i+'"></div>'));
+
 			$("#panel"+i)
 			.append($('<br><p id = "subjectName">' + timeSelectedList[i][0] + '<br>'))
 			.append($('<p style="font-weight:bold">').html("When?"))
@@ -481,12 +478,13 @@ function showDetail(event){
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
-			
+
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
 				if (panel.style.display === "block") {
 					panel.style.display = "none";
+					addViewcount(eventtoindex(timeSelectedList[i]));
 				} else {
 					panel.style.display = "block";
 				}
@@ -539,6 +537,7 @@ function popupContents(list){
 	if (nlist.length == 0){
 		$(".modal_left_body").empty();
 		$(".modal_right").empty();
+		$(".modal_left_body").append($('<p>').html("There are no events"));
 		return
 	}
 	$(".modal_left_body").empty();
@@ -591,7 +590,7 @@ function popupContents(list){
 $(".glyphicon-chevron-left").on('click',function(){
 	dateoffset-=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 	if (dateoffset == 0){
 		$(".glyphicon-chevron-left").prop('disabled',true);
 		popupContents(todayList);
@@ -613,7 +612,7 @@ $(".glyphicon-chevron-left").on('click',function(){
 $(".glyphicon-chevron-right").on('click',function(){
 	dateoffset+=1;
 	var current = new Date(Date.now() + 86400000 * dateoffset);
-	$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+	$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 
 	if (dateoffset == 1){
 		popupContents(tomorrowList);
@@ -687,7 +686,7 @@ function sunny_moving(){
 		},1200);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},900,"", function(){	
+	},900,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
 		},900,"", function(){
@@ -700,7 +699,7 @@ function sunny_moving(){
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
 				},900,function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
 					},function(){
@@ -745,7 +744,7 @@ function sunny_today(){
 				$('.black').animate({
 					opacity:"0"
 				},900,"",function(){
-					$('.black').css('z-index',0);
+					$('.black').css('z-index',-10);
 					$('.pin').animate({marginTop: "-12px"},600,"",function(){
 						$(this).animate({marginTop:"0px"},600,"", function(){
 							//moving_pin(this);
@@ -796,7 +795,7 @@ var span = document.getElementsByClassName("close")[0];
 btn.onclick = function() {
 		modal.style.display = "block";
 		var current = new Date(Date.now());
-		$(".dates").html((current.getMonth()+1) + '/' + current.getDate());
+		$(".dates").html((monthNames[current.getMonth()]) + ' ' + current.getDate());
 		popupContents(todayList);
 }
 
@@ -826,7 +825,7 @@ $( document ).ready(function(){
 	readData();
 	kakao_share();
 	//sun_moving();
-	
+
 	//moving_pin();
 });
 
@@ -837,7 +836,7 @@ $( document ).ready(function(){
     Kakao.init('c53ea5317cc7bf239ff6cd3c0f941e8d');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
-function kakao_share() {   
+function kakao_share() {
 	for(var i=0;i<timeSelectedList.length;i++){
 Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn'+i,
@@ -868,7 +867,7 @@ Kakao.Link.createDefaultButton({
         }
       ]
     });
-}
+	};
 }
     function sendLink(event) {
     	for(var i=0;i<timeSelectedList.length;i++){
@@ -906,3 +905,24 @@ Kakao.Link.createDefaultButton({
 	}
     }
   //]]>
+
+
+function addViewcount(index){
+	eventList[index][6][0] += 1;
+	myInterest.push(eventkeylist[index]);
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
+}
+function addSharecount(index){
+	eventList[index][6][1] += 1;
+	myInterest.push(eventkeylist[index]);
+	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/1/").set(eventList[index][6][1]);
+	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
+}
+function eventtoindex(event){
+	for (var i=0; i<eventList.length; i++){
+		if (eventList[i] == event){
+			return i;
+		}
+	};
+}

@@ -53,8 +53,20 @@
         <div class = "tomor"><button type="button" id="tomor_btn" class="btn btn-primary">Tomorrow</button></div>
       </div> -->
       <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-        <button type="button" id="today_btn" class="btn btn-secondary today active1">Today</button>
-        <button type="button" id="tomor_btn" class="btn btn-secondary tomor">Tomorrow</button>
+        <!-- <button type="button" id="today_btn" class="btn btn-secondary today active1">Today</button>
+        <button type="button" id="tomor_btn" class="btn btn-secondary tomor">Tomorrow</button> -->
+        <div class="input-container">
+          <input id="today_btn" class="radio-button today active1" checked="checked" type="radio" name="radio"/>
+          <div class="radio-tile">
+          <label for="today_btn" class="ra">Today</label>
+          </div>
+        </div>
+        <div class="input-container">
+          <input id="tomor_btn" class="radio-button tomor" type="radio" name="radio"/>
+          <div class="radio-tile">
+          <label for="tomor_btn" class="ra">Tomorrow</label>
+          </div>
+        </div>
       </div>
       <div class="time_2">
           <div class="inner-wrap clock">
@@ -119,10 +131,10 @@
 
     </div>
 
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
   <script src="./container2.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
