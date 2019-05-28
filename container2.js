@@ -683,22 +683,22 @@ function sunny_moving(){
 	$('.black').css('z-index',99);
 	$('.black').animate({
 			opacity: "0.7"
-		},1200);
+		},800);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},900,"", function(){
+	},550,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
-		},900,"", function(){
+		},550,"", function(){
 			$("#sunny").animate({
 				marginLeft:"50px",marginTop:"0px"
 			},function(){
 				$('.black').animate({
 					opacity: "0"
-		}		,900);
+		}		,550);
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
-				},900,function(){
+				},750,function(){
 					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
@@ -721,11 +721,11 @@ function sunny_moving(){
 function sunny_today(){
 	$('#sunny').animate({
 		marginLeft:"50px", opacity:"0"
-	},900);
+	},550);
 	$('.black').css('z-index',99);
 	$('.black').animate({
 		opacity:"0.7"
-	},1300);
+	},800);
 	$("#moon").animate({
 		opacity:"0"
 	},function(){
@@ -737,13 +737,13 @@ function sunny_today(){
 		},function(){
 			$("#moon").animate({
 				marginLeft:"0px",marginTop:"0px",opacity:"1"
-			},900,"",function(){
+			},550,"",function(){
 				$("#sunny").animate({
 					marginLeft:"0px",marginTop:"0px", opacity:"1"
-				},900);
+				},550);
 				$('.black').animate({
 					opacity:"0"
-				},900,"",function(){
+				},550,"",function(){
 					$('.black').css('z-index',-10);
 					$('.pin').animate({marginTop: "-12px"},600,"",function(){
 						$(this).animate({marginTop:"0px"},600,"", function(){
