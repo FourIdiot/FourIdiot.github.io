@@ -375,7 +375,8 @@ div{
 .modal_right {
   float: right;
   margin-right: 10px;
-  grid-row: 1/11;
+	grid-row: 1/11;
+	letter-spacing: -1px
 }
 .modal_header {
 	border-bottom: 1px;
