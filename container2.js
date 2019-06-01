@@ -428,8 +428,8 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		//var today = Date.parse('2019/05/16/09:00:00');
-		var today = Date.now();
+		var today = Date.parse('2019/05/28/09:00:00');
+		//var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
 			var eventsec = Date.parse('2019/' +
@@ -683,22 +683,22 @@ function sunny_moving(){
 	$('.black').css('z-index',99);
 	$('.black').animate({
 			opacity: "0.7"
-		},1200);
+		},800);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},900,"", function(){
+	},550,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
-		},900,"", function(){
+		},550,"", function(){
 			$("#sunny").animate({
 				marginLeft:"50px",marginTop:"0px"
 			},function(){
 				$('.black').animate({
 					opacity: "0"
-		}		,900);
+		}		,550);
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
-				},900,function(){
+				},750,function(){
 					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
@@ -721,11 +721,11 @@ function sunny_moving(){
 function sunny_today(){
 	$('#sunny').animate({
 		marginLeft:"50px", opacity:"0"
-	},900);
+	},550);
 	$('.black').css('z-index',99);
 	$('.black').animate({
 		opacity:"0.7"
-	},1300);
+	},800);
 	$("#moon").animate({
 		opacity:"0"
 	},function(){
@@ -737,13 +737,13 @@ function sunny_today(){
 		},function(){
 			$("#moon").animate({
 				marginLeft:"0px",marginTop:"0px",opacity:"1"
-			},900,"",function(){
+			},550,"",function(){
 				$("#sunny").animate({
 					marginLeft:"0px",marginTop:"0px", opacity:"1"
-				},900);
+				},550);
 				$('.black').animate({
 					opacity:"0"
-				},900,"",function(){
+				},550,"",function(){
 					$('.black').css('z-index',-10);
 					$('.pin').animate({marginTop: "-12px"},600,"",function(){
 						$(this).animate({marginTop:"0px"},600,"", function(){
@@ -861,8 +861,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
-            webUrl: '"'+timeSelectedList[i][5]+'"'
+            mobileWebUrl: "https://fouridiot.github.io/container2.html",
+            webUrl: "https://fouridiot.github.io/container2.html"
           }
         }
       ]
