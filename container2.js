@@ -428,8 +428,8 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		//var today = Date.parse('2019/05/16/09:00:00');
-		var today = Date.now();
+		var today = Date.parse('2019/05/28/09:00:00');
+		//var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
 			var eventsec = Date.parse('2019/' +
