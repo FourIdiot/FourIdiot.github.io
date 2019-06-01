@@ -38,6 +38,7 @@ html{
 	margin: 4px;
 	position: relative;
 	z-index: 98;
+	margin-top: 14px;
 }
 
 .logo img {
@@ -431,6 +432,19 @@ div{
 	grid-row: 13/17;
 	grid-column: 6/7;
 }
+
+.cloud{
+	grid-row: 14/17;
+	grid-column: 8/9;
+	margin-left: 50px;
+}
+
+.cloud2{
+	grid-row: 14/18;
+	grid-column: 4/5;
+	margin-left: 70px;
+}
+
 
 .black{
 	background-color: black;
