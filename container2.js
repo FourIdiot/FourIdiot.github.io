@@ -926,3 +926,8 @@ function eventtoindex(event){
 		}
 	};
 }
+function dbchange(){
+	for (var i=0; i<eventkeylist.length; i++){
+		firebase.database().ref('/4idiots/' + eventkeylist[i] + '/value/6/').set([42,0]);
+	}
+}
