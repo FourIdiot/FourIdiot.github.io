@@ -917,12 +917,12 @@ Kakao.Link.createDefaultButton({
 
 
 function addViewcount(index){
-	eventList[index][6][0] += 1;
+	allList[index][6][0] += 1;
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 function addSharecount(index){
-	eventList[index][6][1] += 1;
+	allList[index][6][1] += 1;
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/1/").set(eventList[index][6][1]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
