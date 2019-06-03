@@ -873,8 +873,7 @@ Kakao.Link.createDefaultButton({
             webUrl: "https://fouridiot.github.io/container2.html"
           }
         }
-      ],
-      callback: addSharecount(eventtoindex(timeSelectedList[i]))
+      ]
     });
 	};
 }
