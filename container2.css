@@ -108,13 +108,11 @@ html{
 }
 
 .modal_left_body {
-	overflow-y: scroll;
 	height: 252px;
 
 }
 
 .modal_right {
-	overflow-y: scroll;
 	height: 252px;
 
 }
@@ -328,9 +326,7 @@ div{
 	border : 1px solid;
 }
 */
-.modal_left_content{
-	margin:0 auto;
-}
+
 
 .dates {
 	display:inline-block;
