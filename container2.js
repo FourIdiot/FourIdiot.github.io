@@ -477,7 +477,7 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" class="kakaoButton"/></a>'));
 
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
@@ -683,13 +683,13 @@ function sunny_moving(){
 	$('.black').css('z-index',99);
 	$('.black').animate({
 			opacity: "0.7"
-		},800);
+		},600);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},550,"", function(){
+	},300,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
-		},550,"", function(){
+		},300,"", function(){
 			$("#sunny").animate({
 				marginLeft:"50px",marginTop:"0px"
 			},function(){
@@ -698,7 +698,7 @@ function sunny_moving(){
 		}		,550);
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
-				},750,function(){
+				},950,function(){
 					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
@@ -721,11 +721,11 @@ function sunny_moving(){
 function sunny_today(){
 	$('#sunny').animate({
 		marginLeft:"50px", opacity:"0"
-	},550);
+	},650);
 	$('.black').css('z-index',99);
 	$('.black').animate({
-		opacity:"0.7"
-	},800);
+		opacity:"0.6"
+	},500);
 	$("#moon").animate({
 		opacity:"0"
 	},function(){
@@ -737,16 +737,16 @@ function sunny_today(){
 		},function(){
 			$("#moon").animate({
 				marginLeft:"0px",marginTop:"0px",opacity:"1"
-			},550,"",function(){
+			},250,"",function(){
 				$("#sunny").animate({
 					marginLeft:"0px",marginTop:"0px", opacity:"1"
-				},550);
+				},350);
 				$('.black').animate({
 					opacity:"0"
-				},550,"",function(){
+				},400,"",function(){
 					$('.black').css('z-index',-10);
-					$('.pin').animate({marginTop: "-12px"},600,"",function(){
-						$(this).animate({marginTop:"0px"},600,"", function(){
+					$('.pin').animate({marginTop: "-14px"},500,"",function(){
+						$(this).animate({marginTop:"0px"},500,"", function(){
 							//moving_pin(this);
 						});
 					});
@@ -879,8 +879,8 @@ Kakao.Link.createDefaultButton({
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4] +"    " + timeSelectedList[i][5],
-          imageUrl: '/image/logo.PNG',
+          description: timeSelectedList[i][4] +"\n" + timeSelectedList[i][5],
+          imageUrl: 'https://fouridiot.github.io/image/logo.PNG',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
             webUrl: '"'+timeSelectedList[i][5]+'"'
