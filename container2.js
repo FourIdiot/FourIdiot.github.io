@@ -869,8 +869,8 @@ Kakao.Link.createDefaultButton({
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: "https://fouridiot.github.io/container2.html",
-            webUrl: "https://fouridiot.github.io/container2.html"
+            mobileWebUrl: "https://fouridiot.github.io",
+            webUrl: "https://fouridiot.github.io"
           }
         }
       ],
@@ -903,8 +903,8 @@ Kakao.Link.createDefaultButton({
           {
             title: '행사 더보기',
             link: {
-              mobileWebUrl:"https://fouridiot.github.io/container2.html",
-              webUrl: "https://fouridiot.github.io/container2.html"
+              mobileWebUrl:"https://fouridiot.github.io",
+              webUrl: "https://fouridiot.github.io"
             }
           }
         ],
