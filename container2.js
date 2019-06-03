@@ -862,15 +862,15 @@ Kakao.Link.createDefaultButton({
         }
       },
       social: {
-        viewCount: timeSelectedList[i][6][0],
-        sharedCount: timeSelectedList[i][6][1]
+        sharedCount: timeSelectedList[i][6][1],
+        viewCount: timeSelectedList[i][6][0]
       },
       buttons: [
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: "https://fouridiot.github.io/container2.html",
-            webUrl: "https://fouridiot.github.io/container2.html"
+            mobileWebUrl: "https://fouridiot.github.io",
+            webUrl: "https://fouridiot.github.io"
           }
         }
       ]
@@ -895,15 +895,15 @@ Kakao.Link.createDefaultButton({
           }
         },
         social: {
-        	viewCount: timeSelectedList[i][6][0],
-        	sharedCount: timeSelectedList[i][6][1]
+        	sharedCount: timeSelectedList[i][6][1],
+        	viewCount: timeSelectedList[i][6][0]
         },
         buttons: [
           {
             title: '행사 더보기',
             link: {
-              mobileWebUrl:"https://fouridiot.github.io/container2.html",
-              webUrl: "https://fouridiot.github.io/container2.html"
+              mobileWebUrl:"https://fouridiot.github.io",
+              webUrl: "https://fouridiot.github.io"
             }
           }
         ],
