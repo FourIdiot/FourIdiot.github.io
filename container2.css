@@ -165,10 +165,13 @@ html{
 
 #content{
 	margin: 10px;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	height: 500px;
 }
 
+.contents{
+	height: 300px;
+}
 
 .time_1{
 	display: grid;
@@ -295,13 +298,15 @@ body {
 	margin-top: 20px
 }
 #go_calendar{
-	background-color: white;
 	border:none;
-	margin-left: 10px;
-	width:100%;
-	height:100%;
+	margin: 13px 0 10px 10px;
+	width:120%;
+	height:70%;
 	position: relative;
 	z-index: 10;
+	text-align: center;
+	font-weight: 500;
+	background-color: #079ad9;
 }
 .cal_icon{
 	width: 100%;
