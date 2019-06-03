@@ -378,6 +378,7 @@ function loadComplete(){
   timeSelectedList = todayList.slice();
 	timeevent(todayList);
 	addpin(collectlocation(todayList));
+	kakao_share();
 }
 ///////////////
 
@@ -479,13 +480,14 @@ function showDetail(event){
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
 			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" class="kakaoButton"/></a>'));
 
+			var j = i;
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
 				if (panel.style.display === "block") {
 					panel.style.display = "none";
-					addViewcount(eventtoindex(timeSelectedList[i]));
 				} else {
+					addViewcount(eventtoindex(timeSelectedList[j]));
 					panel.style.display = "block";
 				}
 			});
@@ -823,7 +825,6 @@ $(document).on('click','.heart', function(){
 
 $( document ).ready(function(){
 	readData();
-	kakao_share();
 	//sun_moving();
 
 	//moving_pin();
@@ -853,9 +854,8 @@ Kakao.Link.createDefaultButton({
         }
       },
       social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
+        viewCount: timeSelectedList[i][6][0],
+        sharedCount: timeSelectedList[i][6][1]
       },
       buttons: [
         {
@@ -865,7 +865,8 @@ Kakao.Link.createDefaultButton({
             webUrl: "https://fouridiot.github.io/container2.html"
           }
         }
-      ]
+      ],
+      callback: addSharecount(eventtoindex(timeSelectedList[i]))
     });
 	};
 }
@@ -908,14 +909,14 @@ Kakao.Link.createDefaultButton({
 
 
 function addViewcount(index){
+	console.log(index);
+	console.log(eventList[index][6]);
 	eventList[index][6][0] += 1;
-	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 function addSharecount(index){
 	eventList[index][6][1] += 1;
-	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/1/").set(eventList[index][6][1]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
@@ -925,6 +926,8 @@ function eventtoindex(event){
 			return i;
 		}
 	};
+	console.log("eventtoindex error")
+	console.log(event);
 }
 function dbchange(){
 	for (var i=0; i<eventkeylist.length; i++){
