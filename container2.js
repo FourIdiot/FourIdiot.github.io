@@ -315,6 +315,8 @@ function onoroff(id){
     $('#content').empty();
     // $('.pins').children()[0].value="Off";
     document.getElementById(id).value="Off";
+    document.getElementById(id).src='./image/pin1.png';
+    document.getElementById(id).onmouseover = function(){ this.src='./image/pin2.png'; };
     document.getElementById(id).onmouseout = function() { this.src='./image/pin1.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
   }
@@ -324,9 +326,12 @@ function onoroff(id){
       $('.pins').children()[i].value="Off";
       document.getElementById($('.pins').children()[i].id).onmouseout = function() { this.src='./image/pin1.png'; };
       document.getElementById($('.pins').children()[i].id).src='./image/pin1.png';
+      document.getElementById($('.pins').children()[i].id).onmouseover = function() { this.src='./image/pin2.png'; };
       // document.getElementById($('.pins').children()[i].id).setAttribute( "onmouseout", "this.src='./image/redpin2.png';" );
     }
     document.getElementById(id).value="On";
+    document.getElementById(id).src='./image/pin3.png';
+    document.getElementById(id).onmouseover = function() {this.src='./image/pin3.png';};
     document.getElementById(id).onmouseout = function() { this.src='./image/pin3.png'; };
     // document.getElementById(id).setAttribute( "onmouseout", "this.src='./image/blackpin.png';" );
   }
@@ -428,7 +433,7 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		var today = Date.parse('2019/05/28/09:00:00');
+		var today = Date.parse('2019/05/29/09:00:00');
 		//var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
