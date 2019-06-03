@@ -18,6 +18,7 @@ firebase.initializeApp(config);
 //8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
 
 var eventtimeSet = new Set();
+var allList = []; // 지난이벤트들까지 전부!
 var eventList = []; // event들로 구성됨.
 var eventkeylist = []; // firebase 안 event들의 key들로 구성됨. (고유 번호라고 생각하면 됩니다)
 var timeSelectedList = []; // select된 event들로 구성됨.
@@ -383,6 +384,7 @@ function loadComplete(){
   timeSelectedList = todayList.slice();
 	timeevent(todayList);
 	addpin(collectlocation(todayList));
+	kakao_share();
 }
 ///////////////
 
@@ -446,6 +448,7 @@ function readData(){ //데이터 로드 from firebase
 				String(event[1][1]).padStart(2,'0') + '/00:00:00');
 			if (today >= eventsec){
 				//여기에서 firebase에서 지우는것도 고려
+				allList.push(event);
 				continue;
 			}
 			else if (today >= eventdatesec - 86400000){
@@ -455,6 +458,7 @@ function readData(){ //데이터 로드 from firebase
 				else{
 					tomorrowList.push(event);
 				}
+				allList.push(event);
 			}
 			eventList.push(event);
 			remainderList.push(event);
@@ -482,15 +486,16 @@ function showDetail(event){
 			.append($('<p id = "reward">').html(timeSelectedList[i][4]))
 			.append($('<a id = "detailLink" href="' + timeSelectedList[i][5] + '">').html("Link"))
 			//.append($('<div class="heart" style="color:red;"><i class="fas fa-heart"></i>'+timeSelectedList[i][6]+'</div>'));
-			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>'));
+			.append($('<a id="kakao-link-btn'+i+'" class="kakaolink" href="javascript:sendLink('+"'"+event+"'"+');"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" class="kakaoButton"/></a>'));
 
+			var j = i;
 			$("#accordion"+i).bind("click", function() {
 				this.classList.toggle("active");
 				var panel = this.nextElementSibling;
 				if (panel.style.display === "block") {
 					panel.style.display = "none";
-					addViewcount(eventtoindex(timeSelectedList[i]));
 				} else {
+					addViewcount(eventtoindex(timeSelectedList[j]));
 					panel.style.display = "block";
 				}
 			});
@@ -688,13 +693,13 @@ function sunny_moving(){
 	$('.black').css('z-index',99);
 	$('.black').animate({
 			opacity: "0.7"
-		},800);
+		},600);
 	$('#sunny').animate({
 			marginLeft:"-300px", marginTop:"-30px", opacity:"0"
-	},550,"", function(){
+	},300,"", function(){
 		$('#moon').animate({
 			marginLeft: "-300px", marginTop:"30px", opacity:"0"
-		},550,"", function(){
+		},300,"", function(){
 			$("#sunny").animate({
 				marginLeft:"50px",marginTop:"0px"
 			},function(){
@@ -703,7 +708,7 @@ function sunny_moving(){
 		}		,550);
 				$("#sunny").animate({
 					marginLeft:"0px", opacity:"1"
-				},750,function(){
+				},950,function(){
 					$('.black').css('z-index',-10);
 					$("#moon").animate({
 						marginLeft:"0px",marginTop:"0px"
@@ -726,11 +731,11 @@ function sunny_moving(){
 function sunny_today(){
 	$('#sunny').animate({
 		marginLeft:"50px", opacity:"0"
-	},550);
+	},650);
 	$('.black').css('z-index',99);
 	$('.black').animate({
-		opacity:"0.7"
-	},800);
+		opacity:"0.6"
+	},500);
 	$("#moon").animate({
 		opacity:"0"
 	},function(){
@@ -742,16 +747,16 @@ function sunny_today(){
 		},function(){
 			$("#moon").animate({
 				marginLeft:"0px",marginTop:"0px",opacity:"1"
-			},550,"",function(){
+			},250,"",function(){
 				$("#sunny").animate({
 					marginLeft:"0px",marginTop:"0px", opacity:"1"
-				},550);
+				},350);
 				$('.black').animate({
 					opacity:"0"
-				},550,"",function(){
+				},400,"",function(){
 					$('.black').css('z-index',-10);
-					$('.pin').animate({marginTop: "-12px"},600,"",function(){
-						$(this).animate({marginTop:"0px"},600,"", function(){
+					$('.pin').animate({marginTop: "-14px"},500,"",function(){
+						$(this).animate({marginTop:"0px"},500,"", function(){
 							//moving_pin(this);
 						});
 					});
@@ -828,7 +833,6 @@ $(document).on('click','.heart', function(){
 
 $( document ).ready(function(){
 	readData();
-	kakao_share();
 	//sun_moving();
 
 	//moving_pin();
@@ -858,9 +862,8 @@ Kakao.Link.createDefaultButton({
         }
       },
       social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
+        viewCount: timeSelectedList[i][6][0],
+        sharedCount: timeSelectedList[i][6][1]
       },
       buttons: [
         {
@@ -870,7 +873,8 @@ Kakao.Link.createDefaultButton({
             webUrl: "https://fouridiot.github.io/container2.html"
           }
         }
-      ]
+      ],
+      callback: addSharecount(eventtoindex(timeSelectedList[i]))
     });
 	};
 }
@@ -884,17 +888,16 @@ Kakao.Link.createDefaultButton({
         addressTitle: locationDict[timeSelectedList[i][3]],
         content: {
           title: timeSelectedList[i][0],
-          description: timeSelectedList[i][4] +"    " + timeSelectedList[i][5],
-          imageUrl: '/image/logo.PNG',
+          description: timeSelectedList[i][4] +"\n" + timeSelectedList[i][5],
+          imageUrl: 'https://fouridiot.github.io/image/logo.PNG',
           link: {
             mobileWebUrl: '"'+timeSelectedList[i][5]+'"',
             webUrl: '"'+timeSelectedList[i][5]+'"'
           }
         },
         social: {
-          likeCount: 286,
-          commentCount: 45,
-          sharedCount: 845
+        	viewCount: timeSelectedList[i][6][0],
+        	sharedCount: timeSelectedList[i][6][1]
         },
         buttons: [
           {
@@ -904,7 +907,8 @@ Kakao.Link.createDefaultButton({
               webUrl: "https://fouridiot.github.io/container2.html"
             }
           }
-        ]
+        ],
+      	callback: addSharecount(eventtoindex(timeSelectedList[i]))
       });
 	  }
 	}
@@ -914,22 +918,21 @@ Kakao.Link.createDefaultButton({
 
 function addViewcount(index){
 	eventList[index][6][0] += 1;
-	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 function addSharecount(index){
 	eventList[index][6][1] += 1;
-	myInterest.push(eventkeylist[index]);
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/1/").set(eventList[index][6][1]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 function eventtoindex(event){
-	for (var i=0; i<eventList.length; i++){
-		if (eventList[i] == event){
+	for (var i=0; i<allList.length; i++){
+		if (allList[i] == event){
 			return i;
 		}
 	};
+	console.log("eventtoindex error")
 }
 function dbchange(){
 	for (var i=0; i<eventkeylist.length; i++){
