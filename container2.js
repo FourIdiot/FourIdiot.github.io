@@ -459,6 +459,9 @@ function readData(){ //데이터 로드 from firebase
 				}
 				allList.push(event);
 			}
+			else{
+				allList.push(event);
+			}
 			eventList.push(event);
 			remainderList.push(event);
 		}
