@@ -18,6 +18,7 @@ firebase.initializeApp(config);
 //8 : gifttype은 0일때 음식, 1일때 물건, 2일때 둘다입니다.
 
 var eventtimeSet = new Set();
+var allList = []; // 지난이벤트들까지 전부!
 var eventList = []; // event들로 구성됨.
 var eventkeylist = []; // firebase 안 event들의 key들로 구성됨. (고유 번호라고 생각하면 됩니다)
 var timeSelectedList = []; // select된 event들로 구성됨.
@@ -442,6 +443,7 @@ function readData(){ //데이터 로드 from firebase
 				String(event[1][1]).padStart(2,'0') + '/00:00:00');
 			if (today >= eventsec){
 				//여기에서 firebase에서 지우는것도 고려
+				allList.push(event);
 				continue;
 			}
 			else if (today >= eventdatesec - 86400000){
@@ -451,6 +453,7 @@ function readData(){ //데이터 로드 from firebase
 				else{
 					tomorrowList.push(event);
 				}
+				allList.push(event);
 			}
 			eventList.push(event);
 			remainderList.push(event);
@@ -919,8 +922,8 @@ function addSharecount(index){
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
 }
 function eventtoindex(event){
-	for (var i=0; i<eventList.length; i++){
-		if (eventList[i] == event){
+	for (var i=0; i<allList.length; i++){
+		if (allList[i] == event){
 			return i;
 		}
 	};
