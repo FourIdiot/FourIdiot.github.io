@@ -862,8 +862,8 @@ Kakao.Link.createDefaultButton({
         }
       },
       social: {
-        sharedCount: timeSelectedList[i][6][1]
-        viewCount: timeSelectedList[i][6][0],
+        sharedCount: timeSelectedList[i][6][1],
+        viewCount: timeSelectedList[i][6][0]
       },
       buttons: [
         {
@@ -896,8 +896,8 @@ Kakao.Link.createDefaultButton({
           }
         },
         social: {
-        	sharedCount: timeSelectedList[i][6][1]
-        	viewCount: timeSelectedList[i][6][0],
+        	sharedCount: timeSelectedList[i][6][1],
+        	viewCount: timeSelectedList[i][6][0]
         },
         buttons: [
           {
