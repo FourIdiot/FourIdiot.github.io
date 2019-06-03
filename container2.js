@@ -888,9 +888,8 @@ Kakao.Link.createDefaultButton({
           }
         },
         social: {
-          likeCount: 286,
-          commentCount: 45,
-          sharedCount: 845
+        	viewCount: timeSelectedList[i][6][0],
+        	sharedCount: timeSelectedList[i][6][1]
         },
         buttons: [
           {
@@ -900,7 +899,8 @@ Kakao.Link.createDefaultButton({
               webUrl: "https://fouridiot.github.io/container2.html"
             }
           }
-        ]
+        ],
+      	callback: addSharecount(eventtoindex(timeSelectedList[i]))
       });
 	  }
 	}
@@ -909,8 +909,6 @@ Kakao.Link.createDefaultButton({
 
 
 function addViewcount(index){
-	console.log(index);
-	console.log(eventList[index][6]);
 	eventList[index][6][0] += 1;
 	firebase.database().ref("/4idiots/" + eventkeylist[index] + "/value/6/0/").set(eventList[index][6][0]);
 	firebase.database().ref("/4idiotslogin/" + myID + "/Interests/").set(myInterest);
@@ -927,7 +925,6 @@ function eventtoindex(event){
 		}
 	};
 	console.log("eventtoindex error")
-	console.log(event);
 }
 function dbchange(){
 	for (var i=0; i<eventkeylist.length; i++){
