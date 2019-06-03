@@ -454,11 +454,20 @@ div{
 
 .black{
 	background-color: black;
+	/*
 	grid-row: 1/37;
 	grid-column: 1/12;
 	opacity: 0;
+	*/
+	position:absolute;
+	top:0px;
+	width: 100%;
+	height:100%;
+	background-size: 100%;
+	opacity: 0;
 	z-index: -10;
 }
+
 /*
 div{
 	border: 1px solid red;
@@ -541,8 +550,12 @@ div{
 				background-color: #079ad9;
 		}
 		
-			
 		
+	.kakaoButton{
+		width:23px;
+		height:23px;
+		
+	}
 	
 
   
