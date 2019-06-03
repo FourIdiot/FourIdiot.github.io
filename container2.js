@@ -384,7 +384,6 @@ function loadComplete(){
   timeSelectedList = todayList.slice();
 	timeevent(todayList);
 	addpin(collectlocation(todayList));
-	kakao_share();
 }
 ///////////////
 
@@ -833,6 +832,7 @@ $(document).on('click','.heart', function(){
 
 $( document ).ready(function(){
 	readData();
+	kakao_share();
 	//sun_moving();
 
 	//moving_pin();
@@ -910,7 +910,7 @@ Kakao.Link.createDefaultButton({
       	callback: addSharecount(eventtoindex(timeSelectedList[i]))
       });
 	  }
-	}
+	};
     }
   //]]>
 
