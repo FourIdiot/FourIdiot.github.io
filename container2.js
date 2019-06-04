@@ -434,8 +434,8 @@ function readData(){ //데이터 로드 from firebase
 	firebase.database().ref('/4idiots/').once('value',function(snapshot){
 		var myValue = snapshot.val();
 		eventkeylist = Object.keys(myValue);
-		var today = Date.parse('2019/05/29/09:00:00');
-		//var today = Date.now();
+		//var today = Date.parse('2019/05/29/09:00:00');
+		var today = Date.now();
 		for (var i =0; i<eventkeylist.length;i++){
 			var event = myValue[eventkeylist[i]].value;
 			var eventsec = Date.parse('2019/' +
@@ -557,7 +557,7 @@ function popupContents(list){
 
 	for(var i=0;i<nlist.length;i++){
 			$(".modal_left_body")
-			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+nlist[i][0]+'<img class = "hamburger" src="./image/beef.png"></button>'));
+			.append($('<button class="prereserve" style="margin-bottom:2px" id="prereserve'+i+'">'+nlist[i][0]+imageDict[nlist[i][8]] + '</button>'));
 
 
 			$("#prereserve"+i).bind('click', function(){
@@ -814,12 +814,14 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
 		modal.style.display = "none";
+		dateoffset = 0;
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 		if (event.target == modal) {
 				modal.style.display = "none";
+				dateoffset = 0;
 		}
 }
 
