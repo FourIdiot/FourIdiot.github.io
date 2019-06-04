@@ -109,12 +109,15 @@ html{
 
 .modal_left_body {
 	height: 252px;
+	padding-right: 10px;
+	padding-top: 10px;
 
 }
 
 .modal_right {
 	height: 252px;
 	letter-spacing: -1;
+	padding-left: 10px;
 }
 
 .time{
@@ -530,6 +533,7 @@ div{
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-top: 4px;
 			color: #079ad9;
     }
 
